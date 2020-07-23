@@ -29,7 +29,7 @@ class CeresCoconutServiceProvider extends ServiceProvider
         $enabledOverrides = explode(", ", $config->get("CeresCoconut.templates.override"));
 
         // Override partials
-        $this->listenToIO('init.templates', function (Partial $partial) use ($enabledOverrides)
+        $dispatcher->listenToIO('init.templates', function (Partial $partial) use ($enabledOverrides)
         {
             if (in_array("head", $enabledOverrides) || in_array("all", $enabledOverrides))
             {
