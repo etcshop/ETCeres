@@ -29,13 +29,8 @@ class CeresCoconutServiceProvider extends ServiceProvider
         $enabledOverrides = explode(", ", $config->get("CeresCoconut.templates.override"));
 
         // Override partials
-        $dispatcher->listen('IO.init.templates', function (Partial $partial) use ($enabledOverrides)
+        $this->listenToIO('init.templates', function (Partial $partial) use ($enabledOverrides)
         {
-            $partial->set('head', 'Ceres::PageDesign.Partials.Head');
-            $partial->set('header', 'Ceres::PageDesign.Partials.Header.Header');
-            $partial->set('page-design', 'Ceres::PageDesign.PageDesign');
-            $partial->set('footer', 'Ceres::PageDesign.Partials.Footer');
-
             if (in_array("head", $enabledOverrides) || in_array("all", $enabledOverrides))
             {
                 $partial->set('head', 'CeresCoconut::PageDesign.Partials.Head');
