@@ -354,4 +354,12 @@ class CeresCoconutServiceProvider extends ServiceProvider
             }, self::PRIORITY);
         }
     }
+
+    private function listenToIO($event, $listener)
+    {
+        /** @var Dispatcher $dispatcher */
+        $dispatcher = pluginApp(Dispatcher::class);
+        $dispatcher->listen('IO.' . $event, $listener, self::EVENT_LISTENER_PRIORITY);
+        $dispatcher->listen('IO.intl.' . $event, $listener, self::EVENT_LISTENER_PRIORITY);
+    }
 }
