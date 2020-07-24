@@ -1,5 +1,5 @@
 <?php
-namespace CeresCoconut\Providers;
+namespace ETCeres\Providers;
 use Plenty\Plugin\ServiceProvider;
 use Plenty\Plugin\Events\Dispatcher;
 use Plenty\Plugin\Templates\Twig;
