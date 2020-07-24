@@ -52,7 +52,7 @@ class CeresCoconutServiceProvider extends ServiceProvider
             }
 
             return false;
-        }, self::PRIORITY);
+        });
 
         // Override homepage
         if (in_array("homepage", $enabledOverrides) || in_array("all", $enabledOverrides))
