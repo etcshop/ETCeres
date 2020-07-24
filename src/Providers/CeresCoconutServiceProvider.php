@@ -29,7 +29,7 @@ class CeresCoconutServiceProvider extends ServiceProvider
         $enabledOverrides = explode(", ", $config->get("CeresCoconut.templates.override"));
 
         // Override partials
-        $dispatcher->listenToIO('init.templates', function (Partial $partial) use ($enabledOverrides)
+        $this->listenToIO('init.templates', function (Partial $partial) use ($enabledOverrides)
         {
             if (in_array("head", $enabledOverrides) || in_array("all", $enabledOverrides))
             {
@@ -359,7 +359,7 @@ class CeresCoconutServiceProvider extends ServiceProvider
     {
         /** @var Dispatcher $dispatcher */
         $dispatcher = pluginApp(Dispatcher::class);
-        $dispatcher->listen('IO.' . $event, $listener, self::EVENT_LISTENER_PRIORITY);
-        $dispatcher->listen('IO.intl.' . $event, $listener, self::EVENT_LISTENER_PRIORITY);
+        $dispatcher->listen('IO.' . $event, $listener, self::PRIORITY);
+        $dispatcher->listen('IO.intl.' . $event, $listener, self::PRIORITY);
     }
 }
