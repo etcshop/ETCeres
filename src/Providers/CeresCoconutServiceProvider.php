@@ -6,7 +6,6 @@ use Plenty\Plugin\Templates\Twig;
 use IO\Helper\TemplateContainer;
 use IO\Extensions\Functions\Partial;
 use Plenty\Plugin\ConfigRepository;
-use CeresCoconut\Contexts\CoconutSingleItemContext;
 use Plenty\Modules\Webshop\ItemSearch\Helpers\ResultFieldTemplate;
 
 
