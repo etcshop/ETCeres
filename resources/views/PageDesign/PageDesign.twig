@@ -3,7 +3,7 @@
 {% import "Ceres::PageDesign.Macros.Translations" as Translations %}
 {{ component( "Ceres::PageDesign.Components.Notifications" ) }}
 {{ component( "Ceres::Customer.Components.Login" ) }}
-{{ component( "CeresCoconut::Customer.Components.RegistrationETC" ) }}
+{{ component( "ETCeres::Customer.Components.RegistrationETC" ) }}
 {{ component( "Ceres::PageDesign.Components.Popper" ) }}
 {{ component( "Ceres::Containers.Components.ContainerItemList" ) }}
 {{ component( "Ceres::Containers.Components.LastSeenItemList" ) }}
@@ -120,7 +120,7 @@
 
             <!-- breadcrumb -->
             {% if not services.template.isHome() and not services.template.isMyAccount() and not services.template.isCheckout() and not showMyAccountSubMenu and 'tpl.basket' not in currTpl and 'tpl.page-not-found' not in currTpl %}
-              {% include "CeresCoconut::PageDesign.Partials.Header.Breadcrumb" %}
+              {% include "ETCeres::PageDesign.Partials.Header.Breadcrumb" %}
             {% endif %}
 
             {% if services.template.isHome() %}
@@ -140,7 +140,7 @@
             {% if showMyAccountSubMenu == true %}
               <div id="SubMenuButton" class="hidden-lg hidden-md">
                 <i id="SubMenuButton_Icon" class="material-icons">reorder</i>
-                <div id="SubMenuText">{{ trans("CeresCoconut::Template.ETC_ServiceCenter") }}</div>
+                <div id="SubMenuText">{{ trans("ETCeres::Template.ETC_ServiceCenter") }}</div>
               </div>
 
               <div class="col-lg-3 col-md-4 col-sm-12" id="MyAccount_left">
@@ -148,36 +148,36 @@
                   <ul class="Test1335">
                     <li class="col-lg-4 col-sm-2 col-md-4 col-xs-2 MyAccoutMenu_Point" id="MyAccoutMenu_Kontakt">
                       <a href="{{ urls.contact }}" title="Kontakt">
-                        <div class="MyAccountLabel">{{ trans("CeresCoconut::Template.ETC_Kontakt") }}</div>
+                        <div class="MyAccountLabel">{{ trans("ETCeres::Template.ETC_Kontakt") }}</div>
                         <i id="MyAccountKontaktIcon" class="material-icons MyAccountIcon">contact_mail</i>
                       </a>
                     </li>
                     <li class="col-lg-4 col-sm-2 col-md-4 col-xs-2 MyAccoutMenu_Point" id="MyAccoutMenu_Retoure">
                       {% if webstoreConfig.webstoreId == 4 %}
                         {% if lang == "en" %}
-                          <a href="http://s141963554.online.de/retoure/MeineLampe/retoure_en.php" target="_blank" rel="noopener" title="{{ trans("CeresCoconut::Template.ETC_Retourenportal") }}">
+                          <a href="http://s141963554.online.de/retoure/MeineLampe/retoure_en.php" target="_blank" rel="noopener" title="{{ trans("ETCeres::Template.ETC_Retourenportal") }}">
                         {% elseif lang == "fr" %}
-                          <a href="http://s141963554.online.de/retoure/MeineLampe/retoure_fr.php" target="_blank" rel="noopener" title="{{ trans("CeresCoconut::Template.ETC_Retourenportal") }}">
+                          <a href="http://s141963554.online.de/retoure/MeineLampe/retoure_fr.php" target="_blank" rel="noopener" title="{{ trans("ETCeres::Template.ETC_Retourenportal") }}">
                         {% else %}
-                          <a href="http://s141963554.online.de/retoure/MeineLampe/retoure.php" target="_blank" rel="noopener" title="{{ trans("CeresCoconut::Template.ETC_Retourenportal") }}">
+                          <a href="http://s141963554.online.de/retoure/MeineLampe/retoure.php" target="_blank" rel="noopener" title="{{ trans("ETCeres::Template.ETC_Retourenportal") }}">
                         {% endif %}
                       {% else %}
                         {% if lang == "en" %}
-                          <a href="http://s141963554.online.de/retoure/voll/retoure_en.php" target="_blank" rel="noopener" title="{{ trans("CeresCoconut::Template.ETC_Retourenportal") }}">
+                          <a href="http://s141963554.online.de/retoure/voll/retoure_en.php" target="_blank" rel="noopener" title="{{ trans("ETCeres::Template.ETC_Retourenportal") }}">
                         {% elseif lang == "fr" %}
-                          <a href="http://s141963554.online.de/retoure/voll/retoure_fr.php" target="_blank" rel="noopener" title="{{ trans("CeresCoconut::Template.ETC_Retourenportal") }}">
+                          <a href="http://s141963554.online.de/retoure/voll/retoure_fr.php" target="_blank" rel="noopener" title="{{ trans("ETCeres::Template.ETC_Retourenportal") }}">
                         {% else %}
-                          <a href="http://s141963554.online.de/retoure/voll/retoure.php" target="_blank" rel="noopener" title="{{ trans("CeresCoconut::Template.ETC_Retourenportal") }}">
+                          <a href="http://s141963554.online.de/retoure/voll/retoure.php" target="_blank" rel="noopener" title="{{ trans("ETCeres::Template.ETC_Retourenportal") }}">
                         {% endif %}
                       {% endif %}
-                        <div class="MyAccountLabel">{{ trans("CeresCoconut::Template.ETC_Retoure") }}</div>
+                        <div class="MyAccountLabel">{{ trans("ETCeres::Template.ETC_Retoure") }}</div>
                         <i id="MyAccountRetoureIcon" class="material-icons MyAccountIcon">reply</i>
                       </a>
                     </li>
                     <li class="col-lg-4 col-sm-2 col-md-4 col-xs-2 MyAccoutMenu_Point" id="MyAccoutMenu_Newsletter">
                       {% set newsletter = services.category.get(802, lang) %}
                       <a href="{{ services.category.getURL(newsletter, lang) }}" title="Newsletter">
-                        <div class="MyAccountLabel">{{ trans("CeresCoconut::Template.ETC_Newsletter") }}</div>
+                        <div class="MyAccountLabel">{{ trans("ETCeres::Template.ETC_Newsletter") }}</div>
                         <i id="MyAccountNewsletterIcon" class="material-icons MyAccountIcon">email</i>
                       </a>
                     </li>
@@ -211,13 +211,13 @@
                     </li>
                     <li class="col-lg-4 col-sm-2 col-md-4 col-xs-2 MyAccoutMenu_Point" id="MyAccoutMenu_Auftraege">
                       <a href="{{ urls.myAccount }}?sc_Auftraghistorie=" title="Auftragshistorie">
-                        <div class="MyAccountLabel">{{ trans("CeresCoconut::Template.ETC_Bestellungen") }}</div>
+                        <div class="MyAccountLabel">{{ trans("ETCeres::Template.ETC_Bestellungen") }}</div>
                         <i id="MyAccountAuftragIcon" class="material-icons MyAccountIcon">restore</i>
                       </a>
                     </li>
                     <li class="col-lg-4 col-sm-2 col-md-4 col-xs-2 MyAccoutMenu_Point" id="MyAccoutMenu_Merkliste">
                       <a href="{{ urls.wishList }}?sc_Merkliste=" title="Merkliste">
-                        <div class="MyAccountLabel">{{ trans("CeresCoconut::Template.ETC_Merkliste") }}</div>
+                        <div class="MyAccountLabel">{{ trans("ETCeres::Template.ETC_Merkliste") }}</div>
                         <i id="MyAccountMerklisteIcon" class="material-icons MyAccountIcon">list</i>
                       </a>
                     </li>
@@ -381,7 +381,7 @@
 
 {% if ("/amazon-checkout" in ETCUri) or ("/amazon-login-processing" in ETCUri) or ("/amazon" in ETCUri) %}
   <div style="display: none">Layoutcontainer Anfang</div>
-  {{ LayoutContainer.show("CeresCoconut::Payment.Scripts") }}
+  {{ LayoutContainer.show("ETCeres::Payment.Scripts") }}
   <div style="display: none">Layoutcontainer Ende</div>
 {% endif %}
 
@@ -484,16 +484,16 @@
   {% endif %}
 
 
-{{ component( "CeresCoconut::VueScripts" ) }}
+{{ component( "ETCeres::VueScripts" ) }}
 
-{{ component( "CeresCoconut::Containers.Components.ContainerCrosssellingItemListETC" ) }}
-{{ component( "CeresCoconut::Containers.Components.ContainerItemListDirectCross" ) }}
-{{ component( "CeresCoconut::ItemList.Components.CrossSellingItemETC" ) }}
-{{ component( "CeresCoconut::Containers.Components.ContainerStartBoxItemListETC" ) }}
-{{ component( "CeresCoconut::ItemList.Components.StartBoxItemETC" ) }}
-{{ component( "CeresCoconut::PageDesign.Components.CookieBannerETC" ) }}
-{{ component( "CeresCoconut::PageDesign.Components.TrackingETC" ) }}
-{{ component( "CeresCoconut::ItemList.Components.CategoryItemQuickView" ) }}
+{{ component( "ETCeres::Containers.Components.ContainerCrosssellingItemListETC" ) }}
+{{ component( "ETCeres::Containers.Components.ContainerItemListDirectCross" ) }}
+{{ component( "ETCeres::ItemList.Components.CrossSellingItemETC" ) }}
+{{ component( "ETCeres::Containers.Components.ContainerStartBoxItemListETC" ) }}
+{{ component( "ETCeres::ItemList.Components.StartBoxItemETC" ) }}
+{{ component( "ETCeres::PageDesign.Components.CookieBannerETC" ) }}
+{{ component( "ETCeres::PageDesign.Components.TrackingETC" ) }}
+{{ component( "ETCeres::ItemList.Components.CategoryItemQuickView" ) }}
 
 {% if not services.template.shouldBeCached() %}
     <input type="hidden" id="csrf-token" value="{{ csrf_token() }}">
