@@ -107,11 +107,7 @@
     </div>
 
     <div class="wrapper wrapper-main {% if ceresConfig.header.fixNavBarPos %}isSticky{% endif %}">
-      {% if webstoreConfig.webstoreId == 4 %}
-          {% include getPartial('headerML') %}
-      {% else %}
-          {% include getPartial('header') %}
-      {% endif %}
+        {% include getPartial('header') %}
 
         <div class="content">
           <div class="container_centered">
