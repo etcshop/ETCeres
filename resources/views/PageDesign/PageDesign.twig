@@ -2,189 +2,356 @@
 {% import "Ceres::PageDesign.Macros.LayoutContainer" as LayoutContainer %}
 {% import "Ceres::PageDesign.Macros.Translations" as Translations %}
 {{ component( "Ceres::PageDesign.Components.Notifications" ) }}
+{{ component( "Ceres::Customer.Components.Login" ) }}
+{{ component( "CeresCoconut::Customer.Components.RegistrationETC" ) }}
 {{ component( "Ceres::PageDesign.Components.Popper" ) }}
+{{ component( "Ceres::Containers.Components.ContainerItemList" ) }}
+{{ component( "Ceres::Containers.Components.LastSeenItemList" ) }}
 {{ component( "Ceres::Customer.Components.ForgotPassword" ) }}
+{{ component( "Ceres::Customer.Components.Contact.AcceptPrivacyPolicyCheck") }}
 
 {% if isShopBuilder %}
     {% include "Ceres::Widgets.WidgetComponents" %}
 {% endif %}
 
 {% set currencyFormat = config("Ceres.currency.format") %}
-{% set defaultLanguage = webstoreConfig.defaultLanguage %}
+{% set defaultLanguage = services.webstoreConfig.getDefaultLanguage() %}
+{% set pid = services.webstoreConfig.getPlentyId() %}
 
+{% set canonicalUrl = services.url.getCanonicalURL() %}
+{% set currTpl = services.template.getCurrentTemplate() %}
+{% set buttonSize = 0 %}
+
+
+{% if request.get('openBasketPreview') == 1 %}
+    {% set openBasketClass = "open-" ~ ceresConfig.basket.previewType %}
+{% endif %}
+
+{% spaceless %}
 <!DOCTYPE html>
 
-<html lang="{{ lang }}" data-framework="vue" prefix="og: http://ogp.me/ns#" class="icons-loading">
+<html lang="{{ lang }}" data-framework="vue" prefix="og: http://ogp.me/ns#">
 
 <head>
-    {{ get_consent_scripts(ceresConfig.global.blockCookies) }}
-
     {% include getPartial('head') %}
 
     {% block PartialHead %}
-        {% embed getPartial('page-metadata') %}{% endembed %}
     {% endblock %}
 
     {% for styleTemplate in get_additional_styles() %}
         {% include styleTemplate.path ignore missing with styleTemplate.params %}
     {% endfor %}
 
-    {% if assetName == 'ceres-checkout' %}
-        {{ LayoutContainer.show("Ceres::Checkout.Styles") }}
+
+    {% if ("/amazon-checkout" in request.getRequestUri()) or ("/amazon-login-processing" in request.getRequestUri()) or ("/amazon" in request.getRequestUri()) %}
+      <title>Amazon Checkout | {{ config("Ceres.header.company_name") }}</title>
     {% endif %}
-    {% if services.template.getCurrentTemplate() == "tpl.item" %}
-        {{ LayoutContainer.show("Ceres::SingleItem.Styles") }}
-    {% endif %}
+
 </head>
 
-<body class="{{ bodyClasses | join(' ') }} {% if request.get('openBasketPreview') == 1 %} basket-open{% endif %}">
+<body>
+  {{ LayoutContainer.show("Ceres::PageDesign.AfterOpeningBodyTag") }}
 
-{{ LayoutContainer.show("Ceres::PageDesign.AfterOpeningBodyTag") }}
+  <script>
+      if('ontouchstart' in document.documentElement)
+      {
+          document.body.classList.add("touch");
+      }
+      else
+      {
+          document.body.classList.add("no-touch");
+      }
+  </script>
 
-<script>
-    if('ontouchstart' in document.documentElement)
-    {
-        document.body.classList.add("touch");
-    }
-    else
-    {
-        document.body.classList.add("no-touch");
-    }
-</script>
+  <div id="vue-app">
+    <div style="display: none; height: 100px; width: 100px; position: absolute; background-color: #F00; z-index: 111111111111111;">
+      {% set ETCUri = request.getRequestUri() %}
+      Request-URI (Funktion): {{ request.getRequestUri() }}
+      Request-URI (Variable): {{ ETCUri }}
 
-<div id="vue-app" class="app">
-    <!-- messages -->
-    <notifications template="#vue-notifications" :initial-notifications="{{ notifications | json_encode() }}"></notifications>
+      {% if ("/en/confirmation" in ETCUri) or ("/fr/confirmation" in ETCUri) %}
+        <script>window.location.href = "{{ ETCUri }}";</script>
+      {% endif %}
 
-    {% include getPartial('header') %}
-
-    <div id="page-body" class="main">
-        {% block PageBody %}{% endblock %}
+      {{ canonicalUrl }}
+      Aktuelles Template: {{ currTpl }}<br>
+      <br>
+      CookieState = {{ cookieState }}
+      <br>
+      asset = {{ assetName }}
+      <br>
     </div>
 
-    {% include getPartial('footer') %}
-
-    {% block PartialFooter %}{% endblock %}
-
-    <!-- LOGIN MODAL -->
-    <div id="login-modal-wrapper">
-        <div class="modal fade login-modal" id="login" tabindex="-1" role="dialog">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <div class="modal-title h3">{{ trans("Ceres::Template.login") }}</div>
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    </div>
-                    <lazy-load component="login-modal">
-                        <login modal-element="login-modal-wrapper">
-                            <template #extend-overlay-buttons>
-                                {{ LayoutContainer.show("Ceres::LoginOverlay.ExtendOverlayButtons") }}
-                            </template>
-                        </login>
-                    </lazy-load>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- ./LOGIN MODAL -->
-
-    <!-- REGISTRATION MODAL -->
-    <div id="simple-registration-modal-wrapper">
-        <div class="modal fade" id="registration" tabindex="-1" role="dialog">
-            <div class="modal-dialog">
-                <lazy-load component="register-modal">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <div class="modal-title h3">
-                                {{ trans("Ceres::Template.regCreateAccount") }}
-
+    <div class="wrapper wrapper-top testdev1228">
+        <!-- messages -->
+        <notifications template="#vue-notifications" :initial-notifications="{{ notifications | json_encode() }}"></notifications>
+            <!-- LOGIN MODAL -->
+            <div id="login-modal-wrapper">
+                <div class="modal fade login-modal" id="login" tabindex="-1" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <div class="modal-title h3">{{ trans("Ceres::Template.login") }}</div>
                             </div>
-
-                            <popper v-cloak class="ml-auto">
-                                <template #handle>
-                                    <button class="btn btn-icon btn-secondary btn-sm">
-                                        <i class="fa fa-info"></i>
-                                    </button>
-                                </template>
-                                <template #title>
-                                    {{ trans("Ceres::Template.regContactInformations") }}
-                                </template>
-                                <template #content>
-                                    <ul class='pl-3'>
-                                        <li class='mb-3'>{{ trans('Ceres::Template.regContactInfoText1') }}</li>
-                                        <li class='mb-3'>{{ trans('Ceres::Template.regContactInfoText2') }}</li>
-                                        <li class='mb-3'>{{ trans('Ceres::Template.regContactInfoText3') }}</li>
-                                        <li>{{ trans('Ceres::Template.regContactInfoText4') }}</li>
-                                    </ul>
-                                </template>
-                            </popper>
-
-                            <button type="button" class="close ml-0" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <login template="#vue-login" modal-element="login-modal-wrapper"></login>
                         </div>
-                        <div class="modal-body">
-                            <registration :is-simple-registration="true" modal-element="simple-registration-modal-wrapper">
-                                <template #extend-overlay-buttons>
-                                    {{ LayoutContainer.show("Ceres::RegistrationOverlay.ExtendOverlayButtons") }}
-                                </template>
-                                <template #custom-address-fields>
-                                    {{ LayoutContainer.show("Ceres::Checkout.CustomAddressField") }}
-                                </template>
-                            </registration>
-                        </div>
-                    </div>
-                </lazy-load>
-            </div>
-        </div>
-    </div>
-    <!-- ./REGISTRATION MODAL -->
-
-    <!-- BASKET MODAL -->
-    <lazy-load component="add-item-to-basket-overlay">
-        <add-item-to-basket-overlay>
-            <template slot="extendOverlayButtons">
-                {{ LayoutContainer.show("Ceres::Basket.ExtendOverlayButtons") }}
-            </template>
-        </add-item-to-basket-overlay>
-    </lazy-load>
-    <!-- ./BASKET MODAL -->
-
-    <!-- PASSWORD RESET MODAL -->
-    <lazy-load component="forgot-password-modal">
-        <forgot-password-modal :current-template="{{ services.template.getCurrentTemplate() | json_encode }}">
-            <template slot="extendOverlayButtons">
-                {{ LayoutContainer.show("Ceres::LoginOverlay.ExtendOverlayButtons") }}
-            </template>
-        </forgot-password-modal>
-    </lazy-load>
-    <!-- ./PASSWORD RESET MODAL -->
-
-    <!-- SHIPPINGCOSTS MODAL -->
-    {% if ceresConfig.global.shippingCostsCategoryId > 0 %}
-    <div id="shippingscosts-modal-wrapper">
-        <div class="modal fade" id="shippingscosts" tabindex="-1" role="dialog">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <div class="modal-title h3">{{ trans('Ceres::Template.shippingInfoCosts') }}</div>
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    </div>
-                    <div class="modal-body">
-                        {% set shopBuilderShippingTemplate = shop_builder_category_template(ceresConfig.global.shippingCostsCategoryId) %}
-                        {% if shopBuilderShippingTemplate | trim is not empty %}
-                            {{ shopBuilderShippingTemplate | raw }}
-                        {% else %}
-                            {% include category_template(ceresConfig.global.shippingCostsCategoryId, lang, webstoreConfig.webstoreId) ignore missing %}
-                        {% endif %}
                     </div>
                 </div>
             </div>
-        </div>
+            <!-- ./LOGIN MODAL -->
     </div>
+
+    <div class="wrapper wrapper-left">
+        <!-- filters -->
+    </div>
+
+    <div class="wrapper wrapper-main {% if ceresConfig.header.fixNavBarPos %}isSticky{% endif %}">
+      {% if webstoreConfig.webstoreId == 4 %}
+          {% include getPartial('headerML') %}
+      {% else %}
+          {% include getPartial('header') %}
+      {% endif %}
+
+        <div class="content">
+          <div class="container_centered">
+
+            {% if (services.template.isMyAccount()) or ('/pages/karriere' in canonicalUrl) or ('/pages/career' in canonicalUrl) or ('/pages/carriere' in canonicalUrl) or ('/pages/kontakt' in canonicalUrl) or ('/pages/contact' in canonicalUrl) or ('/meinelampe/kontakt' in canonicalUrl) or ('/meinelampe/contact' in canonicalUrl) or ('/pages/newsletter' in canonicalUrl) or ('/pages/infolettre' in canonicalUrl) or ('/pages/versand' in canonicalUrl) or ('/pages/shipping' in canonicalUrl) or ('pages/envoi' in canonicalUrl) or ('/pages/kontakt' in canonicalUrl) or ('/pages/zahlung' in canonicalUrl) or ('/pages/payment' in canonicalUrl) or ('/pages/paiement' in canonicalUrl)  or ('/pages/faq' in canonicalUrl) or (currTpl == 'tpl.contact') or (currTpl == 'tpl.wish-list') or (services.template.getCurrentTemplate() == 'tpl.confirmation' and request.getRequestUri()|replace({'/': ''}) == 'confirmation') %}
+                {% set showMyAccountSubMenu = true %}
+            {% else %}
+                {% set showMyAccountSubMenu = false %}
+            {% endif %}
+
+            <!-- breadcrumb -->
+            {% if not services.template.isHome() and not services.template.isMyAccount() and not services.template.isCheckout() and not showMyAccountSubMenu and 'tpl.basket' not in currTpl and 'tpl.page-not-found' not in currTpl %}
+              {% include "CeresCoconut::PageDesign.Partials.Header.Breadcrumb" %}
+            {% endif %}
+
+            {% if services.template.isHome() %}
+              {% set mainContentCentered = ' class="container_centered"' %}
+          {% else %}
+              {% set mainContentCentered = '' %}
+            {% endif %}
+
+            {% if category.linklist == "Y" %}
+                {% set initialCategory = { id: category.id } %}
+            {% else %}
+                {% set initialCategory = category %}
+            {% endif %}
+          </div>
+          <div{% if not services.template.isHome() %} class="container_centered" {% endif %}>
+
+            {% if showMyAccountSubMenu == true %}
+              <div id="SubMenuButton" class="hidden-lg hidden-md">
+                <i id="SubMenuButton_Icon" class="material-icons">reorder</i>
+                <div id="SubMenuText">{{ trans("CeresCoconut::Template.ETC_ServiceCenter") }}</div>
+              </div>
+
+              <div class="col-lg-3 col-md-4 col-sm-12" id="MyAccount_left">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <ul class="Test1335">
+                    <li class="col-lg-4 col-sm-2 col-md-4 col-xs-2 MyAccoutMenu_Point" id="MyAccoutMenu_Kontakt">
+                      <a href="{{ urls.contact }}" title="Kontakt">
+                        <div class="MyAccountLabel">{{ trans("CeresCoconut::Template.ETC_Kontakt") }}</div>
+                        <i id="MyAccountKontaktIcon" class="material-icons MyAccountIcon">contact_mail</i>
+                      </a>
+                    </li>
+                    <li class="col-lg-4 col-sm-2 col-md-4 col-xs-2 MyAccoutMenu_Point" id="MyAccoutMenu_Retoure">
+                      {% if webstoreConfig.webstoreId == 4 %}
+                        {% if lang == "en" %}
+                          <a href="http://s141963554.online.de/retoure/MeineLampe/retoure_en.php" target="_blank" rel="noopener" title="{{ trans("CeresCoconut::Template.ETC_Retourenportal") }}">
+                        {% elseif lang == "fr" %}
+                          <a href="http://s141963554.online.de/retoure/MeineLampe/retoure_fr.php" target="_blank" rel="noopener" title="{{ trans("CeresCoconut::Template.ETC_Retourenportal") }}">
+                        {% else %}
+                          <a href="http://s141963554.online.de/retoure/MeineLampe/retoure.php" target="_blank" rel="noopener" title="{{ trans("CeresCoconut::Template.ETC_Retourenportal") }}">
+                        {% endif %}
+                      {% else %}
+                        {% if lang == "en" %}
+                          <a href="http://s141963554.online.de/retoure/voll/retoure_en.php" target="_blank" rel="noopener" title="{{ trans("CeresCoconut::Template.ETC_Retourenportal") }}">
+                        {% elseif lang == "fr" %}
+                          <a href="http://s141963554.online.de/retoure/voll/retoure_fr.php" target="_blank" rel="noopener" title="{{ trans("CeresCoconut::Template.ETC_Retourenportal") }}">
+                        {% else %}
+                          <a href="http://s141963554.online.de/retoure/voll/retoure.php" target="_blank" rel="noopener" title="{{ trans("CeresCoconut::Template.ETC_Retourenportal") }}">
+                        {% endif %}
+                      {% endif %}
+                        <div class="MyAccountLabel">{{ trans("CeresCoconut::Template.ETC_Retoure") }}</div>
+                        <i id="MyAccountRetoureIcon" class="material-icons MyAccountIcon">reply</i>
+                      </a>
+                    </li>
+                    <li class="col-lg-4 col-sm-2 col-md-4 col-xs-2 MyAccoutMenu_Point" id="MyAccoutMenu_Newsletter">
+                      {% set newsletter = services.category.get(802, lang) %}
+                      <a href="{{ services.category.getURL(newsletter, lang) }}" title="Newsletter">
+                        <div class="MyAccountLabel">{{ trans("CeresCoconut::Template.ETC_Newsletter") }}</div>
+                        <i id="MyAccountNewsletterIcon" class="material-icons MyAccountIcon">email</i>
+                      </a>
+                    </li>
+                    <li class="col-lg-4 col-sm-2 col-md-4 col-xs-2 MyAccoutMenu_Point" id="MyAccoutMenu_Versand">
+                      {% set versand = services.category.get(722, lang) %}
+                      <a href="{{ services.category.getURL(versand, lang) }}" title="Versand">
+                        <div class="MyAccountLabel">{{ services.category.get(722, lang).details[0].name }}</div>
+                        <i id="MyAccountVersandIcon" class="material-icons MyAccountIcon">send</i>
+                      </a>
+                    </li>
+                    <li class="col-lg-4 col-sm-2 col-md-4 col-xs-2 MyAccoutMenu_Point" id="MyAccoutMenu_Zahlung">
+                      {% set zahlung = services.category.get(725, lang) %}
+                      <a href="{{ services.category.getURL(zahlung, lang) }}" title="Zahlung">
+                        <div class="MyAccountLabel">{{ services.category.get(725, lang).details[0].name }}</div>
+                        <i id="MyAccountZahlungIcon" class="material-icons MyAccountIcon">euro_symbol</i>
+                      </a>
+                    </li>
+                    <li class="col-lg-4 col-sm-2 col-md-4 col-xs-2 MyAccoutMenu_Point" id="MyAccoutMenu_FAQ">
+                      {% set FAQ = services.category.get(714, lang) %}
+                      <a href="{{ services.category.getURL(FAQ, lang) }}" title="FAQ">
+                        <div class="MyAccountLabel">{{ services.category.get(714, lang).details[0].name }}</div>
+                        <i id="MyAccountFAQIcon" class="material-icons MyAccountIcon">info_outline</i>
+                      </a>
+                    </li>
+                    <li class="col-lg-4 col-sm-2 col-md-4 col-xs-2 MyAccoutMenu_Point" id="MyAccoutMenu_Kundendaten">
+                      <a href="{{ urls.myAccount }}?sc_Kundendaten=" title="Mein Konto">
+                        <div class="MyAccountLabel">{{ trans("Ceres::Template.loginMyAccount") }}</div>
+                        <i id="MyAccountKundenkontoIcon" class="material-icons MyAccountIcon">account_box</i>
+                      </a>
+                      </a>
+                    </li>
+                    <li class="col-lg-4 col-sm-2 col-md-4 col-xs-2 MyAccoutMenu_Point" id="MyAccoutMenu_Auftraege">
+                      <a href="{{ urls.myAccount }}?sc_Auftraghistorie=" title="Auftragshistorie">
+                        <div class="MyAccountLabel">{{ trans("CeresCoconut::Template.ETC_Bestellungen") }}</div>
+                        <i id="MyAccountAuftragIcon" class="material-icons MyAccountIcon">restore</i>
+                      </a>
+                    </li>
+                    <li class="col-lg-4 col-sm-2 col-md-4 col-xs-2 MyAccoutMenu_Point" id="MyAccoutMenu_Merkliste">
+                      <a href="{{ urls.wishList }}?sc_Merkliste=" title="Merkliste">
+                        <div class="MyAccountLabel">{{ trans("CeresCoconut::Template.ETC_Merkliste") }}</div>
+                        <i id="MyAccountMerklisteIcon" class="material-icons MyAccountIcon">list</i>
+                      </a>
+                    </li>
+                  </ul>
+                  {% set loggedIn = frontend.Account.getIsAccountLoggedIn %}
+                  {% if loggedIn %}
+                    <span id="PlentyWebMyAccountMyAccountLogoutContainer">
+                  	   <a href="#" class="PlentyWebshopButton logout" id="button_logoutPlentyWebMyAccountLogout" title="Ausloggen" v-logout>{{ trans("Ceres::Template.loginLogout") }}</a>
+                     </span>
+                  {% else %}
+                    <span id="PlentyWebMyAccountMyAccountLogoutContainer">
+                       {% set loginURL = "" %}
+                       {% if webstoreConfig.webstoreId == 4 %}
+                           {% if lang == 'en' %}
+                              {% set loginURL = "https://www.meinelampe.de/en/login?backlink=https%3A%2F%2Fwww.meinelampe.de%2Fmy-account#sc_Kundendaten"%}
+                           {% elseif lang == 'fr' %}
+                              {% set loginURL = "https://www.meinelampe.de/fr/login?backlink=https%3A%2F%2Fwww.meinelampe.de%2Fmy-account#sc_Kundendaten"%}
+                           {% else %}
+                              {% set loginURL = "https://www.meinelampe.de/login?backlink=https%3A%2F%2Fwww.meinelampe.de%2Fmy-account#sc_Kundendaten"%}
+                           {% endif %}
+                       {% else %}
+                           {% if lang == 'en' %}
+                              {% set loginURL = "https://www.etc-shop.de/en/login?backlink=https%3A%2F%2Fwww.etc-shop.de%2Fmy-account#sc_Kundendaten"%}
+                           {% elseif lang == 'fr' %}
+                              {% set loginURL = "https://www.etc-shop.de/fr/login?backlink=https%3A%2F%2Fwww.etc-shop.de%2Fmy-account#sc_Kundendaten"%}
+                           {% else %}
+                              {% set loginURL = "https://www.etc-shop.de/login?backlink=https%3A%2F%2Fwww.etc-shop.de%2Fmy-account#sc_Kundendaten"%}
+                           {% endif %}
+                       {% endif %}
+                  	   <a class="PlentyWebshopButton logout" id="button_logoutPlentyWebMyAccountLogout" href="{{ loginURL }}">{{ trans("Ceres::Template.login") }}</a>
+                     </span>
+                  {% endif %}
+                </div>
+              </div>
+
+              <div class="col-lg-9 col-md-8 col-sm-12" id="MyAccount_right">
+            {% endif %}
+
+
+            {% block PageBody %}
+                <!-- inject content of inherited templates here -->
+            {% endblock %}
+
+
+            {% if showMyAccountSubMenu == true %}
+              </div>
+            {% endif %}
+          </div>
+        </div>
+
+        {% include getPartial('footer') %}
+
+        {% block PartialFooter %}
+        {% endblock %}
+
+        <input type="hidden" name="CookieBanner_StateInputPD" id="CookieBanner_StateInputPD">
+        <cookie-banner :webshop-id="{{ webstoreConfig.webstoreId }}"></cookie-banner>
+    </div>
+
+    {% if basket is not defined %}
+        {% set basket = services.basket.getBasketForTemplate() %}
     {% endif %}
-    <!-- ./SHIPPINGCOSTS MODAL -->
+
+    <div class="wrapper wrapper-bottom">
+      <!-- REGISTRATION MODAL -->
+      <div id="simple-registration-modal-wrapper">
+        <div class="modal fade" id="registration" tabindex="-1" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <div class="modal-title h3">
+                  {{ trans("Ceres::Template.regCreateAccount") }}
+
+                  <popper v-cloak class="pull-right m-r-1">
+                    <button slot="handle" class="btn btn-icon btn-secondary btn-sm">
+                      <i class="fa fa-info"></i>
+                    </button>
+                    <div slot="title">
+                      {{ trans("Ceres::Template.regContactInformations") }}
+                    </div>
+                    <ul slot="content" class='p-l-1'>
+                      <li class='m-b-1'>{{ trans('Ceres::Template.regContactInfoText1') }}</li>
+                      <li class='m-b-1'>{{ trans('Ceres::Template.regContactInfoText2') }}</li>
+                      <li class='m-b-1'>{{ trans('Ceres::Template.regContactInfoText3') }}</li>
+                      <li>{{ trans('Ceres::Template.regContactInfoText4') }}</li>
+                    </ul>
+                  </popper>
+                </div>
+              </div>
+              <registration template="#vue-registrationETC" :is-simple-registration="true" modal-element="simple-registration-modal-wrapper"></registration>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- ./REGISTRATION MODAL -->
+
+      <!-- PASSWORD RESET MODAL -->
+      <forgot-password-modal></forgot-password-modal>
+      <!-- ./PASSWORD RESET MODAL -->
+
+
+      <!-- SHIPPINGCOSTS MODAL -->
+      <div id="shippingscosts-modal-wrapper">
+        <div class="modal fade" id="shippingscosts" tabindex="-1" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <div class="modal-title h3">{{ trans('Ceres::Template.shippingInfoCosts') }}</div>
+              </div>
+              <div class="modal-body">
+                {% include category_template(ceresConfig.global.shippingCostsCategoryId, lang, webstoreConfig.webstoreId) ignore missing %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- ./SHIPPINGCOSTS MODAL -->
+    </div>
 </div>
 
+<!-- Extend the existing style with a template -->
+{{ LayoutContainer.show("Ceres::Template.Style") }}
+
+{{ get_shop_builder_styles() }}
+
+
 <script>
+
     App = {
         config: {{ ceresConfig | json_encode | raw }},
         urls: {{ urls | json_encode | raw }},
@@ -194,22 +361,19 @@
         isCheckoutView : {% if services.template.isCheckout() == "1" %}true{% else %}false{% endif %},
         isSearch: {% if services.template.isSearch() == "1" %}true{% else %}false{% endif %},
         isItemView: {% if services.template.getCurrentTemplate() == "tpl.item" %}true{% else %}false{% endif %},
-        templateEvent: "{{ templateEvent }}",
         templateType: "{{ urls.templateType }}",
+        templateEvent: "{{ templateEvent }}",
         language: "{{ lang }}",
         defaultLanguage: "{{ defaultLanguage }}",
         decimalSeparator: "{{ config("IO.format.separator_decimal") }}",
         urlTrailingSlash: {{ urls.appendTrailingSlash | json_encode }},
         propertyFileUrl: "{{ services.propertyFile.getPropertyFileUrl() }}",
         isShopBuilder: {{ isShopBuilder | default(false) | json_encode }},
-        bundleSetting: {{ webstoreConfig.dontSplitItemBundle | default(1) }},
-        initialPleaseSelect: {{ webstoreConfig.attributeSelectDefaultOption | default(0) }},
+        bundleSetting: {{ services.webstoreConfig.getWebstoreConfig().dontSplitItemBundle }},
         publicPath: "{{ plugin_path('Ceres') ~ '/js/dist/' }}",
-        isCheapestSorting: "{{ services.template.isCheapestSorting() }}",
         initialData: {
             shippingCountries: {{ services.country.getActiveCountriesList() | filterFields(["id", "currLangName", "isoCode2", "states.id", "states.name"]) | json_encode | raw }},
-            shippingCountryId: {{ services.checkout.getShippingCountryId() }},
-            showNetPrices: {{ showNetPrices | json_encode }}
+            shippingCountryId: {{ services.checkout.getShippingCountryId() | json_encode }}
         },
         features: {}
     };
@@ -219,7 +383,43 @@
 
 {{ LayoutContainer.show("Ceres::Script.Loader") }}
 
+{% if ("/amazon-checkout" in ETCUri) or ("/amazon-login-processing" in ETCUri) or ("/amazon" in ETCUri) %}
+  <div style="display: none">Layoutcontainer Anfang</div>
+  {{ LayoutContainer.show("CeresCoconut::Payment.Scripts") }}
+  <div style="display: none">Layoutcontainer Ende</div>
+{% endif %}
+
 {{ Translations.add( "Ceres", "Template" ) }}
+
+{% set defaultCSS = plugin_path("Ceres") ~ "/css/" ~ assetName ~ ".css?v=" ~ buildHash %}
+{% set defaultSCSS = plugin_path("Ceres") ~ "/css/" ~ assetName ~ ".scss?v=" ~ buildHash %}
+
+<link rel="preload" as="style" href="{{ defaultCSS }}">
+{% if LayoutContainer.show("Ceres::Template.StyleOverwrite") | trim is empty %}
+    <link rel="stylesheet" href="{{ defaultCSS }}"{% if isShopBuilder %} data-sass-root="{{ plugin_path('Ceres') }}" data-sass-original="{{ defaultSCSS }}"{% endif %}>
+{% endif %}
+
+<link href="https://fonts.googleapis.com/css?family=Hind+Guntur:300,400,500,600,700&display=swap" rel="stylesheet">
+{% if webstoreConfig.webstoreId == 4 %}
+  <link href="https://www.etc-shop.de/layout/ETCeres/css/themeETC.css" rel="stylesheet" type="text/css" />
+  <link href="https://www.etc-shop.de/layout/ETCeres/ml/css/em-minml.css" rel="stylesheet" type="text/css" />
+  <link href="https://www.etc-shop.de/layout/ETCeres/ml/css/ml.css" rel="stylesheet" type="text/css" />
+{% else %}
+  <link href="https://www.etc-shop.de/layout/ETCeres/css/etcmainbetaneu.css" rel="stylesheet" type="text/css" />
+  <link href="https://www.etc-shop.de/layout/ETCeres/css/etcmainbeta.css" rel="stylesheet" type="text/css" />
+{% endif %}
+{% if lang == "fr" %}
+  <link href="https://www.etc-shop.de/layout/ETCeres/css/etc_fr.css" rel="stylesheet" type="text/css" />
+{% elseif lang == "en" %}
+  <link href="https://www.etc-shop.de/layout/ETCeres/css/etc_en.css" rel="stylesheet" type="text/css" />
+{% endif %}
+
+    {% if assetName == 'ceres-checkout' %}
+        {{ LayoutContainer.show("Ceres::Checkout.Styles") }}
+    {% endif %}
+    {% if assetName == 'ceres-item' %}
+        {{ LayoutContainer.show("Ceres::SingleItem.Styles") }}
+    {% endif %}
 
 {{ get_json_data() }}
 
@@ -242,15 +442,11 @@
 {% if assetName == 'ceres-checkout' %}
     {{ LayoutContainer.show("Ceres::Checkout.AfterScriptsLoaded") }}
 {% endif %}
-{% if services.template.getCurrentTemplate() == "tpl.item" %}
+{% if assetName == 'ceres-item' %}
     {{ LayoutContainer.show("Ceres::SingleItem.AfterScriptsLoaded") }}
 {% endif %}
 
 <script>
-    window.__loadPluginChunk = function(source) {
-        return source += "?v={{ buildHash }}";
-    };
-
     window.vueEventHub = new Vue();
 
     if (App.config.log.checkSyntax)
@@ -279,12 +475,29 @@
         });
     }
 
-    {% if request.get("openBasketPreview") == 1 %}window.ceresStore.dispatch("loadComponent", "basket-preview"){% endif %}
 </script>
 
 {{ get_filtered_tags() }}
 
 {{ get_shop_builder_scripts( "latest", ceresConfig.log.performanceLevel == 'live') }}
+
+  {% if webstoreConfig.webstoreId == 4 %}
+    <script src="https://www.etc-shop.de/layout/ETCeres/ml/js/ml.js"></script>
+  {% else %}
+    <script src="https://www.etc-shop.de/layout/ETCeres/js/etcbeta.js"></script>
+  {% endif %}
+
+
+{{ component( "CeresCoconut::VueScripts" ) }}
+
+{{ component( "CeresCoconut::Containers.Components.ContainerCrosssellingItemListETC" ) }}
+{{ component( "CeresCoconut::Containers.Components.ContainerItemListDirectCross" ) }}
+{{ component( "CeresCoconut::ItemList.Components.CrossSellingItemETC" ) }}
+{{ component( "CeresCoconut::Containers.Components.ContainerStartBoxItemListETC" ) }}
+{{ component( "CeresCoconut::ItemList.Components.StartBoxItemETC" ) }}
+{{ component( "CeresCoconut::PageDesign.Components.CookieBannerETC" ) }}
+{{ component( "CeresCoconut::PageDesign.Components.TrackingETC" ) }}
+{{ component( "CeresCoconut::ItemList.Components.CategoryItemQuickView" ) }}
 
 {% if not services.template.shouldBeCached() %}
     <input type="hidden" id="csrf-token" value="{{ csrf_token() }}">
@@ -292,3 +505,5 @@
 
 </body>
 </html>
+
+{% endspaceless %}
