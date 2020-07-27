@@ -25,7 +25,7 @@
     {% set Test = 'kein login gefunden' %}
 {% endif %}
 
-<div class="header">
+<header class="header">
   <span style="display: none;" itemscope="" itemtype="http://data-vocabulary.org/Organization">
       <span itemprop="url">http://www.etc-shop.de</span>
       <span itemprop="logo"><img src="https://www.etc-shop.de/layout/content/base/etc_logo.png"></span>
@@ -233,7 +233,7 @@
       <div id="ServiceTelefon" class="hidden-xs hidden-sm">{{ trans("CeresCoconut::Template.ETC_Telefonnummer") }} {{ trans("CeresCoconut::Template.ETC_Servicetelefon") }}</div>
     </div>
   </div>
-</div>
+</header>
 
 {% if category.linklist == "Y" %}
     {% set initialCategory = { id: category.id } %}
