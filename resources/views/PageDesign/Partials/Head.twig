@@ -1,1 +1,125 @@
-<!-- Insert markup for head here -->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% if webstoreConfig.webstoreId == 4 %}
+  <meta name="theme-color" content="#FF4900" />
+{% else %}
+  <meta name="theme-color" content="#41CFFF" />
+{% endif %}
+{% set lang = services.sessionStorage.getLang() %}
+
+{% set defaultCSS = plugin_path("Ceres") ~ "/css/" ~ assetName ~ ".css?v=" ~ buildHash %}
+
+<link rel="preconnect" href="https://containertags.belboon.de">
+<link rel="preconnect" href="https://track.adform.net">
+<link rel="preconnect" href="https://ad13.adfarm1.adition.com">
+<link rel="preconnect" href="https://imagesrv.adition.com">
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link rel="preconnect" href="https://www.gstatic.com">
+<link rel="preconnect" href="https://cdn02.plentymarkets.com">
+<link rel="preconnect" href="https://cdn.findologic.com">
+<link rel="apple-touch-icon" href="https://www.etc-shop.de/layout/ETCeres/img/base/etc-logo_192x192.png">
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+
+{% if webstoreConfig.webstoreId == 0 %}
+<link rel="preload" href="https://www.etc-shop.de/layout/ETCeres/css/etcpreloadbetaneu.css" as="style">
+  <link rel="preload" href="{{ defaultCSS }}" as="style">
+  <link rel="preload" href="https://www.etc-shop.de/layout/ETCeres/css/etcpreloadbeta.css" as="style">
+
+  {% set iconCSS = plugin_path("Ceres") ~ "/css/ceres-icons.css" %}
+  {# asynchronously load icons.css #}
+  <link rel="preload" href="{{ iconCSS }}" as="style" onload="this.onload=null;this.rel='stylesheet';">
+  {# fallback for disabled javascript #}
+  <noscript><link rel="stylesheet" href="{{ iconCSS }}"></noscript>
+
+  <!--
+  <link rel="preload" href="https://fonts.gstatic.com/s/materialicons/v48/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="https://fonts.gstatic.com/s/hindguntur/v5/wXKyE3UZrok56nvamSuJd_yGn2cold3qjw.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="https://fonts.gstatic.com/s/hindguntur/v5/wXKyE3UZrok56nvamSuJd_yGn2c6ld3qjw.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="https://fonts.gstatic.com/s/hindguntur/v5/wXKyE3UZrok56nvamSuJd_yGn2c0ld0.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="https://fonts.gstatic.com/s/hindguntur/v5/wXKvE3UZrok56nvamSuJd_QxvXILtA.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="https://fonts.gstatic.com/s/hindguntur/v5/wXKvE3UZrok56nvamSuJd_QjvXILtA.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="https://fonts.gstatic.com/s/hindguntur/v5/wXKvE3UZrok56nvamSuJd_QtvXI.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="https://fonts.gstatic.com/s/hindguntur/v5/wXKyE3UZrok56nvamSuJd_zenmcold3qjw.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="https://fonts.gstatic.com/s/hindguntur/v5/wXKyE3UZrok56nvamSuJd_zenmc6ld3qjw.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="https://fonts.gstatic.com/s/hindguntur/v5/wXKyE3UZrok56nvamSuJd_zenmc0ld0.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="https://fonts.gstatic.com/s/hindguntur/v5/wXKyE3UZrok56nvamSuJd_zymWcold3qjw.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="https://fonts.gstatic.com/s/hindguntur/v5/wXKyE3UZrok56nvamSuJd_zymWc6ld3qjw.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="https://fonts.gstatic.com/s/hindguntur/v5/wXKyE3UZrok56nvamSuJd_zymWc0ld0.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="https://fonts.gstatic.com/s/hindguntur/v5/wXKyE3UZrok56nvamSuJd_yWmGcold3qjw.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="https://fonts.gstatic.com/s/hindguntur/v5/wXKyE3UZrok56nvamSuJd_yWmGc6ld3qjw.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="https://fonts.gstatic.com/s/hindguntur/v5/wXKyE3UZrok56nvamSuJd_yWmGc0ld0.woff2" as="font" type="font/woff2" crossorigin>
+-->
+  <link rel="preload" href="https://fonts.googleapis.com/icon?family=Material+Icons" as="style" />
+  <link rel="preload" href="https://fonts.googleapis.com/css?family=Hind+Guntur:300,400,500,600,700&display=swap" as="style" />
+
+
+{% endif %}
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+{% if ceresConfig.global.favicon is empty %}
+    {% set favicon = url ~ '/tpl/favicon_' ~ webstoreConfig.webstoreId ~ '.ico' %}
+{% else %}
+    {% set favicon = ceresConfig.global.favicon %}
+{% endif %}
+
+<link rel="icon" type="img/ico" href="{{ favicon }}">
+
+{% set canonicalUrl = services.url.getCanonicalURL() %}
+{% set languageUrls = services.url.getLanguageURLs() %}
+
+{% if canonicalUrl is not null %}
+    <link rel="canonical" href="{{ canonicalUrl }}">
+{% endif %}
+
+{% if services.url.isCanonical() %}
+    {% for language, url in languageUrls %}
+        <link rel="alternate" hreflang="{{language}}" href="{{url}}"/>
+    {% endfor %}
+{% endif %}
+
+{% import "Ceres::PageDesign.Macros.LayoutContainer" as LayoutContainer %}
+
+{% set logData = config("Ceres.log.data")|split(', ') %}
+{% set sortValues = config("Ceres.sort.data")|split(', ') %}
+{% set defaultSorting = config('Ceres.sort.defaultSorting') %}
+{% set defaultSortingSearch = config('Ceres.sort.defaultSortingSearch') %}
+{% set rowsPerPage = config('Ceres.pagination.rowsPerPage') | split(', ') %}
+{% set columnsPerPage = config('Ceres.pagination.columnsPerPage') %}
+{% set itemsPerPage = rowsPerPage[0] * columnsPerPage %}
+{% set performanceLevel = config('Ceres.log.performance.level') %}
+{% set itemName = config('Ceres.item.name') %}
+
+{{ LayoutContainer.show("Ceres::Template.StyleOverwrite") }}
+
+{% if config("Ceres.global.google_recaptcha_api_key") | length > 0 %}
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+{% endif %}
+
+{% if webstoreConfig.webstoreId == 0 %}
+  <meta name="google-site-verification" content="f0c1InvJLRY2zmHdJiOtGrajGIMrXlBMo7Tt28jK4po" />
+{% else %}
+  <meta name="google-site-verification" content="-m09i508y6kts66l2GrCCGNpmhjm34mBuz-qXsurZaY" />
+{% endif %}
+
+{% if webstoreConfig.webstoreId == 0 %}
+  <link href="https://www.etc-shop.de/layout/ETCeres/css/etcpreloadbetaneu.css" rel="stylesheet" type="text/css" />
+  <link href="https://www.etc-shop.de/layout/ETCeres/css/etcpreloadbeta.css" rel="stylesheet" type="text/css" />
+{% endif %}
+
+{% set url              = block('url') | default(services.url.getCanonicalURL()) | default(webstoreConfig.domainSsl) %}
+
+<script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "url": {{ url | json_encode | raw }},
+      "potentialAction":
+      {
+        "@type": "SearchAction",
+        "target": "{{ services.webstoreConfig.getWebstoreConfig().domainSsl ~ urls.search }}?query={search_term}",
+        "query-input": "required name=search_term"
+      }
+    }
+</script>
