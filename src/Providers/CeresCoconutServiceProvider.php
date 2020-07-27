@@ -25,7 +25,11 @@ class CeresCoconutServiceProvider extends ServiceProvider
     public function boot(Twig $twig, Dispatcher $dispatcher, ConfigRepository $config)
     {
         $enabledOverrides = explode(", ", $config->get("ETCeres.templates.override"));
-
+        $partial->set('head', 'Ceres::PageDesign.Partials.Head');
+        $partial->set('header', 'Ceres::PageDesign.Partials.Header.Header');
+        $partial->set('headerML', 'Ceres::PageDesign.Partials.Header.Header');
+        $partial->set('page-design', 'Ceres::PageDesign.PageDesign');
+        $partial->set('footer', 'Ceres::PageDesign.Partials.Footer');
         // Override partials
         $this->listenToIO('init.templates', function (Partial $partial) use ($enabledOverrides)
         {
