@@ -30,7 +30,6 @@ class CeresCoconutServiceProvider extends ServiceProvider
         {
             $partial->set('head', 'Ceres::PageDesign.Partials.Head');
             $partial->set('header', 'Ceres::PageDesign.Partials.Header.Header');
-            $partial->set('headerML', 'Ceres::PageDesign.Partials.Header.Header');
             $partial->set('page-design', 'Ceres::PageDesign.PageDesign');
             $partial->set('footer', 'Ceres::PageDesign.Partials.Footer');
             if (in_array("head", $enabledOverrides) || in_array("all", $enabledOverrides))
