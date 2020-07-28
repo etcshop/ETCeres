@@ -51,12 +51,10 @@
   <link rel="preload" href="https://fonts.gstatic.com/s/hindguntur/v5/wXKyE3UZrok56nvamSuJd_yWmGc0ld0.woff2" as="font" type="font/woff2" crossorigin>
 -->
   <link rel="preload" href="https://fonts.googleapis.com/css?family=Hind+Guntur:300,400,500,600,700&display=swap" as="style" />
-  {% set iconCSS = plugin_path("Ceres") ~ "/css/ceres-icons.css" %}
-  {# asynchronously load icons.css #}
-  <link rel="preload" href="{{ iconCSS }}" as="style" onload="this.onload=null;this.rel='stylesheet';">
 
 {% endif %}
-<link rel="stylesheet" href="{{ iconCSS }}" as="style" onload="this.onload=null;this.rel='stylesheet';">
+<script src="https://kit.fontawesome.com/79b05843c4.js" crossorigin="anonymous"></script>
+
 
 {% if ceresConfig.global.favicon is empty %}
     {% set favicon = url ~ '/tpl/favicon_' ~ webstoreConfig.webstoreId ~ '.ico' %}
