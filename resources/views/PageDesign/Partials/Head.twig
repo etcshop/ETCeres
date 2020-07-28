@@ -23,9 +23,8 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 
 {% if webstoreConfig.webstoreId == 0 %}
-<link rel="preload" href="https://www.etc-shop.de/layout/ETCeres/css/etcpreloadbetaneu.css" as="style">
   <link rel="preload" href="{{ defaultCSS }}" as="style">
-  <link rel="preload" href="https://www.etc-shop.de/layout/ETCeres/css/etcpreloadbeta.css" as="style">
+  <link rel="preload" href="https://www.etc-shop.de/layout/ETCeres/css/etcshoppreload.css" as="style">
 
   {% set iconCSS = plugin_path("Ceres") ~ "/css/ceres-icons.css" %}
   {# asynchronously load icons.css #}
@@ -104,8 +103,7 @@
 {% endif %}
 
 {% if webstoreConfig.webstoreId == 0 %}
-  <link href="https://www.etc-shop.de/layout/ETCeres/css/etcpreloadbetaneu.css" rel="stylesheet" type="text/css" />
-  <link href="https://www.etc-shop.de/layout/ETCeres/css/etcpreloadbeta.css" rel="stylesheet" type="text/css" />
+  <link href="https://www.etc-shop.de/layout/ETCeres/css/etcshoppreloadbeta.css" rel="stylesheet" type="text/css" />
 {% endif %}
 
 {% set url              = block('url') | default(services.url.getCanonicalURL()) | default(webstoreConfig.domainSsl) %}
