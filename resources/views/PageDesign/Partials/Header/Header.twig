@@ -64,10 +64,9 @@
     <div id="headerAccount" class="toolButton"></div>
     <div id="headerBasket" class="toolButton">
       <div id="BasketButtonBox" class="hidden-xs hidden-sm">{{ trans("ETCeres::Template.ETC_Warenkorb") }}</div>
-      <i id="BasketButtonIcon" class="material-icons BasketEmpty" v-if="$store.state.basket.data.itemQuantity==0">shopping_cart</i>
-      <i id="BasketButtonIcon" class="material-icons BasketFull" v-else>shopping_cart</i>
-      <div id="BasketQuantity" v-basket-item-quantity="$store.state.basket.data.itemQuantity">0</div>
-        <basket-preview template="#vue-basket-preview-hoverETC" :show-net-prices="{{ showNetPrices | json_encode }}"></basket-preview>
+      <i id="headerBasketIcon" aria-hidden="true" class="fa fa-shopping-cart basketEmpty" v-if="$store.state.basket.data.itemQuantity==0"></i>
+      <i id="headerBasketIcon" aria-hidden="true" class="fa fa-shopping-cart basketFull" v-else></i>
+      <basket-preview template="#vue-basket-preview-hoverETC" :show-net-prices="{{ showNetPrices | json_encode }}"></basket-preview>
     </div>
     <!--
       {% set languageUrls = services.url.getLanguageURLs() %}
