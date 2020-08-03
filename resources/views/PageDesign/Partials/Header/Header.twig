@@ -72,7 +72,10 @@
       <basket-preview template="#vue-basket-preview-hoverETC" :show-net-prices="{{ showNetPrices | json_encode }}"></basket-preview>
     </div>
   </div>
-  <div id="secHeader"></div>
+  <div id="secHeader">
+    {% include "ETCeres::PageDesign.Partials.Header.Navigation" %}
+    <mobile-navigation navigation-tree-data="{{ categories | json_data }}" :initial-category="{{ initialCategory | json_encode }}" template="#vue-mobile-navigation"></mobile-navigation>
+  </div>
 </header>
 
 {% if category.linklist == "Y" %}
