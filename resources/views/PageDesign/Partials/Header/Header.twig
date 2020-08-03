@@ -33,7 +33,7 @@
           <span itemprop="contactType">customer service</span>
       </span>
   </span>
-  <div class="container_centered">
+  <div class="container_centered px-0">
     <img src="http://www.etc-shop.de/layout/content/base/logo/etc_logo_klein.png" id="MainLogo">
     <div id="headerSearch " class="col-lg-3 col-md-4 col-sm-5 hidden-xs">
       {% set overrideSearchBar = LayoutContainer.show("Ceres::Search.SearchBar") %}
@@ -62,7 +62,7 @@
         <span id="headerLanguageText">{{ lang }}</span> <img src="https://www.etc-shop.de/layout/content/base/flag_small/flag_small_{{ lang }}_active.png" ID="headerLanguageFlag">
     </div>
     <div id="headerAccount" class="toolButton">
-      {{ trans("ETCeres::Template.ETC_Konto") }} 
+      {{ trans("ETCeres::Template.ETC_Konto") }}
       <i id="headerBasketIcon" aria-hidden="true" class="fa fa-user"></i>
     </div>
     <div id="headerBasket" class="toolButton">
