@@ -61,7 +61,9 @@
     <div id="headerLanguage" class="toolButton">
         <span id="headerLanguageText">{{ lang }}</span> <img src="https://www.etc-shop.de/layout/content/base/flag_small/flag_small_{{ lang }}_active.png" ID="headerLanguageFlag">
     </div>
-    <div id="headerAccount" class="toolButton"></div>
+    <div id="headerAccount" class="toolButton">
+      Konto <i id="headerBasketIcon" aria-hidden="true" class="fa fa-user" v-else></i>
+    </div>
     <div id="headerBasket" class="toolButton">
       <div id="BasketButtonBox" class="hidden-xs hidden-sm">{{ trans("ETCeres::Template.ETC_Warenkorb") }}</div>
       <i id="headerBasketIcon" aria-hidden="true" class="fa fa-shopping-cart basketEmpty" v-if="$store.state.basket.data.itemQuantity==0"></i>
