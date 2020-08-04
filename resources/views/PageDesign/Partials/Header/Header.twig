@@ -74,8 +74,17 @@
   </div>
   <div id="secHeader">
     <div id="secSubHeader">
-      {% include "ETCeres::PageDesign.Partials.Header.Navigation" %}
-      <mobile-navigation navigation-tree-data="{{ categories | json_data }}" :initial-category="{{ initialCategory | json_encode }}" template="#vue-mobile-navigation"></mobile-navigation>
+      <div class="container_centered">
+        <div class="secSubHeader_Navigation">
+          <button type="button" class="navbar-toggler d-lg-none p-3">
+                          ☰
+
+          </button>
+          PRODUKTE
+        </div>
+        {% include "ETCeres::PageDesign.Partials.Header.Navigation" %}
+        <mobile-navigation navigation-tree-data="{{ categories | json_data }}" :initial-category="{{ initialCategory | json_encode }}" template="#vue-mobile-navigation"></mobile-navigation>
+      </div>
     </div>
   </div>
 </header>
