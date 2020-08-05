@@ -103,6 +103,8 @@
         {% set initialCategory = null %}
     {% endif %}
 
-    <mobile-navigation :initial-category="{{ initialCategory | json_encode }}" :include-language="{{ urls.includeLanguage | json_encode }}"></mobile-navigation>
+        {% set breakpoints = '["xs", "sm", "md", "lg"]' %}
+
+    <mobile-navigation :initial-category="{{ initialCategory | json_encode }}" :include-language="{{ urls.includeLanguage | json_encode }}" :breakpoints="{{ breakpoints }}"></mobile-navigation>
   </div>
 {% endif %}
