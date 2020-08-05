@@ -94,10 +94,6 @@
   <meta name="google-site-verification" content="-m09i508y6kts66l2GrCCGNpmhjm34mBuz-qXsurZaY" />
 {% endif %}
 
-{% if webstoreConfig.webstoreId == 0 %}
-  <link href="https://www.etc-shop.de/layout/ETCeres/css/etcshoppreloadbeta.css" rel="stylesheet" type="text/css" />
-{% endif %}
-
 {% set url              = block('url') | default(services.url.getCanonicalURL()) | default(webstoreConfig.domainSsl) %}
 
 <script type="application/ld+json">
