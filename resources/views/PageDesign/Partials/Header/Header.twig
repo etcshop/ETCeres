@@ -75,7 +75,12 @@
   <div id="secHeader">
     <div id="secSubHeader">
       <div class="container_centered">
-        <div class="secSubHeader_Navigation">
+        <div class="secSubHeader_Navigation">        
+          {% if category.linklist == "Y" %}
+              {% set initialCategory = { id: category.id } %}
+          {% else %}
+              {% set initialCategory = category %}
+          {% endif %}
           <button id="btnMainMenuToggler" v-open-mobile-navigation class="navbar-toggler d-lg-none" type="button">
               &#9776;
           </button>
@@ -87,12 +92,6 @@
     </div>
   </div>
 </header>
-
-{% if category.linklist == "Y" %}
-    {% set initialCategory = { id: category.id } %}
-{% else %}
-    {% set initialCategory = category %}
-{% endif %}
 
 
 {% if showMainMenu == true %}
