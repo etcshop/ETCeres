@@ -12,6 +12,7 @@
                     ${ breadcrumb.name }
                 </li>
             </ul>
+            <h1>Alle Kategorien</h1>
             <ul v-menu id="menu-1" class="mainmenu w-100 p-0 m-0 menu-active">
                 <li class="ddown" v-if="dataContainer1.parent" @click="slideTo(dataContainer1.parent && dataContainer1.parent.parent || null, true)">
                     <span class="nav-direction btn-up">
@@ -62,6 +63,22 @@
                 </template>
             </ul>
         </div>
+        <div id="Navigation_Sites">
+          <ul v-menu id="menu-3" class="mainmenu w-100 p-0 m-0">
+              <li  class="ddown">
+                  <a :href="#">Login</a>
+              </li>
+              <li  class="ddown">
+                  <a :href="#">Registrieren</a>
+              </li>
+              <li  class="ddown">
+                  <a :href="#">Warenkorb</a>
+              </li>
+              <li  class="ddown">
+                  <a :href="#">Merkliste</a>
+              </li>
+          </ul>
+        </diV>
 
         <template v-if="!isNavigationInitialized">
             <ul class="breadcrumb">
