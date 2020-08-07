@@ -34,6 +34,12 @@
             "key"           :"ETCeres\\Containers\\CeresCoconutItemListContainer3",
             "name"          :"Third item list",
             "description"   :"Display a configurable list of items in your online store"
+        },
+        {
+            "key"           :"ETCeres\\Containers\\CeresCoconutMobileNavigationVueTemplateContainer",
+            "name"          :"Container for MobileNavigation Component Template",
+            "description"   :"Container for MobileNavigation Component Template",
+            "defaultLayoutContainer": "Ceres::Script.AfterScriptsLoaded"
         }
     ]
 }
