@@ -12,8 +12,10 @@
                     ${ breadcrumb.name }
                 </li>
             </ul>
-            <h2>Alle Kategorien</h2>
             <ul v-menu id="menu-1" class="mainmenu w-100 p-0 m-0 menu-active">
+                <li class="ddown">
+                    Alle Kategorien
+                </li>
                 <li class="ddown" v-if="dataContainer1.parent" @click="slideTo(dataContainer1.parent && dataContainer1.parent.parent || null, true)">
                     <span class="nav-direction btn-up">
                         <i class="fa fa-lg fa-level-up" aria-hidden="true"></i>
@@ -25,6 +27,12 @@
                     <span class="nav-direction" v-if="category.childCount" @click="slideTo(category)">
                         <i class="fa fa-lg fa-caret-right" aria-hidden="true"></i>
                     </span>
+                </li>
+                <li class="ddown">
+                    <hr noshade>
+                </li>
+                <li class="ddown">
+                    Mein Konto
                 </li>
                 <li  class="ddown">
                     <a href="#">Login</a>
@@ -38,7 +46,7 @@
                 <li  class="ddown">
                     <a href="#">Merkliste</a>
                 </li>
-                
+
                 <template v-if="dataContainer1.categories[0]">
                     <li class="ddown" v-for="number in dataContainer1.categories[0].siblingCount - dataContainer1.categories.length">
                         <span class="nav-placeholder m-3" :style="{width: (Math.random() * 20 + 60) + '%'}"></span>
