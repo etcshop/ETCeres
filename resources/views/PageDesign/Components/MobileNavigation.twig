@@ -9,7 +9,7 @@
                 </li>
 
                 <li class="breadcrumb-item" v-for="breadcrumb in breadcrumbs" @click="slideTo(breadcrumb.parent, true)">
-                    {{ breadcrumb.name }}
+                    ${ breadcrumb.name }
                 </li>
             </ul>
             <ul v-menu id="menu-1" class="mainmenu w-100 p-0 m-0 menu-active">
@@ -20,7 +20,7 @@
                 </li>
 
                 <li class="ddown" v-for="category in dataContainer1.categories">
-                    <a :href="getCategoryUrl(category.url)">{{ category.details[0].name }}</a>
+                    <a :href="getCategoryUrl(category.url)">${ category.details[0].name }</a>
                     <span class="nav-direction" v-if="category.childCount" @click="slideTo(category)">
                         <i class="fa fa-lg fa-caret-right" aria-hidden="true"></i>
                     </span>
@@ -45,7 +45,7 @@
                 </li>
 
                 <li  class="ddown" v-for="category in dataContainer2.categories">
-                    <a :href="getCategoryUrl(category.url)">{{ category.details[0].name }}</a>
+                    <a :href="getCategoryUrl(category.url)">${ category.details[0].name }</a>
                     <span class="nav-direction" v-if="category.childCount" @click="slideTo(category)">
                         <i class="fa fa-lg fa-caret-right" aria-hidden="true"></i>
                     </span>
