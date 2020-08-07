@@ -26,6 +26,19 @@
                         <i class="fa fa-lg fa-caret-right" aria-hidden="true"></i>
                     </span>
                 </li>
+                <li  class="ddown">
+                    <a href="#">Login</a>
+                </li>
+                <li  class="ddown">
+                    <a href="#">Registrieren</a>
+                </li>
+                <li  class="ddown">
+                    <a href="#">Warenkorb</a>
+                </li>
+                <li  class="ddown">
+                    <a href="#">Merkliste</a>
+                </li>
+                
                 <template v-if="dataContainer1.categories[0]">
                     <li class="ddown" v-for="number in dataContainer1.categories[0].siblingCount - dataContainer1.categories.length">
                         <span class="nav-placeholder m-3" :style="{width: (Math.random() * 20 + 60) + '%'}"></span>
@@ -36,6 +49,7 @@
                         <span class="nav-placeholder m-3" :style="{width: (Math.random() * 20 + 60) + '%'}"></span>
                     </li>
                 </template>
+
             </ul>
 
             <ul v-menu id="menu-2" class="mainmenu w-100 p-0 m-0">
@@ -62,21 +76,11 @@
                     </li>
                 </template>
             </ul>
-            <ul v-menu id="menu-3" class="mainmenu w-100 p-0 m-0">
-                <li  class="ddown">
-                    <a href="#">Login</a>
-                </li>
-                <li  class="ddown">
-                    <a href="#">Registrieren</a>
-                </li>
-                <li  class="ddown">
-                    <a href="#">Warenkorb</a>
-                </li>
-                <li  class="ddown">
-                    <a href="#">Merkliste</a>
-                </li>
-            </ul>
         </div>
+        <div id="Navigation_Sites">
+          <ul v-menu id="menu-3">w
+          </ul>
+        </diV>
 
         <template v-if="!isNavigationInitialized">
             <ul class="breadcrumb">
