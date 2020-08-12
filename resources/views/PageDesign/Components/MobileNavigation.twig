@@ -13,19 +13,16 @@
                 </li>
             </ul>
             <ul v-menu id="menu-1" class="mainmenu w-100 p-0 m-0 menu-active">
-                <li class="ddown">
-                    Alle Kategorien
-                </li>
                 <li class="ddown" v-if="dataContainer1.parent" @click="slideTo(dataContainer1.parent && dataContainer1.parent.parent || null, true)">
                     <span class="nav-direction btn-up">
-                        <i class="fa fa-lg fa-level-up" aria-hidden="true"></i>
+                        <i class="fa fa-lg fa-angle-right" aria-hidden="true"></i>
                     </span>
                 </li>
 
                 <li class="ddown" v-for="category in dataContainer1.categories">
                     <a :href="getCategoryUrl(category.url)">${ category.details[0].name }</a>
                     <span class="nav-direction" v-if="category.childCount" @click="slideTo(category)">
-                        <i class="fa fa-lg fa-caret-right" aria-hidden="true"></i>
+                        <i class="fa fa-lg fa-angle-right" aria-hidden="true"></i>
                     </span>
                 </li>
                 <li class="ddown">
