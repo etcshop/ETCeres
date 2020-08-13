@@ -28,10 +28,10 @@
                         <i class="fa fa-lg fa-angle-right" aria-hidden="true"></i>
                     </span>
                 </li>
-                <li class="ddown" v-if="selectedCategory != null">
-                    <hr noshade>
+                <li class="ddown" v-if="selectedCategory == null">
+                    <hr>
                 </li>
-                <li class="ddown">
+                <li class="ddown" v-if="selectedCategory == null">
                     Mein Konto
                 </li>
                 <li  class="ddown">
