@@ -13,7 +13,7 @@
                 </li>
             </ul>
             <ul v-menu id="menu-1" class="mainmenu w-100 p-0 m-0 menu-active">
-                <li class="ddown mainmenu_AllCategories">
+                <li class="ddown mainmenu_AllCategories" v-if="selectedCategory == null">
                     Alle Kategorien
                 </li>
                 <li class="ddown nav_up" v-if="dataContainer1.parent" @click="slideTo(dataContainer1.parent && dataContainer1.parent.parent || null, true)">
@@ -34,16 +34,16 @@
                 <li class="ddown" v-if="selectedCategory == null">
                     Mein Konto
                 </li>
-                <li  class="ddown">
+                <li  class="ddown" v-if="selectedCategory == null">
                     <a href="#">Login</a>
                 </li>
-                <li  class="ddown">
+                <li  class="ddown" v-if="selectedCategory == null">
                     <a href="#">Registrieren</a>
                 </li>
-                <li  class="ddown">
+                <li  class="ddown" v-if="selectedCategory == null">
                     <a href="#">Warenkorb</a>
                 </li>
-                <li  class="ddown">
+                <li  class="ddown" v-if="selectedCategory == null">
                     <a href="#">Merkliste</a>
                 </li>
 
