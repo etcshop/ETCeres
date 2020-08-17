@@ -58,18 +58,20 @@
       <i id="headerShippingIcon" class="fa fa-truck" aria-hidden="true"></i>
       <span id="headerShippingText">Kostenlose Lieferung ab 100 EUR</span>
     </div>
-    <div id="headerLanguage" class="toolButton">
-        <span id="headerLanguageText">{{ lang }}</span> <img src="https://www.etc-shop.de/layout/content/base/flag_small/flag_small_{{ lang }}_active.png" ID="headerLanguageFlag">
-    </div>
-    <div id="headerAccount" class="toolButton">
-      {{ trans("ETCeres::Template.ETC_Konto") }}
-      <i id="headerBasketIcon" aria-hidden="true" class="fa fa-user"></i>
-    </div>
-    <div id="headerBasket" class="toolButton">
-      {{ trans("ETCeres::Template.ETC_Warenkorb") }}
-      <i id="headerBasketIcon" aria-hidden="true" class="fa fa-shopping-cart basketEmpty" v-if="$store.state.basket.data.itemQuantity==0"></i>
-      <i id="headerBasketIcon" aria-hidden="true" class="fa fa-shopping-cart basketFull" v-else></i>
-      <basket-preview template="#vue-basket-preview-hoverETC" :show-net-prices="{{ showNetPrices | json_encode }}"></basket-preview>
+    <div id="headerToolButtons">
+      <div id="headerLanguage" class="toolButton">
+          <span id="headerLanguageText">{{ lang }}</span> <img src="https://www.etc-shop.de/layout/content/base/flag_small/flag_small_{{ lang }}_active.png" ID="headerLanguageFlag">
+      </div>
+      <div id="headerAccount" class="toolButton">
+        {{ trans("ETCeres::Template.ETC_Konto") }}
+        <i id="headerBasketIcon" aria-hidden="true" class="fa fa-user"></i>
+      </div>
+      <div id="headerBasket" class="toolButton">
+        {{ trans("ETCeres::Template.ETC_Warenkorb") }}
+        <i id="headerBasketIcon" aria-hidden="true" class="fa fa-shopping-cart basketEmpty" v-if="$store.state.basket.data.itemQuantity==0"></i>
+        <i id="headerBasketIcon" aria-hidden="true" class="fa fa-shopping-cart basketFull" v-else></i>
+        <basket-preview template="#vue-basket-preview-hoverETC" :show-net-prices="{{ showNetPrices | json_encode }}"></basket-preview>
+      </div>
     </div>
   </div>
   <div id="secHeader">
