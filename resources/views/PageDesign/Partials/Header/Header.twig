@@ -37,7 +37,7 @@
     <div id="headerLogo" class="col-lg-2 col-md-12">
       <img src="http://www.etc-shop.de/layout/content/base/logo/etc_logo_klein.png" id="MainLogo">
     </div>
-    <div id="headerSearch " class="col-lg-3 col-md-4 col-sm-5 hidden-xs">
+    <div id="headerSearch" class="col-lg-3 col-md-4 col-sm-5 hidden-xs">
       {% set overrideSearchBar = LayoutContainer.show("Ceres::Search.SearchBar") %}
       {% if overrideSearchBar | trim is empty %}
           <form action="/" style="padding:0px;margin:0px;" name="search_form" class="search_form" method="get">
