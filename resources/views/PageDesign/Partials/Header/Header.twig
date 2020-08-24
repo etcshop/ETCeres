@@ -70,6 +70,7 @@
       </div>
       <div id="headerBasket" class="toolButton">
         <span id="headerBasketText">{{ trans("ETCeres::Template.ETC_Warenkorb") }}</span>
+        <span id="headerBasketText_Number" v-html="$store.state.basket.data.itemQuantity"></span>
         <i id="headerBasketIcon" aria-hidden="true" class="fa fa-shopping-cart basketEmpty" v-if="$store.state.basket.data.itemQuantity==0"></i>
         <i id="headerBasketIcon" aria-hidden="true" class="fa fa-shopping-cart basketFull" v-else></i>
         <basket-preview template="#vue-basket-preview-hoverETC" :show-net-prices="{{ showNetPrices | json_encode }}"></basket-preview>
