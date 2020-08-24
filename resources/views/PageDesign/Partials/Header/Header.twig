@@ -33,11 +33,11 @@
           <span itemprop="contactType">customer service</span>
       </span>
   </span>
-  <div class="container_centered px-0">
-    <div id="headerLogo" class="col-lg-2 col-md-12">
+  <div class="container_centered">
+    <div id="headerLogo">
       <img src="http://www.etc-shop.de/layout/content/base/logo/etc_logo_klein.png" id="MainLogo">
     </div>
-    <div id="headerSearch" class="col-lg-3 col-md-4 col-sm-5 hidden-xs">
+    <div id="headerSearch">
       {% set overrideSearchBar = LayoutContainer.show("Ceres::Search.SearchBar") %}
       {% if overrideSearchBar | trim is empty %}
           <form action="/" style="padding:0px;margin:0px;" name="search_form" class="search_form" method="get">
@@ -52,15 +52,15 @@
           {{ overrideSearchBar | raw }}
       {% endif %}
     </div>
-    <div id="headerSupport" class="toolInfo col-lg-2 px-0">
+    <div id="headerSupport" class="toolInfo">
       <i id="headerSupportIcon" class="fa fa-volume-control-phone" aria-hidden="true"></i>
       <span id="headerSupportText">Pers&ouml;nliche Beratung +49 (0) 2692 9338380</span>
     </div>
-    <div id="headerShipping" class="toolInfo col-lg-2">
+    <div id="headerShipping" class="toolInfo">
       <i id="headerShippingIcon" class="fa fa-truck" aria-hidden="true"></i>
       <span id="headerShippingText">Kostenlose Lieferung ab 100 EUR</span>
     </div>
-    <div id="headerToolButtons" class="col-lg-3 px-0">
+    <div id="headerToolButtons">
       <div id="headerLanguage" class="toolButton">
           <span id="headerLanguageText">{{ lang }}</span> <img src="https://www.etc-shop.de/layout/content/base/flag_small/flag_small_{{ lang }}_active.png" ID="headerLanguageFlag">
       </div>
