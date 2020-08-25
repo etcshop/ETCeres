@@ -84,6 +84,11 @@
               &#9776;
           </button>
           <span id="secSubHeader_NavigationText">PRODUKTE</span>
+          <div class="secSubHeaderBreadCrumbs">
+            {% if not services.template.isHome() and not services.template.isMyAccount() and not services.template.isCheckout() %}
+                {% include "Ceres::PageDesign.Partials.Header.Breadcrumb" %}
+            {% endif %}
+          </div>
         </div>
         <div class="secSubHeader secSubHeader_Special"><a href="#">WANNENLEUCHTEN</a></div>
         <div class="secSubHeader secSubHeader_Special"><a href="#">VENTILATOREN</a></div>
