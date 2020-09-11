@@ -33,9 +33,11 @@
           <span itemprop="contactType">customer service</span>
       </span>
   </span>
-  <div class="container_centered px-0">
-    <img src="http://www.etc-shop.de/layout/content/base/logo/etc_logo_klein.png" id="MainLogo">
-    <div id="headerSearch " class="col-lg-3 col-md-4 col-sm-5 hidden-xs">
+  <div class="container_centered">
+    <div id="headerLogo">
+      <img src="http://www.etc-shop.de/layout/content/base/logo/etc_logo_klein.png" id="MainLogo">
+    </div>
+    <div id="headerSearch">
       {% set overrideSearchBar = LayoutContainer.show("Ceres::Search.SearchBar") %}
       {% if overrideSearchBar | trim is empty %}
           <form action="/" style="padding:0px;margin:0px;" name="search_form" class="search_form" method="get">
@@ -52,24 +54,26 @@
     </div>
     <div id="headerSupport" class="toolInfo">
       <i id="headerSupportIcon" class="fa fa-volume-control-phone" aria-hidden="true"></i>
-      Pers&ouml;nliche Beratung +49 (0) 2692 9338380
+      <span id="headerSupportText">Pers&ouml;nliche Beratung +49 (0) 2692 9338380</span>
     </div>
     <div id="headerShipping" class="toolInfo">
-      <i id="headerSupportIcon" class="fa fa-truck" aria-hidden="true"></i>
-      Kostenlose Lieferung ab 100 EUR
+      <i id="headerShippingIcon" class="fa fa-truck" aria-hidden="true"></i>
+      <span id="headerShippingText">Kostenlose Lieferung ab 100 EUR</span>
     </div>
-    <div id="headerLanguage" class="toolButton">
-        <span id="headerLanguageText">{{ lang }}</span> <img src="https://www.etc-shop.de/layout/content/base/flag_small/flag_small_{{ lang }}_active.png" ID="headerLanguageFlag">
-    </div>
-    <div id="headerAccount" class="toolButton">
-      {{ trans("ETCeres::Template.ETC_Konto") }}
-      <i id="headerBasketIcon" aria-hidden="true" class="fa fa-user"></i>
-    </div>
-    <div id="headerBasket" class="toolButton">
-      {{ trans("ETCeres::Template.ETC_Warenkorb") }}
-      <i id="headerBasketIcon" aria-hidden="true" class="fa fa-shopping-cart basketEmpty" v-if="$store.state.basket.data.itemQuantity==0"></i>
-      <i id="headerBasketIcon" aria-hidden="true" class="fa fa-shopping-cart basketFull" v-else></i>
-      <basket-preview template="#vue-basket-preview-hoverETC" :show-net-prices="{{ showNetPrices | json_encode }}"></basket-preview>
+    <div id="headerToolButtons">
+      <div id="headerLanguage" class="toolButton">
+          <span id="headerLanguageText">{{ lang }}</span> <img src="https://www.etc-shop.de/layout/content/base/flag_small/flag_small_{{ lang }}_active.png" ID="headerLanguageFlag">
+      </div>
+      <div id="headerAccount" class="toolButton">
+        <span id="headerAccountText">{{ trans("ETCeres::Template.ETC_Konto") }}</span>
+        <i id="headerBasketIcon" aria-hidden="true" class="fa fa-user"></i>
+      </div>
+      <div id="headerBasket" class="toolButton">
+        <span id="headerBasketText">{{ trans("ETCeres::Template.ETC_Warenkorb") }}</span>
+        <i id="headerBasketIcon" aria-hidden="true" class="fa fa-shopping-cart basketEmpty" v-if="$store.state.basket.data.itemQuantity==0"></i>
+        <i id="headerBasketIcon" aria-hidden="true" class="fa fa-shopping-cart basketFull" v-else></i>
+        <basket-preview template="#vue-basket-preview-hoverETC" :show-net-prices="{{ showNetPrices | json_encode }}"></basket-preview>
+      </div>
     </div>
   </div>
   <div id="secHeader">
@@ -77,9 +81,16 @@
       <div class="container_centered">
         <div class="secSubHeader secSubHeader_Navigation">
           <button id="btnMainMenuToggler" v-open-mobile-navigation class="navbar-toggler d-lg-none" type="button">
-              &#9776;
+            <div class="navbar-toggler-hamburgerpatty"></div>
+            <div class="navbar-toggler-hamburgerpatty"></div>
+            <div class="navbar-toggler-hamburgerpatty"></div>
           </button>
-          PRODUKTE
+          <span id="secSubHeader_NavigationText">PRODUKTE</span>
+          <div class="secSubHeaderBreadCrumbs">
+            {% if not services.template.isHome() and not services.template.isMyAccount() and not services.template.isCheckout() %}
+                {% include "Ceres::PageDesign.Partials.Header.Breadcrumb" %}
+            {% endif %}
+          </div>
         </div>
         <div class="secSubHeader secSubHeader_Special"><a href="#">WANNENLEUCHTEN</a></div>
         <div class="secSubHeader secSubHeader_Special"><a href="#">VENTILATOREN</a></div>
