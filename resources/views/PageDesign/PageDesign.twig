@@ -83,6 +83,7 @@
     </div>
 
     <div class="wrapper wrapper-top testdev1356">
+        {{ shop_builder_category_template(1106, "content", "main") }}
         {% set shopBuilderTemplate = shop_builder_category_template(category.id) %}
         {{ shopBuilderTemplate | raw }}
         <!-- messages -->
