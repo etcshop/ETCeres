@@ -83,9 +83,6 @@
     </div>
 
     <div class="wrapper wrapper-top testdev1356">
-        {{ shop_builder_category_template(1106, "content", "main") }}
-        {% set shopBuilderTemplate = shop_builder_category_template(category.id) %}
-        {{ shopBuilderTemplate | raw }}
         <!-- messages -->
         <notifications template="#vue-notifications" :initial-notifications="{{ notifications | json_encode() }}"></notifications>
             <!-- LOGIN MODAL -->
@@ -261,6 +258,10 @@
 
 
             {% block PageBody %}
+
+                {{ shop_builder_category_template(1106, "content", "main") }}
+                {% set shopBuilderTemplate = shop_builder_category_template(category.id) %}
+                {{ shopBuilderTemplate | raw }}
                 <!-- inject content of inherited templates here -->
             {% endblock %}
 
