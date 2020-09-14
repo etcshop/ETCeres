@@ -82,7 +82,7 @@
       <br>
     </div>
 
-    <div class="wrapper wrapper-top testdev1356">
+    <div class="wrapper wrapper-top testdev1228">
         <!-- messages -->
         <notifications template="#vue-notifications" :initial-notifications="{{ notifications | json_encode() }}"></notifications>
             <!-- LOGIN MODAL -->
@@ -258,10 +258,6 @@
 
 
             {% block PageBody %}
-
-                {{ shop_builder_category_template(1106, "content", "main") }}
-                {% set shopBuilderTemplate = shop_builder_category_template(category.id) %}
-                {{ shopBuilderTemplate | raw }}
                 <!-- inject content of inherited templates here -->
             {% endblock %}
 
@@ -278,7 +274,6 @@
         {% endblock %}
 
         <input type="hidden" name="CookieBanner_StateInputPD" id="CookieBanner_StateInputPD">
-        <cookie-banner :webshop-id="{{ webstoreConfig.webstoreId }}"></cookie-banner>
     </div>
 
     {% if basket is not defined %}
@@ -400,6 +395,7 @@
 {% endif %}
 
 <link href="https://fonts.googleapis.com/css2?family=Hind+Guntur:wght@300;400;500;600;700&family=Hind:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link href="https://www.strauss-net.eu/etc/etcshop.css" rel="stylesheet" type="text/css" />
 
 {% if lang == "fr" %}
