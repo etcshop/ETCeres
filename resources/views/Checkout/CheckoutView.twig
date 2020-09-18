@@ -158,10 +158,6 @@
                                 {% endif %}
                                 {{ LayoutContainer.show("Ceres::Checkout.AfterPaymentList") }}
 
-                                <header>
-                                    <h3>{{ trans("Ceres::Template.checkoutContactWish") }}</h3>
-                                </header>
-
                                 <shipping-privacy-hint-check></shipping-privacy-hint-check>
 
                                 <accept-gtc-check></accept-gtc-check>
@@ -185,6 +181,11 @@
                                     <hr>
                                     <coupon></coupon>
                                     <hr class="mb-0">
+
+                                    <header>
+                                        <h3>{{ trans("Ceres::Template.checkoutContactWish") }}</h3>
+                                    </header>
+
                                     <contact-wish-input class="pb-3"></contact-wish-input>
                                 </div>
                             </aside>
