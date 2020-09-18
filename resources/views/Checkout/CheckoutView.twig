@@ -176,6 +176,7 @@
                                     <div class="cmp cmp-basket-preview-list">
                                         <basket-list></basket-list>
                                     </div>
+                                    <hr>
                                     <coupon></coupon>
                                     <hr>
                                     <header>
@@ -197,7 +198,7 @@
                             </aside>
 
                             <accept-gtc-check></accept-gtc-check>
-                            
+
                             {{ LayoutContainer.show("Ceres::Checkout.BeforePlaceOrder") }}
                             <place-order target-continue="{{ homepageURL }}{% if homepageURL | last != '/'%}/{% endif %}place-order{% if urls.appendTrailingSlash %}/{% endif %}{% if services.checkout.getReadOnlyCheckout() == 1 %}?readonlyCheckout=1{% endif %}" @payment-response="checkoutComp.showModal($event)"></place-order>
                             {{ LayoutContainer.show("Ceres::Checkout.AfterPlaceOrder") }}
