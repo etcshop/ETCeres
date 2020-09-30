@@ -69,9 +69,11 @@
         <i id="headerBasketIcon" aria-hidden="true" class="fa fa-user"></i>
       </div>
       <div id="headerBasket" class="toolButton">
-        <span id="headerBasketText">{{ trans("ETCeres::Template.ETC_Warenkorb") }}</span>
-        <i id="headerBasketIcon" aria-hidden="true" class="fa fa-shopping-cart basketEmpty" v-if="$store.state.basket.data.itemQuantity==0"></i>
-        <i id="headerBasketIcon" aria-hidden="true" class="fa fa-shopping-cart basketFull" v-else></i>
+        <a v-toggle-basket-preview href="#" class="toggle-basket-preview">
+            <span id="headerBasketText">{{ trans("ETCeres::Template.ETC_Warenkorb") }}</span>
+            <i id="headerBasketIcon" aria-hidden="true" class="fa fa-shopping-cart basketEmpty" v-if="$store.state.basket.data.itemQuantity==0"></i>
+            <i id="headerBasketIcon" aria-hidden="true" class="fa fa-shopping-cart basketFull" v-else></i>
+        </a>
         <basket-preview template="#vue-basket-preview-hoverETC" :show-net-prices="{{ showNetPrices | json_encode }}"></basket-preview>
       </div>
     </div>
