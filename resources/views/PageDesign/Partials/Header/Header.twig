@@ -76,7 +76,6 @@
             <i id="headerBasketIcon" aria-hidden="true" class="fa fa-shopping-cart basketEmpty" v-if="$store.state.basket.data.itemQuantity==0"></i>
             <i id="headerBasketIcon" aria-hidden="true" class="fa fa-shopping-cart basketFull" v-else></i>
         </a>
-        <basket-preview template="#vue-basket-preview-hoverETC" :show-net-prices="{{ showNetPrices | json_encode }}"></basket-preview>
       </div>
     </div>
   </div>
