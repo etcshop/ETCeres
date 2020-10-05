@@ -65,8 +65,10 @@
           <span id="headerLanguageText">{{ lang }}</span> <img src="https://www.etc-shop.de/layout/content/base/flag_small/flag_small_{{ lang }}_active.png" ID="headerLanguageFlag">
       </div>
       <div id="headerAccount" class="toolButton">
-        <span id="headerAccountText">{{ trans("ETCeres::Template.ETC_Konto") }}</span>
-        <i id="headerBasketIcon" aria-hidden="true" class="fa fa-user"></i>
+        <a {% if services.template.isCurrentTemplate("tpl.login") %} href="javascript:void(0)"{% else %} data-toggle="modal" href="#login"{% endif %} @click="unmarkInputFields()">
+          <span id="headerAccountText">{{ trans("ETCeres::Template.ETC_Konto") }}</span>
+          <i id="headerBasketIcon" aria-hidden="true" class="fa fa-user"></i>
+        </a>
       </div>
       <div id="headerBasket" class="toolButton">
         <a v-toggle-basket-preview href="#" class="toggle-basket-preview">
