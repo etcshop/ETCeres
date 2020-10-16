@@ -7,15 +7,23 @@
 {% endblock %}
 
 {% block PageBody %}
-    <login-view
-            backlink="{{ request.get("backlink") | default("") }}"
-            guest-email="{{ services.sessionStorageRepository.getSessionValue("guestEmail") }}">
-        <template #extend-overlay-buttons>
-            {{ LayoutContainer.show("Ceres::LoginOverlay.ExtendOverlayButtons") }}
-        </template>
-        <template #additional-content-after-buttons>
-            {{ LayoutContainer.show("Ceres::Login.AdditionalContentAfterButtons") }}
-        </template>
-    </login-view>
-    <div id="TEST1152"></div>
+    <div id="LoginPage_Login">
+      <login-view
+              backlink="{{ request.get("backlink") | default("") }}"
+              guest-email="{{ services.sessionStorageRepository.getSessionValue("guestEmail") }}">
+          <template #extend-overlay-buttons>
+              {{ LayoutContainer.show("Ceres::LoginOverlay.ExtendOverlayButtons") }}
+          </template>
+          <template #additional-content-after-buttons>
+              {{ LayoutContainer.show("Ceres::Login.AdditionalContentAfterButtons") }}
+          </template>
+      </login-view>
+    </div>
+    <div id="LoginPage_Register">
+      <h2>Noch kein Kunde?</h2>
+      <hr>
+      Du erhälst in deinem persönlichen "Mein Konto"-Bereich jederzeit Zugriff auf deine Bestellungen sowie deine Kundendaten.<br>
+      <br>
+      Als Gast bestellst du ohne Registrierung. Bei weiteren Bestellungen musst du deine Daten erneut eingeben.
+    </div>
 {% endblock %}
