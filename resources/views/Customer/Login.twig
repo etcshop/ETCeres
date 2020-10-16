@@ -8,16 +8,10 @@
 
 {% block PageBody %}
     <div id="LoginPage_Login">
-      <login-view
+      <login
               backlink="{{ request.get("backlink") | default("") }}"
-              guest-email="{{ services.sessionStorageRepository.getSessionValue("guestEmail") }}">
-          <template #extend-overlay-buttons>
-              {{ LayoutContainer.show("Ceres::LoginOverlay.ExtendOverlayButtons") }}
-          </template>
-          <template #additional-content-after-buttons>
-              {{ LayoutContainer.show("Ceres::Login.AdditionalContentAfterButtons") }}
-          </template>
-      </login-view>
+              has-to-forward="true">
+      </login>
     </div>
     <div id="LoginPage_Register">
       <h2>Noch kein Kunde?</h2>
