@@ -11,6 +11,12 @@
       <login
               backlink="{{ request.get("backlink") | default("") }}"
               has-to-forward="true">
+          <template #extend-overlay-buttons>
+              {{ LayoutContainer.show("Ceres::LoginOverlay.ExtendOverlayButtons") }}
+          </template>
+          <template #additional-content-after-buttons>
+              {{ LayoutContainer.show("Ceres::Login.AdditionalContentAfterButtons") }}
+          </template>
       </login>
     </div>
     <div id="LoginPage_Register">
@@ -19,5 +25,20 @@
       Du erhälst in deinem persönlichen "Mein Konto"-Bereich jederzeit Zugriff auf deine Bestellungen sowie deine Kundendaten.<br>
       <br>
       Als Gast bestellst du ohne Registrierung. Bei weiteren Bestellungen musst du deine Daten erneut eingeben.
+
+      <div class="row">
+        <div class="col-sm-{% if 'my-account' not in backlink %}6{% else %}12{% endif %}" :class="{'col-sm-6': !myAccountInBacklink, 'col-sm-12': myAccountInBacklink}">
+          <a class="btn btn-primary btn-block mb-3" :href="registrationUrl">
+            <i class="fa fa-user-plus" aria-hidden="true"></i>
+            {{ $translate("Ceres::Template.loginRegister") }}
+          </a>
+        </div>
+        <div v-if="!myAccountInBacklink" class="col-sm-6">
+          <button class="btn btn-primary btn-block mb-3" @click="openGuestModal()">
+            <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+            {{ $translate("Ceres::Template.loginOrderAsGuest") }}
+          </button>
+        </div>
+      </div>
     </div>
 {% endblock %}
