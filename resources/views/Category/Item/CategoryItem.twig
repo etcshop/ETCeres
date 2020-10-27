@@ -71,7 +71,7 @@
             <div class="row">
 
 
-                <div class="list-controls mb-5">
+                <div class="col-lg-3">
                     <div class="list-controls-inner p-2">
                         <div class="row">
                             <div class="col-12">
@@ -109,7 +109,7 @@
 
                 {% endif %}
 
-                <div class="col-12 col-lg-{% if category is defined and ceresConfig.header.showNavBars in ["side", "both"] %}9{% else %}12{% endif %}">
+                <div class="col-12 col-lg-9">
                     {% if itemList is not empty %}
                         <ul class="product-list row grid">
                             {% for item in itemList %}
