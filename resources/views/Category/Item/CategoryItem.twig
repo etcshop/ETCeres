@@ -58,11 +58,11 @@
                 <div class="list-controls mb-5 row">
                     <div class="col-12">
                         <div class="float-right">
+                            {% include "Ceres::Category.Item.Partials.Pagination" %}
+                            
                             {% include "Ceres::Category.Item.Partials.ItemSorting" with { 'sortingData': searchOptions.sorting, 'selectedSorting': itemSorting } %}
 
                             {% include "Ceres::Category.Item.Partials.ItemsPerPage" with { 'itemsPerPage': searchOptions.itemsPerPage, 'selectedValue': itemsPerPage } %}
-
-                            {% include "Ceres::Category.Item.Partials.Pagination" %}
                         </div>
                     </div>
                 </div>
