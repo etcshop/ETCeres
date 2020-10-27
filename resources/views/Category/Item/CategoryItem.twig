@@ -68,32 +68,34 @@
                 </div>
             {% endif %}
 
-            <div class="list-controls mb-5">
-                <div class="list-controls-inner p-2">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="list-wrapper">
-                                {% if overrideSearchFilters | trim is empty %}
-                                    <item-filter-list :facet-data="{{ facets | json_encode }}">
-                                        {% if facets | length > 0 %}
-                                            <a class="btn btn-link filter-toggle">
-                                                <i class="fa fa-sliders default-float" aria-hidden="true"></i> {{ trans("Ceres::Template.itemFilter") }}
-                                            </a>
-                                        {% endif %}
-                                    </item-filter-list>
-                                {% else %}
-                                    {{ overrideSearchFilters }}
-                                {% endif %}
+            <div class="row">
+
+
+                <div class="list-controls mb-5">
+                    <div class="list-controls-inner p-2">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="list-wrapper">
+                                    {% if overrideSearchFilters | trim is empty %}
+                                        <item-filter-list :facet-data="{{ facets | json_encode }}">
+                                            {% if facets | length > 0 %}
+                                                <a class="btn btn-link filter-toggle">
+                                                    <i class="fa fa-sliders default-float" aria-hidden="true"></i> {{ trans("Ceres::Template.itemFilter") }}
+                                                </a>
+                                            {% endif %}
+                                        </item-filter-list>
+                                    {% else %}
+                                        {{ overrideSearchFilters }}
+                                    {% endif %}
+                                </div>
                             </div>
                         </div>
                     </div>
+
+                    {# TAGS #}
+                    <item-filter-tag-list></item-filter-tag-list>
                 </div>
 
-                {# TAGS #}
-                <item-filter-tag-list></item-filter-tag-list>
-            </div>
-
-            <div class="row">
 
                 {% if category is defined and ceresConfig.header.showNavBars in ["side", "both"] %}
                     <div class="col-3 d-none d-lg-block">
