@@ -40,20 +40,6 @@
                 </div>
             {% endif %}
 
-            {% if category is defined and not ceresConfig.item.showCategoryImage %}
-                <div class="row mt-3">
-                    <div class="col-12">
-                        <h1 class="h2 category-title">{{ category.details[0].name }}</h1>
-                        {% if ceresConfig.item.showCategoryDescriptionTop in ["description1", "both"] and category.details[0].description | trim is not empty %}
-                            <div class="category-description mb-3">{{ category.details[0].description | raw }}</div>
-                        {% endif %}
-                        {% if ceresConfig.item.showCategoryDescriptionTop in ["description2", "both"] and category.details[0].description2 | trim is not empty %}
-                            <div class="category-description mb-3">{{ category.details[0].description2 | raw }}</div>
-                        {% endif %}
-                    </div>
-                </div>
-            {% endif %}
-
             {% if ceresConfig.pagination.position in ['top', 'top_bottom'] %}
                 <div class="list-controls mb-5 row">
                     <div class="col-12">
@@ -104,6 +90,19 @@
                     </div>
                 {% endif %}
                 <div class="col-12 col-lg-10">
+                    {% if category is defined and not ceresConfig.item.showCategoryImage %}
+                        <div class="row mt-3">
+                            <div class="col-12">
+                                <h1 class="h2 category-title">{{ category.details[0].name }}</h1>
+                                {% if ceresConfig.item.showCategoryDescriptionTop in ["description1", "both"] and category.details[0].description | trim is not empty %}
+                                    <div class="category-description mb-3">{{ category.details[0].description | raw }}</div>
+                                {% endif %}
+                                {% if ceresConfig.item.showCategoryDescriptionTop in ["description2", "both"] and category.details[0].description2 | trim is not empty %}
+                                    <div class="category-description mb-3">{{ category.details[0].description2 | raw }}</div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endif %}
                     {% if itemList is not empty %}
                         <ul class="product-list row grid">
                             {% for item in itemList %}
