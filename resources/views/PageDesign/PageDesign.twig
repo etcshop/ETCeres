@@ -131,7 +131,7 @@
 
             <!-- breadcrumb -->
             {% if not services.template.isHome() and not services.template.isMyAccount() and not services.template.isCheckout() and not showMyAccountSubMenu and 'tpl.basket' not in currTpl and 'tpl.page-not-found' not in currTpl %}
-              {% include "ETCeres::PageDesign.Partials.Header.Breadcrumb" %}
+                {% include "Ceres::PageDesign.Partials.Header.Breadcrumb" %}
             {% endif %}
 
             {% if services.template.isHome() %}
