@@ -89,7 +89,7 @@
             <div class="navbar-toggler-hamburgerpatty"></div>
           </button>
           <span id="secSubHeader_NavigationText">PRODUKTE</span>
-          <div class="secSubHeaderBreadCrumbs">
+          <div class="secSubHeaderBreadCrumbs hidden-lg">
             {% if not services.template.isHome() and not services.template.isMyAccount() and not services.template.isCheckout() %}
                 {% include "Ceres::PageDesign.Partials.Header.Breadcrumb" %}
             {% endif %}
