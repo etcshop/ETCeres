@@ -4,6 +4,7 @@
 
 {% set overrideSearchFilters = LayoutContainer.show("Ceres::Search.Filter", facets ) %}
 
+{{ component( "ETCeres::ItemList.Components.CategoryItem") }}
 {% block PageBody %}
     {% set listType = isSearch ? "itemsearch" : "categoryitem" %}
     {% set shopBuilderTemplate = shop_builder_category_template(category.id, listType) %}
