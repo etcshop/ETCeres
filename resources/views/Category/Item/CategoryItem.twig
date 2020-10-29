@@ -6,7 +6,7 @@
 
 {% block PageBody %}
 
-    {{ component( "ETCeres::ItemList.Components.CategoryItemETC") }}
+    {{ component( "ETCeres::ItemList.Components.CategoryItem") }}
 
     {% set listType = isSearch ? "itemsearch" : "categoryitem" %}
     {% set shopBuilderTemplate = shop_builder_category_template(category.id, listType) %}
