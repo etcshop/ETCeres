@@ -3,12 +3,20 @@
     <article class="cmp cmp-product-thumb TEST0721">
         <div :class="paddingClasses" :style="paddingInlineStyles">
 
-
-            <!-- ITEM DETAILS -->
-            <slot name="item-details">
-                TEST2
-            </slot>
-            <!-- ./ITEM DETAILS  -->
+        <div class="thumb-image">
+            <div class="prop-1-1">
+                <slot name="item-image">
+                    <category-image-carousel :image-urls-data="item.images | itemImages(imageUrlAccessor)"
+                                            :alt-text="item | itemName"
+                                            :title-text="item | itemName"
+                                            :item-url="item | itemURL(urlWithVariationId)"
+                                            :enable-carousel="$ceres.config.item.enableImageCarousel"
+                                            :disable-carousel-on-mobile="disableCarouselOnMobile"
+                                            ref="categoryImageCarousel">
+                    </category-image-carousel>
+                </slot>
+            </div>
+        </div>
         </div>
     </article>
     </div>
