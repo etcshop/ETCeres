@@ -4,36 +4,6 @@
         <div :class="paddingClasses" :style="paddingInlineStyles">
 
 
-
-            <div class="thumb-image">
-                <div class="prop-1-1">
-                    <slot name="item-image">
-                        <category-image-carousel :image-urls-data="item.images | itemImages(imageUrlAccessor)"
-                                                :alt-text="item | itemName"
-                                                :title-text="item | itemName"
-                                                :item-url="item | itemURL(urlWithVariationId)"
-                                                :enable-carousel="$ceres.config.item.enableImageCarousel"
-                                                :disable-carousel-on-mobile="disableCarouselOnMobile"
-                                                ref="categoryImageCarousel">
-                        </category-image-carousel>
-                    </slot>
-                </div>
-            </div>
-
-            <!-- STORE SPECIALS -->
-            <slot name="store-special">
-                <item-store-special v-if="storeSpecial || item.variation.bundleType === 'bundle' || item.item.itemType === 'set'"
-                                    :store-special="storeSpecial"
-                                    :recommended-retail-price="item.prices.rrp"
-                                    :variation-retail-price="item.prices.default"
-                                    :special-offer-price="item.prices.specialOffer"
-                                    :decimal-count="decimalCount"
-                                    :bundle-type="item.variation.bundleType"
-                                    :item-type="item.item.itemType">
-                </item-store-special>
-            </slot>
-            <!-- ./STORE SPECIALS -->
-
             <!-- ITEM DETAILS -->
             <slot name="item-details">
                 <div class="thumb-content" id="TEST0830">
