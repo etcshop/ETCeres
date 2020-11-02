@@ -12,18 +12,7 @@
                       </category-image-carousel>
                       <a :href="item | itemURL(urlWithVariationId)" class="thumb-title small" :class="{ 'stretched-link': $ceres.config.global.shippingCostsCategoryId == 0 }" v-html="item.texts.name1">
                       </a>
-                          <div>
-                              <div v-if="item.item.itemType === 'set'">
-                                  {{ $translate("Ceres::Template.itemSetPrice", { price: itemSetPrice }) }} *
-                              </div>
-                               <div v-else-if="!!item.item && item.item.salableVariationCount > 1 && $ceres.isCheapestSorting" >
-                                   {{ $translate("Ceres::Template.categoryItemFromPrice", { price: itemPrice }) }} *
-                              </div>
-                              <div v-else>
-                                  {{ item.prices.default.unitPrice.formatted | specialOffer(item.prices, "unitPrice", "formatted") }} *
-                              </div>
-                          </div>
-                      </div>
+
   </article>
   </div>
 </script>
