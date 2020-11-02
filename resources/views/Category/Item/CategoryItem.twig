@@ -109,6 +109,7 @@
                         <ul class="product-list row grid">
                             {% for item in itemList %}
                                 <li class="col-12 col-sm-6 col-md-4 col-lg-{% if category is defined and ceresConfig.header.showNavBars in ["side", "both"] %}4{% else %}3{% endif %}">
+                                                  {{ item.texts.name1 }}
                                     <category-item
                                         template-override="#vue-category-itemETC"
                                         item-data-ref="{{ item.data | json_data }}"
