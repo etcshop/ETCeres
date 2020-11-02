@@ -40,6 +40,12 @@
             "name"          :"Container for MobileNavigation Component Template",
             "description"   :"Container for MobileNavigation Component Template",
             "defaultLayoutContainer": "Ceres::Script.AfterScriptsLoaded"
+        },
+        {
+            "key"           :"ETCeres\\Containers\\CeresCoconutCategoryItemVueTemplateContainer",
+            "name"          :"Container for CategoryItem Component Template",
+            "description"   :"Container for CategoryItem Component Template",
+            "defaultLayoutContainer": "Ceres::Script.AfterScriptsLoaded"
         }
     ]
 }
