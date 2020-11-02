@@ -3,7 +3,7 @@
       <div :class="paddingClasses" :style="paddingInlineStyles">
 
           <a :href="item | itemURL(urlWithVariationId)" class="thumb-title small" :class="{ 'stretched-link': $ceres.config.global.shippingCostsCategoryId == 0 }">
-              {{ item | itemName }}
+              {{ item.texts.name1 }}
           </a>
         <div class="thumb-image">
             <div class="prop-1-1">
