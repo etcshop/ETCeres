@@ -10,8 +10,7 @@
                                               :disable-carousel-on-mobile="disableCarouselOnMobile"
                                               ref="categoryImageCarousel">
                       </category-image-carousel>
-                      <a :href="item | itemURL(urlWithVariationId)" class="thumb-title small" :class="{ 'stretched-link': $ceres.config.global.shippingCostsCategoryId == 0 }">
-                          {{ item | itemName }}
+                      <a :href="item | itemURL(urlWithVariationId)" class="thumb-title small" :class="{ 'stretched-link': $ceres.config.global.shippingCostsCategoryId == 0 }" v-html="item | itemName">
                       </a>
 
   </article>
