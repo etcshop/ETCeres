@@ -4,7 +4,7 @@ namespace ETCeres\Containers;
 
 use Plenty\Plugin\Templates\Twig;
 
-class CeresCoconutCategoryItemVueTemplateContainer
+class CeresCoconutMobileNavigationVueTemplateContainer
 {
     public function call(Twig $twig):string
     {
