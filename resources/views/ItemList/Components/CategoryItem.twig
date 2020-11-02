@@ -17,25 +17,11 @@
               </div>
           </div>
 
-          <!-- STORE SPECIALS -->
-          <slot name="store-special">
-              <item-store-special v-if="storeSpecial || item.variation.bundleType === 'bundle' || item.item.itemType === 'set'"
-                                  :store-special="storeSpecial"
-                                  :recommended-retail-price="item.prices.rrp"
-                                  :variation-retail-price="item.prices.default"
-                                  :special-offer-price="item.prices.specialOffer"
-                                  :decimal-count="decimalCount"
-                                  :bundle-type="item.variation.bundleType"
-                                  :item-type="item.item.itemType">
-              </item-store-special>
-          </slot>
-          <!-- ./STORE SPECIALS -->
-
           <!-- ITEM DETAILS -->
           <slot name="item-details">
               <div class="thumb-content">
                   <a :href="item | itemURL(urlWithVariationId)" class="thumb-title small" :class="{ 'stretched-link': $ceres.config.global.shippingCostsCategoryId == 0 }">
-                      {{ item | itemName }}
+                      {{ item.texts.name1 }}
                   </a>
                   <div class="thumb-meta mt-2">
                       <slot name="before-prices"></slot>
