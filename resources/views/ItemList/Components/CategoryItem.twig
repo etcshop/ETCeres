@@ -38,8 +38,6 @@
         </add-to-basket>
 
 
-            <slot name="before-prices"></slot>
-
             <div class="prices">
                 <div v-if="item.prices.rrp && item.prices.rrp.price.value > 0 && item.prices.rrp.price.value > item.prices.default.unitPrice.value" class="price-view-port">
                     <del class="crossprice" v-if="item.prices.specialOffer">
@@ -64,7 +62,6 @@
             </div>
         </div>
 
-        <slot name="after-prices"></slot>
 
 
   </article>
