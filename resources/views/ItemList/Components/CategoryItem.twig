@@ -82,6 +82,12 @@
                 </div>
 
                 <slot name="after-prices"></slot>
+
+                <div class="thumb-meta mt-2">
+                  <div class="misc-item-data">
+                    ${ item.variation.availability.names.name }
+                  </div>
+                </div>
 <!--
                 <div class="category-unit-price small" v-if="!(item.unit.unitOfMeasurement === 'C62' && item.unit.content === 1)">
                     <span>${ item.unit.content }</span>
