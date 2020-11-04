@@ -61,10 +61,10 @@
                     <div class="prices">
                         <div class="price">
                             <template v-if="item.item.itemType === 'set'">
-                                ${ $translate("Ceres::Template.itemSetPrice", { price: itemSetPrice }) } *
+                                ${ $translate("Ceres::Template.itemSetPrice", { price: itemSetPrice }) }
                             </template>
                              <template v-else-if="!!item.item && item.item.salableVariationCount > 1 && $ceres.isCheapestSorting" >
-                                 ${ $translate("Ceres::Template.categoryItemFromPrice", { price: itemPrice }) } *
+                                 ${ $translate("Ceres::Template.categoryItemFromPrice", { price: itemPrice }) }
                             </template>
                             <template v-else>
                                 ${ item.prices.default.unitPrice.formatted | specialOffer(item.prices, "unitPrice", "formatted") } *
@@ -72,10 +72,10 @@
                         </div>
                         <div v-if="item.prices.rrp && item.prices.rrp.price.value > 0 && item.prices.rrp.price.value > item.prices.default.unitPrice.value" class="price-view-port">
                             <del class="crossprice" v-if="item.prices.specialOffer">
-                                ${ item.prices.default.unitPrice.formatted | itemCrossPrice(true) }
+                                ${ item.prices.default.unitPrice.formatted } EUR UVP
                             </del>
                             <del class="crossprice" v-else>
-                                ${ item.prices.rrp.unitPrice.formatted | itemCrossPrice }
+                                ${ item.prices.rrp.unitPrice.formatted } EUR UVP
                             </del>
                         </div>
                     </div>
