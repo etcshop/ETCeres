@@ -95,11 +95,13 @@
                     {% if ceresConfig.pagination.position in ['top', 'top_bottom'] %}
                         <div class="list-controls mb-5 row">
                             <div class="col-12">
-                                <div class="float-right">
+                                <div class="category-pagination">
                                     {% include "Ceres::Category.Item.Partials.Pagination" %}
-
+                                </div>
+                                <div class="category-sporting">
                                     {% include "Ceres::Category.Item.Partials.ItemSorting" with { 'sortingData': searchOptions.sorting, 'selectedSorting': itemSorting } %}
-
+                                </div>
+                                <div class="category-itemsPerPage">
                                     {% include "Ceres::Category.Item.Partials.ItemsPerPage" with { 'itemsPerPage': searchOptions.itemsPerPage, 'selectedValue': itemsPerPage } %}
                                 </div>
                             </div>
