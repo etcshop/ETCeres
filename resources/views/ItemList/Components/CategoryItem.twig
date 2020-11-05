@@ -93,8 +93,8 @@
                         <span v-for="(propval, index) in property.values" v-if="property.values" class="third">
                           <span v-if="propval.description.indexOf('http') > -1" class="fourth">
                             <img :src="propval.description">
+                          </span>
                           <span v-else>
-                            ${ propval.description | raw }
                             <span v-html="propval.description" class="fifth"></span>
                           </span>
                         </span>
