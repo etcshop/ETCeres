@@ -84,8 +84,28 @@
                 <slot name="after-prices"></slot>
 
                 <div class="thumb-meta mt-2">
-                  <div class="misc-item-data">
+                  <div class="misc-item-data-left">
                     ${ item.variation.availability.names.name }
+                  </div>
+                  <div class="misc-item-data-left">
+
+                    {% for prop in item.variationProperties %}
+                      {% if prop.property.names.name == 'Shopicons' %}
+                      	{% for propval in prop.values %}
+                          {% if propval.description starts with 'http' %}
+                      	    <img :src="propval.description">
+                          {% elseif %}
+                            ${ propval.description }
+                          {% endif %}
+                      	{% endfor %}
+                      {% endif %}
+                    	Name: {{ cat.details[0].name }}
+                    {% endfor %}
+
+
+
+
+                      ${ item.variation.availability.names.name }
                   </div>
                 </div>
 <!--
