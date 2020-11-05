@@ -91,11 +91,11 @@
                     <span v-for="(property, index) in item.variationProperties" v-if="item.variationProperties">
                       <span v-if="property.property.names.name == 'Shopicons'">
                         <span v-for="(propval, index) in property.values" v-if="property.values">
-                          {% if propval.description startswith 'http' %}
+                          <span v-if="propval.description.indexOf('http') > -1">
                             <img :src="propval.description">
-                          {% else %}
+                          <span v-else>
                             ${ propval.description }
-                          {% endif %}
+                          </span>
                         </span>
                       </span>
                     </span>
