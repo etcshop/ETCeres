@@ -88,22 +88,13 @@
                     ${ item.variation.availability.names.name }
                   </div>
                   <div class="misc-item-data-right">
-
-                    {% for prop in item.variationProperties %}
-                      propschleife <br>
-                      {% if prop.property.names.name == 'Shopicons' %}
-                      shopiconsif<br>
-                      	{% for propval in prop.values %}
-                          propvaluesfor<br>
-                          {% if propval.description starts with 'http' %}
-                      	   1
-                        {% else %}
-                            2
-                          {% endif %}
-                      	{% endfor %}
-                      {% endif %}
-                    	Name: {{ cat.details[0].name }}
-                    {% endfor %}
+                    <span v-for="(property, index) in item.variationProperties" v-if="item.variationProperties">
+                      <span v-if="property.property.names.name == 'Shopicons'">
+                        <span v-for="(propval, index) in property.values" v-if="property.values">
+                          ${ propval.description }
+                        </span>
+                      </span>
+                    </span>
                   </div>
                 </div>
 <!--
