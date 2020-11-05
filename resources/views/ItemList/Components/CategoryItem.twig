@@ -92,6 +92,8 @@
                       <span v-if="property.property.names.name == 'Shopicons'">
                         <span v-for="(propval, index) in property.values" v-if="property.values">
                           <span v-if="propval.description starts with 'http'">
+                            <img :src="propval.description">
+                          <span v-else>
                             ${ propval.description }
                           </span>
                         </span>
