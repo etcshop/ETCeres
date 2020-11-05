@@ -91,7 +91,9 @@
                     <span v-for="(property, index) in item.variationProperties" v-if="item.variationProperties">
                       <span v-if="property.property.names.name == 'Shopicons'">
                         <span v-for="(propval, index) in property.values" v-if="property.values">
-                          ${ propval.description }
+                          <span v-if="propval.description starts with 'http'">
+                            ${ propval.description }
+                          </span>
                         </span>
                       </span>
                     </span>
