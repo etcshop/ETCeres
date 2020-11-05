@@ -93,7 +93,7 @@
                         <span v-for="(propval, index) in property.values" v-if="property.values">
                           {% if propval.description startswith 'http' %}
                             <img :src="propval.description">
-                          {% elseif %}
+                          {% else %}
                             ${ propval.description }
                           {% endif %}
                         </span>
