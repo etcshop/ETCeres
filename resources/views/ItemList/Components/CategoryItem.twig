@@ -94,6 +94,7 @@
                           <span v-if="propval.description.indexOf('http') > -1" class="fourth">
                             <img :src="propval.description">
                           <span v-else>
+                            ${ propval.description }
                             <span v-html="propval.description" class="fifth"></span>
                           </span>
                         </span>
