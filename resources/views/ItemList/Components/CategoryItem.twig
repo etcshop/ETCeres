@@ -93,9 +93,9 @@
                       {% if prop.property.names.name == 'Shopicons' %}
                       	{% for propval in prop.values %}
                           {% if propval.description starts with 'http' %}
-                      	    <img :src="propval.description">
+                      	   1
                           {% elseif %}
-                            ${ propval.description }
+                            2
                           {% endif %}
                       	{% endfor %}
                       {% endif %}
