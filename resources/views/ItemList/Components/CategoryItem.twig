@@ -88,13 +88,13 @@
                     ${ item.variation.availability.names.name }
                   </div>
                   <div class="misc-item-data-right">
-                    <span v-for="(property, index) in item.variationProperties" v-if="item.variationProperties">
-                      <span v-if="property.property.names.name == 'Shopicons'">
-                        <span v-for="(propval, index) in property.values" v-if="property.values">
-                          <span v-if="propval.description.indexOf('http') > -1">
+                    <span v-for="(property, index) in item.variationProperties" v-if="item.variationProperties" class="first">
+                      <span v-if="property.property.names.name == 'Shopicons'" class="second">
+                        <span v-for="(propval, index) in property.values" v-if="property.values" class="third">
+                          <span v-if="propval.description.indexOf('http') > -1" class="fourth">
                             <img :src="propval.description">
                           <span v-else>
-                            ${ propval.description }
+                            <span v-html="propval.description" class="fifth"></span>
                           </span>
                         </span>
                       </span>
