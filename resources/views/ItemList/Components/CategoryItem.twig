@@ -87,11 +87,14 @@
                   <div class="misc-item-data-left">
                     ${ item.variation.availability.names.name }
                   </div>
-                  <div class="misc-item-data-left">
+                  <div class="misc-item-data-right">
 
                     {% for prop in item.variationProperties %}
+                      propschleife <br>
                       {% if prop.property.names.name == 'Shopicons' %}
+                      shopiconsif<br>
                       	{% for propval in prop.values %}
+                          propvaluesfor<br>
                           {% if propval.description starts with 'http' %}
                       	   1
                         {% else %}
