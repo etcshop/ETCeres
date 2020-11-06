@@ -95,6 +95,7 @@
                     {% if ceresConfig.pagination.position in ['top', 'top_bottom'] %}
                         <div class="list-controls mb-5 row">
                             <div class="col-12">
+                            {{ itemCountTotal }}
                                 <div class="category-pagination">
                                     {% include "Ceres::Category.Item.Partials.Pagination" %}
                                 </div>
