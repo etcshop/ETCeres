@@ -41,7 +41,7 @@
 
             <!-- FIRST PAGE LINK -->
             {% if showFirstPage and isFirstLastPagePossible and currentPage > pageLimit + 1 and currentPage != 2 %}
-                <li class="page-item">
+                <li class="page-item first-page">
                     <a class="page-link{% if spacingPadding | length > 0 %} {{ spacingPadding }}{% endif %}"
                         {% if inlinePadding | length > 0 %} style="{{ inlinePadding }}"{% endif %}
                         {% if not isPreview %} href="{{ baseURL ~ queryString({ 'page': null }) }}"{% endif %}>
@@ -52,7 +52,7 @@
             <!-- ./FIRST PAGE LINK -->
 
             <!-- PREV LINK -->
-            <li class="page-item{% if currentPage <= 1 %} disabled{% endif %}">
+          <li class="page-item{% if currentPage <= 1 %} disabled{% endif %} prev-page">
                 <a class="page-link{% if spacingPadding | length > 0 %} {{ spacingPadding }}{% endif %}"
                     {% if inlinePadding | length > 0 %} style="{{ inlinePadding }}"{% endif %}
                     {% if currentPage > 1 and not isPreview %} href="{{ baseURL ~ queryString({ 'page': prevPage }) }}"{% endif %}>
@@ -76,7 +76,7 @@
             <!-- ./PAGINATION -->
 
             <!-- NEXT LINK -->
-            <li class="page-item{% if currentPage >= pageMax %} disabled{% endif %}">
+            <li class="page-item{% if currentPage >= pageMax %} disabled{% endif %} next-page">
                 <a class="page-link{% if spacingPadding | length > 0 %} {{ spacingPadding }}{% endif %}"
                     {% if inlinePadding | length > 0 %} style="{{ inlinePadding }}"{% endif %}
                     {% if currentPage < pageMax and not isPreview %} href="{{ baseURL ~ queryString({ 'page': currentPage + 1 }) }}"{% endif %}>
@@ -87,7 +87,7 @@
 
             <!-- LAST PAGE LINK -->
             {% if showLastPage and isFirstLastPagePossible and currentPage < pageMax - pageLimit and currentPage != pageMax - 1 %}
-                <li class="page-item">
+                <li class="page-item last-page">
                     <a class="page-link{% if spacingPadding | length > 0 %} {{ spacingPadding }}{% endif %}"
                         {% if inlinePadding | length > 0 %} style="{{ inlinePadding }}"{% endif %}
                         {% if not isPreview %}href="{{ baseURL ~ queryString({ 'page': pageMax }) }}"{% endif %}>
