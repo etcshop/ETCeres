@@ -7,7 +7,7 @@
 {% block PageBody %}
 
     {{ component( "ETCeres::ItemList.Components.CategoryItem") }}
-    {{ component( "ETCeres::Item.ItemImageCarousel") }}
+    {{ component( "ETCeres::ItemList.Components.CategoryImageCarousel") }}
 
     {% set listType = isSearch ? "itemsearch" : "categoryitem" %}
     {% set shopBuilderTemplate = shop_builder_category_template(category.id, listType) %}
