@@ -7,6 +7,7 @@
 {% block PageBody %}
 
     {{ component( "ETCeres::ItemList.Components.CategoryItem") }}
+    {{ component( "ETCeres::Item.ItemImageCarousel") }}
 
     {% set listType = isSearch ? "itemsearch" : "categoryitem" %}
     {% set shopBuilderTemplate = shop_builder_category_template(category.id, listType) %}
