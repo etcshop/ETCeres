@@ -92,9 +92,7 @@
                         <span v-for="(property, index) in item.variationProperties" v-if="item.variationProperties" class="first">
                           <span v-if="property.property.names.name == 'Shopicons'" class="second">
                             <span v-for="(propval, index) in property.values" v-if="property.values" class="third">
-                              <div v-if="propval.description.indexOf('http') > -1" class="imageIcon">
-                                <img :src="propval.description">
-                              </div>
+                              <div v-if="propval.description.indexOf('http') > -1" v-html="propval.description" class="imageIcon"></div>
                               <div v-else>
                                 <div v-html="propval.description" class="fontIcon"></div>
                               </div>
