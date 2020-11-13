@@ -8,7 +8,7 @@
     </a>
 
     <a v-else :href="itemUrl" class="test-1218">
-      <div v-for="(imageUrl, index) in imageUrls" :key="index">
+      <div v-for="(imageUrl, index) in imageUrls" :key="index" v-if="index === 0 || index === 1">
         <lazy-img v-if="index === 0 && !disableLazyLoad" ref="itemLazyImage" picture-class="img-fluid test-lazy" :image-url="imageUrl.url" :alt="getAltText(imageUrl)" :title="getImageName(imageUrl)"></lazy-img>
         <img v-else-if="index === 1" class="img-fluid test-1428" :src="imageUrls | itemImage" :alt="getAltText(imageUrl)" :title="getImageName(imageUrl)">
       </div>
