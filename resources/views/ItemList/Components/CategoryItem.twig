@@ -90,7 +90,7 @@
                       </div>
                       <div class="misc-item-data-right">
                         <span v-for="(property, index) in item.variationProperties" v-if="item.variationProperties" class="first">
-                          <span v-for="(group, index) in property.groups" class="second">
+                          <span v-for="(group, index) in property.property.groups" class="second">
                             <span v-if="group.names.name == 'Shopicons'" class="third">
                               <span v-for="(propval, index) in property.values" v-if="property.values" class="fourth">
                                 <div v-if="propval.description.indexOf('http') > -1" v-html="propval.description" class="imageIcon"></div>
