@@ -45,16 +45,15 @@
             {% endif %}
 
             <div class="row filterRowWrapper">
-                {% if category is defined and ceresConfig.header.showNavBars in ["side", "both"] %}
-                    <div class="col-3 d-none d-lg-block">
+                <div class="col-lg-2 col-lgx-3 d-none d-lg-block">
+                  
+                    {% if category is defined and ceresConfig.header.showNavBars in ["side", "both"] %}
                         <div class="sidebar-categories">
                             {{ include('Ceres::PageDesign.Partials.Header.SideNavigation.twig') }}
                         </div>
-
                         {{ LayoutContainer.show("Ceres::CategoryItem.SideNavBarBottom") }}
-                    </div>
-                {% endif %}
-                <div class="col-lg-2 col-lgx-3 d-none d-lg-block">
+                    {% endif %}
+
                     <div class="list-controls-inner">
                         <div class="row">
                             <div class="col-12 pl-0">
