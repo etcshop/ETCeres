@@ -45,8 +45,8 @@
             {% endif %}
 
             <div class="row filterRowWrapper">
-                <div class="col-lg-2 col-lgx-3 d-none d-lg-block">
-                  
+                <div class="col-lg-2 col-lgx-3 d-none d-lg-block pl-0">
+
                     {% if category is defined and ceresConfig.header.showNavBars in ["side", "both"] %}
                         <div class="sidebar-categories">
                             {{ include('Ceres::PageDesign.Partials.Header.SideNavigation.twig') }}
