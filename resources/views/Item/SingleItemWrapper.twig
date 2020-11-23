@@ -94,7 +94,7 @@
         {% if template | trim is not empty %}
             {{ template }}
         {% else %}
-            {% include "Ceres::Item.SingleItemView" %}
+            {% include "ETCeres::Item.SingleItemView" %}
         {% endif %}
 
     {% elseif shopBuilderTemplate | trim is not empty or isShopBuilder %}
@@ -123,7 +123,7 @@
         {# Empty shop builder template is loading #}
     {% else %}
         {# No item template defined in ShopBuilder => use default template from plugin #}
-        {% include "Ceres::Item.SingleItemView" %}
+        {% include "ETCeres::Item.SingleItemView" %}
     {% endif %}
 
 {% endblock %}
