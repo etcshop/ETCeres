@@ -1,5 +1,12 @@
-
-{{ component( "ETCeres::Item.Components.SingleItem" ) }}
+{{ component( "Ceres::Item.Components.VariationSelect" ) }}
+{{ component( "ETCeres::Item.Components.ItemImageCarousel" ) }}
+{{ component( "ETCeres::Item.Components.AddToWishListETC" ) }}
+{{ component( "Ceres::Item.Components.OrderProperties" ) }}
+{{ component( "Ceres::Item.Components.OrderPropertyList" ) }}
+{{ component( "CeresCoconut::Item.Components.SingleItemETC" ) }}
+{{ component( "Ceres::Item.Components.GraduatedPrices" ) }}
+{{ component( "Ceres::Item.Components.ItemBundle" ) }}
+{{ component( "ETCeres::Basket.Components.AddItemToBasketOverlayETC" ) }}
 
 <single-item v-cloak item-data="{{ item | json_data }}"
              attributes-data="{{ attributes | json_data }}"
