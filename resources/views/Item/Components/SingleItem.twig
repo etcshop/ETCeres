@@ -55,7 +55,7 @@
                                     <add-to-wish-list :variation-id="currentVariation.variation.id"></add-to-wish-list>
                                 </div>
                             </div>
-                            
+
                             <div class="my-3">
                                 <div class="w-100">
                                     <slot name="before-add-to-basket"></slot>
@@ -127,9 +127,6 @@
                                 <div class="tab-pane active overflow-auto" :id="'details-' + currentVariation.variation.id" role="tabpanel" v-if="isDescriptionTabActive">
                                     <div class="my-4" v-html="currentVariation.texts.description">
                                     </div>
-                                </div>
-
-                                <div :class="{ 'active': !isDescriptionTabActive && isTechnicalDataTabActive }" class="tab-pane overflow-auto" :id="'data-' + currentVariation.variation.id" role="tabpanel" v-if="isTechnicalDataTabActive">
                                     <div class="my-4" v-html="currentVariation.texts.technicalData">
                                     </div>
                                 </div>
