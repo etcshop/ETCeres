@@ -52,6 +52,12 @@
             "name"          :"Container for ImageCarousel Component Template",
             "description"   :"Container for ImageCarousel Component Template",
             "defaultLayoutContainer": "Ceres::Script.AfterScriptsLoaded"
+        },
+        {
+            "key"           :"ETCeres\\Containers\\CeresCoconutSingleItem",
+            "name"          :"Container for SingleItem Component Template",
+            "description"   :"Container for SingleItem Component Template",
+            "defaultLayoutContainer": "Ceres::Script.AfterScriptsLoaded"
         }
     ]
 }
