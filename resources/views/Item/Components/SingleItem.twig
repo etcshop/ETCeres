@@ -45,6 +45,12 @@
 
                             <item-price :show-cross-price="isRecommendedPriceActive"></item-price>
 
+                            <span class="vat small text-muted">
+                              * <template v-if="showNetPrices">${ $translate("Ceres::Template.singleItemExclVAT") }</template><template v-else>${ $translate("Ceres::Template.singleItemInclVAT") }</template> ${ $translate("Ceres::Template.singleItemExclusive") }
+                              <a v-if="hasShippingCostsCategoryId" data-toggle="modal" href="#shippingscosts" :title="$translate('Ceres::Template.singleItemShippingCosts')">${ $translate("Ceres::Template.singleItemShippingCosts") }</a>
+                              <a v-else :title="$translate('Ceres::Template.singleItemShippingCosts')">${ $translate("Ceres::Template.singleItemShippingCosts") }</a>
+                            </span>
+
                             <slot name="after-price"></slot>
 
                             <item-availability></item-availability>
@@ -92,12 +98,6 @@
 
                             <hr>
 
-                            <span class="vat small text-muted">
-                                * <template v-if="showNetPrices">${ $translate("Ceres::Template.singleItemExclVAT") }</template><template v-else>${ $translate("Ceres::Template.singleItemInclVAT") }</template> ${ $translate("Ceres::Template.singleItemExclusive") }
-                            <a v-if="hasShippingCostsCategoryId" data-toggle="modal" href="#shippingscosts" :title="$translate('Ceres::Template.singleItemShippingCosts')">${ $translate("Ceres::Template.singleItemShippingCosts") }</a>
-                            <a v-else :title="$translate('Ceres::Template.singleItemShippingCosts')">${ $translate("Ceres::Template.singleItemShippingCosts") }</a>
-
-                            </span>
 
                             <slot name="additional-content-after-vat"></slot>
                             <!-- END SINGLEITEM_DETAILS -->
