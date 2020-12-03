@@ -76,6 +76,10 @@
 
                     {# TAGS #}
                     <item-filter-tag-list></item-filter-tag-list>
+                    
+                    <div class="category-sorting">
+                        {% include "Ceres::Category.Item.Partials.ItemSorting" with { 'sortingData': searchOptions.sorting, 'selectedSorting': itemSorting } %}
+                    </div>
                 </div>
                 <div class="col-12 col-lg-10 col-lgx-9">
                     {% if category is defined and not ceresConfig.item.showCategoryImage %}
