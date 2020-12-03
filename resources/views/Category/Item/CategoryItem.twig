@@ -76,9 +76,13 @@
 
                     {# TAGS #}
                     <item-filter-tag-list></item-filter-tag-list>
-                    
+
                     <div class="category-sorting">
                         {% include "Ceres::Category.Item.Partials.ItemSorting" with { 'sortingData': searchOptions.sorting, 'selectedSorting': itemSorting } %}
+                    </div>
+
+                    <div class="category-itemsPerPage">
+                        {% include "Ceres::Category.Item.Partials.ItemsPerPage" with { 'itemsPerPage': searchOptions.itemsPerPage, 'selectedValue': itemsPerPage } %}
                     </div>
                 </div>
                 <div class="col-12 col-lg-10 col-lgx-9">
@@ -99,10 +103,10 @@
                                 <div class="category-pagination">
                                     {% include "ETCeres::Category.Item.Partials.Pagination" %}
                                 </div>
-                                <div class="category-sorting">
+                                <div class="category-sorting d-none d-lg-block">
                                     {% include "Ceres::Category.Item.Partials.ItemSorting" with { 'sortingData': searchOptions.sorting, 'selectedSorting': itemSorting } %}
                                 </div>
-                                <div class="category-itemsPerPage">
+                                <div class="category-itemsPerPage d-none d-lg-block">
                                     {% include "Ceres::Category.Item.Partials.ItemsPerPage" with { 'itemsPerPage': searchOptions.itemsPerPage, 'selectedValue': itemsPerPage } %}
                                 </div>
                             </div>
