@@ -96,10 +96,12 @@
                     {% endif %}
                     {% if ceresConfig.pagination.position in ['top', 'top_bottom'] %}
                         <div class="list-controls mb-5 row">
-                            <div class="col-12 category-infos-top">
+                            <div class="col-12 category-infos-top px-0">
+                                <div class="mobileFilter">Filtern</div>
                               	<div class="category-itemCount">
                                     {{ itemCountTotal }} Artikel
                                 </div>
+                                <div class="mobileCategory">Filtern</div>
                                 <div class="category-pagination">
                                     {% include "ETCeres::Category.Item.Partials.Pagination" %}
                                 </div>
