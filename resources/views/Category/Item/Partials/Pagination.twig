@@ -65,7 +65,7 @@
             {% for i in start..end if i >= 1 and i <= pageMax %}
                 {% set target = i <= 1 ? null : i %}
 
-                <li class="page-item{% if i == currentPage %} active{% endif %}">
+              <li class="page-item{% if i == currentPage %} active{% endif %} page-number">
                     <a class="page-link{% if spacingPadding | length > 0 %} {{ spacingPadding }}{% endif %}"
                         {% if inlinePadding | length > 0 %} style="{{ inlinePadding }}"{% endif %}
                         {% if i != currentPage and not isPreview %}href="{{ baseURL ~ queryString({ 'page': target }) }}"{% endif %}>
