@@ -14,6 +14,9 @@
     {% include "Ceres::Widgets.WidgetComponents" %}
 {% endif %}
 
+{{ get_shop_builder_styles() }}
+{{ get_shop_builder_scripts() }}
+
 {% set currencyFormat = config("Ceres.currency.format") %}
 {% set defaultLanguage = services.webstoreConfig.getDefaultLanguage() %}
 {% set pid = services.webstoreConfig.getPlentyId() %}
@@ -150,7 +153,6 @@
 
 
             {% block PageBody %}
-                <!-- inject content of inherited templates here -->
                 {% for content in container("Ceres::Homepage") if content.plugin == "Plenty" %}
                   {{ content.result | raw }}
                 {% endfor %}
