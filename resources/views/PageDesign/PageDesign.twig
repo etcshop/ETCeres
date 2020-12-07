@@ -33,6 +33,7 @@
 <html lang="{{ lang }}" data-framework="vue" prefix="og: http://ogp.me/ns#">
 
 <head>
+    {{ get_consent_scripts(ceresConfig.global.blockCookies) }}
     {% include getPartial('head') %}
 
     {% block PartialHead %}
@@ -42,6 +43,12 @@
         {% include styleTemplate.path ignore missing with styleTemplate.params %}
     {% endfor %}
 
+    {% if assetName == 'ceres-checkout' %}
+        {{ LayoutContainer.show("Ceres::Checkout.Styles") }}
+    {% endif %}
+    {% if isItem %}
+        {{ LayoutContainer.show("Ceres::SingleItem.Styles") }}
+    {% endif %}
 
     {% if ("/amazon-checkout" in request.getRequestUri()) or ("/amazon-login-processing" in request.getRequestUri()) or ("/amazon" in request.getRequestUri()) %}
       <title>Amazon Checkout | {{ config("Ceres.header.company_name") }}</title>
@@ -341,20 +348,18 @@
 {% endif %}
 
 <script>
+    window.__loadPluginChunk = function(source) {
+        return source += "?v={{ buildHash }}";
+    };
     window.vueEventHub = new Vue();
-
     if (App.config.log.checkSyntax)
     {
         var rootElement = document.getElementById("vue-app");
-
         rootElement.innerHTML = rootElement.innerHTML.replace(/(?:^|\s)(?::|v-bind:)\S+=(?:""|'')/g, "");
-
         window.vueApp = new Vue({
             store: window.ceresStore
         });
-
         vueApp.$mount( rootElement.cloneNode(true) );
-
         if (vueApp.$el.id === "vue-app")
         {
             document.body.replaceChild( vueApp.$el, rootElement );
@@ -368,12 +373,16 @@
             store: window.ceresStore
         });
     }
-
+    {% if request.get("openBasketPreview") == 1 %}window.ceresStore.dispatch("loadComponent", "basket-preview"){% endif %}
 </script>
 
 {{ get_filtered_tags() }}
 
-{{ get_shop_builder_scripts() }}
+{{ get_shop_builder_scripts( "latest", ceresConfig.log.performanceLevel == 'live') }}
+
+{% if not services.template.shouldBeCached() %}
+    <input type="hidden" id="csrf-token" value="{{ csrf_token() }}">
+{% endif %}
 
   {% if webstoreConfig.webstoreId == 4 %}
     <script src="https://www.etc-shop.de/layout/ETCeres/ml/js/ml.js"></script>
