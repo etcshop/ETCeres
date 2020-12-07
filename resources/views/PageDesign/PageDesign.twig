@@ -151,10 +151,19 @@
 
             {% block PageBody %}
                 <!-- inject content of inherited templates here -->
-                {{ shop_builder_category_template(1106, "content", "main") }}
-                {% set shopBuilderTemplate = shop_builder_category_template(category.id) %}
-                {{ shopBuilderTemplate | raw }}
-                test
+                {% for content in container("Ceres::Homepage") if content.plugin == "Plenty" %}
+                  {{ content.result | raw }}
+                {% endfor %}
+
+
+                {% if config("Ceres.homepage.showShopBuilderContent") == "true" or request.get('isContentBuilder') == 1 %}
+
+                    {% for content in container("Ceres::Homepage") if content.plugin == "Plenty" %}
+                        {{ content.result | raw }}
+                    {% endfor %}
+
+                {% endif %}
+
             {% endblock %}
 
           </div>
