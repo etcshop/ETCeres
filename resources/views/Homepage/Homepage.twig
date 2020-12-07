@@ -24,6 +24,10 @@
     {% endif %}
 
     {% if shopBuilderTemplate | trim is not empty %}
+
+      <div id="Test">
+        ShopBuilder
+      </div>
         {# show shopbuilder content for homepage category #}
         <div class="container-max">
             <div class="row">
@@ -33,12 +37,22 @@
             </div>
         </div>
     {% else %}
+
+      <div id="Test">
+       nicht ShopBuilder
+      </div>
         {% set overrideHomepage = LayoutContainer.show("Ceres::Homepage") %}
         {% if overrideHomepage | trim is not empty %}
             {# Show contents for container Ceres::Homepage #}
+              <div id="Test">
+               overrideHomepage
+              </div>
             {{ overrideHomepage }}
         {% else %}
             {# Show default homepage #}
+              <div id="Test">
+               MarketingHomepage
+              </div>
             {% include "Ceres::Homepage.MarketingHomepage.twig" %}
         {% endif %}
     {% endif %}
