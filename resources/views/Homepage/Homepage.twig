@@ -12,7 +12,11 @@
 {% endblock %}
 
 {% block PageBody %}
-
+  <div id="Test">
+    DIES IST EIN TEST
+    ${ category.id }
+    {{ category.id }}
+  </div>
     {% set shopBuilderTemplate = "" %}
     {% if category is defined and category is not null %}
         {# get shopbuilder template for category if defined #}
@@ -24,7 +28,7 @@
         <div class="container-max">
             <div class="row">
                 <div class="col">
-                    {{ shopBuilderTemplate | raw }}
+                    ${ shopBuilderTemplate | raw }
                 </div>
             </div>
         </div>
@@ -32,7 +36,7 @@
         {% set overrideHomepage = LayoutContainer.show("Ceres::Homepage") %}
         {% if overrideHomepage | trim is not empty %}
             {# Show contents for container Ceres::Homepage #}
-            {{ overrideHomepage }}
+            ${ overrideHomepage }
         {% else %}
             {# Show default homepage #}
             {% include "Ceres::Homepage.MarketingHomepage.twig" %}
