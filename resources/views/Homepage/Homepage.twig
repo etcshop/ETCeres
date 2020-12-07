@@ -28,7 +28,7 @@
         <div class="container-max">
             <div class="row">
                 <div class="col">
-                    ${ shopBuilderTemplate | raw }
+                    {{ shopBuilderTemplate | raw }}
                 </div>
             </div>
         </div>
@@ -36,7 +36,7 @@
         {% set overrideHomepage = LayoutContainer.show("Ceres::Homepage") %}
         {% if overrideHomepage | trim is not empty %}
             {# Show contents for container Ceres::Homepage #}
-            ${ overrideHomepage }
+            {{ overrideHomepage }}
         {% else %}
             {# Show default homepage #}
             {% include "Ceres::Homepage.MarketingHomepage.twig" %}
