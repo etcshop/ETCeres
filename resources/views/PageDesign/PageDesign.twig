@@ -3,7 +3,7 @@
 {% import "Ceres::PageDesign.Macros.Translations" as Translations %}
 {{ component( "Ceres::PageDesign.Components.Notifications" ) }}
 {{ component( "Ceres::Customer.Components.Login" ) }}
-{{ component( "CeresCoconut::Customer.Components.RegistrationETC" ) }}
+{{ component( "ETCeres::Customer.Components.RegistrationETC" ) }}
 {{ component( "Ceres::PageDesign.Components.Popper" ) }}
 {{ component( "Ceres::Containers.Components.ContainerItemList" ) }}
 {{ component( "Ceres::Containers.Components.LastSeenItemList" ) }}
@@ -33,6 +33,7 @@
 <html lang="{{ lang }}" data-framework="vue" prefix="og: http://ogp.me/ns#">
 
 <head>
+    {{ get_consent_scripts(ceresConfig.global.blockCookies) }}
     {% include getPartial('head') %}
 
     {% block PartialHead %}
@@ -42,6 +43,12 @@
         {% include styleTemplate.path ignore missing with styleTemplate.params %}
     {% endfor %}
 
+    {% if assetName == 'ceres-checkout' %}
+        {{ LayoutContainer.show("Ceres::Checkout.Styles") }}
+    {% endif %}
+    {% if isItem %}
+        {{ LayoutContainer.show("Ceres::SingleItem.Styles") }}
+    {% endif %}
 
     {% if ("/amazon-checkout" in request.getRequestUri()) or ("/amazon-login-processing" in request.getRequestUri()) or ("/amazon" in request.getRequestUri()) %}
       <title>Amazon Checkout | {{ config("Ceres.header.company_name") }}</title>
@@ -89,12 +96,29 @@
             <div id="login-modal-wrapper">
                 <div class="modal fade login-modal" id="login" tabindex="-1" role="dialog">
                     <div class="modal-dialog">
+                        <header class="login-modal-header border-bottom p-3">
+                          <span class="h3 mb-0">Hallo, Anmelden</span>
+                          <button type="button" aria-label="Close" class="close">
+                            <span aria-hidden="true">×</span>
+                          </button>
+                        </header>
                         <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                <div class="modal-title h3">{{ trans("Ceres::Template.login") }}</div>
-                            </div>
+                            <div class="modal-title h3">Sie sind bereits Kunde?</div>
                             <login template="#vue-login" modal-element="login-modal-wrapper"></login>
+                            <div class="modal-footer">
+                              <div class="modal-title h3">Noch kein Kunde?</div>
+                              <hr>
+                              <div class="modal-footer-text">
+                                Du erhälst in deinem persönlichen "Mein Konto"-Bereich jederzeit Zugriff auf deine Bestellungen sowie deine Kundendaten.<br>
+                                <br>
+                                Als Gast bestellst du ohne Registrierung. Bei weiteren Bestellungen musst du deine Daten erneut eingeben.<br>
+                                <br>
+                                <button class="btn btn-primary btn-medium">
+                                  Registrieren
+                                  <i aria-hidden="true" class="fa fa-user"></i>
+                                </button>
+                              </div>
+                        </div>
                         </div>
                     </div>
                 </div>
@@ -107,24 +131,14 @@
     </div>
 
     <div class="wrapper wrapper-main {% if ceresConfig.header.fixNavBarPos %}isSticky{% endif %}">
-      {% if webstoreConfig.webstoreId == 4 %}
-          {% include getPartial('headerML') %}
-      {% else %}
-          {% include getPartial('header') %}
-      {% endif %}
+        {% include "ETCeres::PageDesign.Partials.Header.Header" %}
 
         <div class="content">
           <div class="container_centered">
 
-            {% if (services.template.isMyAccount()) or ('/pages/karriere' in canonicalUrl) or ('/pages/career' in canonicalUrl) or ('/pages/carriere' in canonicalUrl) or ('/pages/kontakt' in canonicalUrl) or ('/pages/contact' in canonicalUrl) or ('/meinelampe/kontakt' in canonicalUrl) or ('/meinelampe/contact' in canonicalUrl) or ('/pages/newsletter' in canonicalUrl) or ('/pages/infolettre' in canonicalUrl) or ('/pages/versand' in canonicalUrl) or ('/pages/shipping' in canonicalUrl) or ('pages/envoi' in canonicalUrl) or ('/pages/kontakt' in canonicalUrl) or ('/pages/zahlung' in canonicalUrl) or ('/pages/payment' in canonicalUrl) or ('/pages/paiement' in canonicalUrl)  or ('/pages/faq' in canonicalUrl) or (currTpl == 'tpl.contact') or (currTpl == 'tpl.wish-list') or (services.template.getCurrentTemplate() == 'tpl.confirmation' and request.getRequestUri()|replace({'/': ''}) == 'confirmation') %}
-                {% set showMyAccountSubMenu = true %}
-            {% else %}
-                {% set showMyAccountSubMenu = false %}
-            {% endif %}
-
             <!-- breadcrumb -->
             {% if not services.template.isHome() and not services.template.isMyAccount() and not services.template.isCheckout() and not showMyAccountSubMenu and 'tpl.basket' not in currTpl and 'tpl.page-not-found' not in currTpl %}
-              {% include "CeresCoconut::PageDesign.Partials.Header.Breadcrumb" %}
+                {% include "Ceres::PageDesign.Partials.Header.Breadcrumb" %}
             {% endif %}
 
             {% if services.template.isHome() %}
@@ -141,134 +155,23 @@
           </div>
           <div{% if not services.template.isHome() %} class="container_centered" {% endif %}>
 
-            {% if showMyAccountSubMenu == true %}
-              <div id="SubMenuButton" class="hidden-lg hidden-md">
-                <i id="SubMenuButton_Icon" class="material-icons">reorder</i>
-                <div id="SubMenuText">{{ trans("CeresCoconut::Template.ETC_ServiceCenter") }}</div>
-              </div>
-
-              <div class="col-lg-3 col-md-4 col-sm-12" id="MyAccount_left">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                  <ul class="Test1335">
-                    <li class="col-lg-4 col-sm-2 col-md-4 col-xs-2 MyAccoutMenu_Point" id="MyAccoutMenu_Kontakt">
-                      <a href="{{ urls.contact }}" title="Kontakt">
-                        <div class="MyAccountLabel">{{ trans("CeresCoconut::Template.ETC_Kontakt") }}</div>
-                        <i id="MyAccountKontaktIcon" class="material-icons MyAccountIcon">contact_mail</i>
-                      </a>
-                    </li>
-                    <li class="col-lg-4 col-sm-2 col-md-4 col-xs-2 MyAccoutMenu_Point" id="MyAccoutMenu_Retoure">
-                      {% if webstoreConfig.webstoreId == 4 %}
-                        {% if lang == "en" %}
-                          <a href="http://s141963554.online.de/retoure/MeineLampe/retoure_en.php" target="_blank" rel="noopener" title="{{ trans("CeresCoconut::Template.ETC_Retourenportal") }}">
-                        {% elseif lang == "fr" %}
-                          <a href="http://s141963554.online.de/retoure/MeineLampe/retoure_fr.php" target="_blank" rel="noopener" title="{{ trans("CeresCoconut::Template.ETC_Retourenportal") }}">
-                        {% else %}
-                          <a href="http://s141963554.online.de/retoure/MeineLampe/retoure.php" target="_blank" rel="noopener" title="{{ trans("CeresCoconut::Template.ETC_Retourenportal") }}">
-                        {% endif %}
-                      {% else %}
-                        {% if lang == "en" %}
-                          <a href="http://s141963554.online.de/retoure/voll/retoure_en.php" target="_blank" rel="noopener" title="{{ trans("CeresCoconut::Template.ETC_Retourenportal") }}">
-                        {% elseif lang == "fr" %}
-                          <a href="http://s141963554.online.de/retoure/voll/retoure_fr.php" target="_blank" rel="noopener" title="{{ trans("CeresCoconut::Template.ETC_Retourenportal") }}">
-                        {% else %}
-                          <a href="http://s141963554.online.de/retoure/voll/retoure.php" target="_blank" rel="noopener" title="{{ trans("CeresCoconut::Template.ETC_Retourenportal") }}">
-                        {% endif %}
-                      {% endif %}
-                        <div class="MyAccountLabel">{{ trans("CeresCoconut::Template.ETC_Retoure") }}</div>
-                        <i id="MyAccountRetoureIcon" class="material-icons MyAccountIcon">reply</i>
-                      </a>
-                    </li>
-                    <li class="col-lg-4 col-sm-2 col-md-4 col-xs-2 MyAccoutMenu_Point" id="MyAccoutMenu_Newsletter">
-                      {% set newsletter = services.category.get(802, lang) %}
-                      <a href="{{ services.category.getURL(newsletter, lang) }}" title="Newsletter">
-                        <div class="MyAccountLabel">{{ trans("CeresCoconut::Template.ETC_Newsletter") }}</div>
-                        <i id="MyAccountNewsletterIcon" class="material-icons MyAccountIcon">email</i>
-                      </a>
-                    </li>
-                    <li class="col-lg-4 col-sm-2 col-md-4 col-xs-2 MyAccoutMenu_Point" id="MyAccoutMenu_Versand">
-                      {% set versand = services.category.get(722, lang) %}
-                      <a href="{{ services.category.getURL(versand, lang) }}" title="Versand">
-                        <div class="MyAccountLabel">{{ services.category.get(722, lang).details[0].name }}</div>
-                        <i id="MyAccountVersandIcon" class="material-icons MyAccountIcon">send</i>
-                      </a>
-                    </li>
-                    <li class="col-lg-4 col-sm-2 col-md-4 col-xs-2 MyAccoutMenu_Point" id="MyAccoutMenu_Zahlung">
-                      {% set zahlung = services.category.get(725, lang) %}
-                      <a href="{{ services.category.getURL(zahlung, lang) }}" title="Zahlung">
-                        <div class="MyAccountLabel">{{ services.category.get(725, lang).details[0].name }}</div>
-                        <i id="MyAccountZahlungIcon" class="material-icons MyAccountIcon">euro_symbol</i>
-                      </a>
-                    </li>
-                    <li class="col-lg-4 col-sm-2 col-md-4 col-xs-2 MyAccoutMenu_Point" id="MyAccoutMenu_FAQ">
-                      {% set FAQ = services.category.get(714, lang) %}
-                      <a href="{{ services.category.getURL(FAQ, lang) }}" title="FAQ">
-                        <div class="MyAccountLabel">{{ services.category.get(714, lang).details[0].name }}</div>
-                        <i id="MyAccountFAQIcon" class="material-icons MyAccountIcon">info_outline</i>
-                      </a>
-                    </li>
-                    <li class="col-lg-4 col-sm-2 col-md-4 col-xs-2 MyAccoutMenu_Point" id="MyAccoutMenu_Kundendaten">
-                      <a href="{{ urls.myAccount }}?sc_Kundendaten=" title="Mein Konto">
-                        <div class="MyAccountLabel">{{ trans("Ceres::Template.loginMyAccount") }}</div>
-                        <i id="MyAccountKundenkontoIcon" class="material-icons MyAccountIcon">account_box</i>
-                      </a>
-                      </a>
-                    </li>
-                    <li class="col-lg-4 col-sm-2 col-md-4 col-xs-2 MyAccoutMenu_Point" id="MyAccoutMenu_Auftraege">
-                      <a href="{{ urls.myAccount }}?sc_Auftraghistorie=" title="Auftragshistorie">
-                        <div class="MyAccountLabel">{{ trans("CeresCoconut::Template.ETC_Bestellungen") }}</div>
-                        <i id="MyAccountAuftragIcon" class="material-icons MyAccountIcon">restore</i>
-                      </a>
-                    </li>
-                    <li class="col-lg-4 col-sm-2 col-md-4 col-xs-2 MyAccoutMenu_Point" id="MyAccoutMenu_Merkliste">
-                      <a href="{{ urls.wishList }}?sc_Merkliste=" title="Merkliste">
-                        <div class="MyAccountLabel">{{ trans("CeresCoconut::Template.ETC_Merkliste") }}</div>
-                        <i id="MyAccountMerklisteIcon" class="material-icons MyAccountIcon">list</i>
-                      </a>
-                    </li>
-                  </ul>
-                  {% set loggedIn = frontend.Account.getIsAccountLoggedIn %}
-                  {% if loggedIn %}
-                    <span id="PlentyWebMyAccountMyAccountLogoutContainer">
-                  	   <a href="#" class="PlentyWebshopButton logout" id="button_logoutPlentyWebMyAccountLogout" title="Ausloggen" v-logout>{{ trans("Ceres::Template.loginLogout") }}</a>
-                     </span>
-                  {% else %}
-                    <span id="PlentyWebMyAccountMyAccountLogoutContainer">
-                       {% set loginURL = "" %}
-                       {% if webstoreConfig.webstoreId == 4 %}
-                           {% if lang == 'en' %}
-                              {% set loginURL = "https://www.meinelampe.de/en/login?backlink=https%3A%2F%2Fwww.meinelampe.de%2Fmy-account#sc_Kundendaten"%}
-                           {% elseif lang == 'fr' %}
-                              {% set loginURL = "https://www.meinelampe.de/fr/login?backlink=https%3A%2F%2Fwww.meinelampe.de%2Fmy-account#sc_Kundendaten"%}
-                           {% else %}
-                              {% set loginURL = "https://www.meinelampe.de/login?backlink=https%3A%2F%2Fwww.meinelampe.de%2Fmy-account#sc_Kundendaten"%}
-                           {% endif %}
-                       {% else %}
-                           {% if lang == 'en' %}
-                              {% set loginURL = "https://www.etc-shop.de/en/login?backlink=https%3A%2F%2Fwww.etc-shop.de%2Fmy-account#sc_Kundendaten"%}
-                           {% elseif lang == 'fr' %}
-                              {% set loginURL = "https://www.etc-shop.de/fr/login?backlink=https%3A%2F%2Fwww.etc-shop.de%2Fmy-account#sc_Kundendaten"%}
-                           {% else %}
-                              {% set loginURL = "https://www.etc-shop.de/login?backlink=https%3A%2F%2Fwww.etc-shop.de%2Fmy-account#sc_Kundendaten"%}
-                           {% endif %}
-                       {% endif %}
-                  	   <a class="PlentyWebshopButton logout" id="button_logoutPlentyWebMyAccountLogout" href="{{ loginURL }}">{{ trans("Ceres::Template.login") }}</a>
-                     </span>
-                  {% endif %}
-                </div>
-              </div>
-
-              <div class="col-lg-9 col-md-8 col-sm-12" id="MyAccount_right">
-            {% endif %}
-
 
             {% block PageBody %}
-                <!-- inject content of inherited templates here -->
+                {% for content in container("Ceres::Homepage") if content.plugin == "Plenty" %}
+                  {{ content.result | raw }}
+                {% endfor %}
+
+
+                {% if config("Ceres.homepage.showShopBuilderContent") == "true" or request.get('isContentBuilder') == 1 %}
+
+                    {% for content in container("Ceres::Homepage") if content.plugin == "Plenty" %}
+                        {{ content.result | raw }}
+                    {% endfor %}
+
+                {% endif %}
+
             {% endblock %}
 
-
-            {% if showMyAccountSubMenu == true %}
-              </div>
-            {% endif %}
           </div>
         </div>
 
@@ -278,14 +181,19 @@
         {% endblock %}
 
         <input type="hidden" name="CookieBanner_StateInputPD" id="CookieBanner_StateInputPD">
-        <cookie-banner :webshop-id="{{ webstoreConfig.webstoreId }}"></cookie-banner>
     </div>
 
     {% if basket is not defined %}
         {% set basket = services.basket.getBasketForTemplate() %}
     {% endif %}
 
-    <div class="wrapper wrapper-bottom">
+    {% if ceresConfig.basket.previewType == "right" %}
+        <div class="wrapper wrapper-right test1346">
+            <basket-preview :show-net-prices={{ showNetPrices | json_encode }}></basket-preview>
+        </div>
+    {% endif %}
+
+    <div class="wrapper wrapper-bottom test1358">
       <!-- REGISTRATION MODAL -->
       <div id="simple-registration-modal-wrapper">
         <div class="modal fade" id="registration" tabindex="-1" role="dialog">
@@ -385,7 +293,7 @@
 
 {% if ("/amazon-checkout" in ETCUri) or ("/amazon-login-processing" in ETCUri) or ("/amazon" in ETCUri) %}
   <div style="display: none">Layoutcontainer Anfang</div>
-  {{ LayoutContainer.show("CeresCoconut::Payment.Scripts") }}
+  {{ LayoutContainer.show("ETCeres::Payment.Scripts") }}
   <div style="display: none">Layoutcontainer Ende</div>
 {% endif %}
 
@@ -399,19 +307,12 @@
     <link rel="stylesheet" href="{{ defaultCSS }}"{% if isShopBuilder %} data-sass-root="{{ plugin_path('Ceres') }}" data-sass-original="{{ defaultSCSS }}"{% endif %}>
 {% endif %}
 
-<link href="https://fonts.googleapis.com/css?family=Hind+Guntur:300,400,500,600,700&display=swap" rel="stylesheet">
-{% if webstoreConfig.webstoreId == 4 %}
-  <link href="https://www.etc-shop.de/layout/ETCeres/css/themeETC.css" rel="stylesheet" type="text/css" />
-  <link href="https://www.etc-shop.de/layout/ETCeres/ml/css/em-minml.css" rel="stylesheet" type="text/css" />
-  <link href="https://www.etc-shop.de/layout/ETCeres/ml/css/ml.css" rel="stylesheet" type="text/css" />
-{% else %}
-  <link href="https://www.etc-shop.de/layout/ETCeres/css/etcmainbetaneu.css" rel="stylesheet" type="text/css" />
-  <link href="https://www.etc-shop.de/layout/ETCeres/css/etcmainbeta.css" rel="stylesheet" type="text/css" />
-{% endif %}
+<link href="https://fonts.googleapis.com/css2?family=Hind+Guntur:wght@300;400;500;600;700&family=Hind:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://www.strauss-net.eu/etc/etcshop.css" rel="stylesheet" type="text/css" />
+
 {% if lang == "fr" %}
-  <link href="https://www.etc-shop.de/layout/ETCeres/css/etc_fr.css" rel="stylesheet" type="text/css" />
 {% elseif lang == "en" %}
-  <link href="https://www.etc-shop.de/layout/ETCeres/css/etc_en.css" rel="stylesheet" type="text/css" />
 {% endif %}
 
     {% if assetName == 'ceres-checkout' %}
@@ -447,20 +348,18 @@
 {% endif %}
 
 <script>
+    window.__loadPluginChunk = function(source) {
+        return source += "?v={{ buildHash }}";
+    };
     window.vueEventHub = new Vue();
-
     if (App.config.log.checkSyntax)
     {
         var rootElement = document.getElementById("vue-app");
-
         rootElement.innerHTML = rootElement.innerHTML.replace(/(?:^|\s)(?::|v-bind:)\S+=(?:""|'')/g, "");
-
         window.vueApp = new Vue({
             store: window.ceresStore
         });
-
         vueApp.$mount( rootElement.cloneNode(true) );
-
         if (vueApp.$el.id === "vue-app")
         {
             document.body.replaceChild( vueApp.$el, rootElement );
@@ -474,12 +373,16 @@
             store: window.ceresStore
         });
     }
-
+    {% if request.get("openBasketPreview") == 1 %}window.ceresStore.dispatch("loadComponent", "basket-preview"){% endif %}
 </script>
 
 {{ get_filtered_tags() }}
 
 {{ get_shop_builder_scripts( "latest", ceresConfig.log.performanceLevel == 'live') }}
+
+{% if not services.template.shouldBeCached() %}
+    <input type="hidden" id="csrf-token" value="{{ csrf_token() }}">
+{% endif %}
 
   {% if webstoreConfig.webstoreId == 4 %}
     <script src="https://www.etc-shop.de/layout/ETCeres/ml/js/ml.js"></script>
@@ -488,16 +391,16 @@
   {% endif %}
 
 
-{{ component( "CeresCoconut::VueScripts" ) }}
+{{ component( "ETCeres::VueScripts" ) }}
 
-{{ component( "CeresCoconut::Containers.Components.ContainerCrosssellingItemListETC" ) }}
-{{ component( "CeresCoconut::Containers.Components.ContainerItemListDirectCross" ) }}
-{{ component( "CeresCoconut::ItemList.Components.CrossSellingItemETC" ) }}
-{{ component( "CeresCoconut::Containers.Components.ContainerStartBoxItemListETC" ) }}
-{{ component( "CeresCoconut::ItemList.Components.StartBoxItemETC" ) }}
-{{ component( "CeresCoconut::PageDesign.Components.CookieBannerETC" ) }}
-{{ component( "CeresCoconut::PageDesign.Components.TrackingETC" ) }}
-{{ component( "CeresCoconut::ItemList.Components.CategoryItemQuickView" ) }}
+{{ component( "ETCeres::Containers.Components.ContainerCrosssellingItemListETC" ) }}
+{{ component( "ETCeres::Containers.Components.ContainerItemListDirectCross" ) }}
+{{ component( "ETCeres::ItemList.Components.CrossSellingItemETC" ) }}
+{{ component( "ETCeres::Containers.Components.ContainerStartBoxItemListETC" ) }}
+{{ component( "ETCeres::ItemList.Components.StartBoxItemETC" ) }}
+{{ component( "ETCeres::PageDesign.Components.CookieBannerETC" ) }}
+{{ component( "ETCeres::PageDesign.Components.TrackingETC" ) }}
+{{ component( "ETCeres::ItemList.Components.CategoryItemQuickView" ) }}
 
 {% if not services.template.shouldBeCached() %}
     <input type="hidden" id="csrf-token" value="{{ csrf_token() }}">
