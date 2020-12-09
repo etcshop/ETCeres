@@ -15,6 +15,12 @@
     {% else %}
       <div class="category_template"></div>
         <div>{{ category.id }}</div>
+        <div>{{ lang }}</div>
+        <div>{{ webstoreConfig.webstoreId }}</div>
+
+
+          <div>{{ category | raw }}</div>
+          <div>{{ category | json_encode }}</div>
         {% include category_template( category.id, lang, webstoreConfig.webstoreId ) ignore missing %}
     {% endif %}
 
