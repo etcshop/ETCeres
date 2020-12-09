@@ -17,11 +17,14 @@
         <div>{{ category.id }}</div>
         <div>{{ lang }}</div>
         <div>{{ webstoreConfig.webstoreId }}</div>
-
-
-          <div>{{ category | raw }}</div>
-          <div>{{ category | json_encode }}</div>
-        {% include category_template( category.id, lang, webstoreConfig.webstoreId ) ignore missing %}
+        <div>{{ category | raw }}</div>
+        <div>{{ category | json_encode }}</div>
+        {% set catTemplate = category_template( category.id, lang, webstoreConfig.webstoreId ) %}
+        {% if catTemplate | trim is not empty %}
+          {% include category_template( category.id, lang, webstoreConfig.webstoreId ) ignore missing %}
+        {% else %}
+          {{ category.details[0].description | raw }}
+        {% endif %}
     {% endif %}
 
 {% endblock %}
