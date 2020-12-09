@@ -14,7 +14,7 @@
         </div>
     {% else %}
       <div class="category_template"></div>
-        <div v-html="category.id"></div>
+        <div>{{ category.id }}</div>
         {% include category_template( category.id, lang, webstoreConfig.webstoreId ) ignore missing %}
     {% endif %}
 
