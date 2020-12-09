@@ -78,13 +78,5 @@
 {% block PageBody %}
     {{ set_item_data_base(item.documents[0].data) }}
 
-    {% set shopBuilderTemplate = "" %}
-    {% set currentCategory = services.category.getCurrentCategory() %}
-
-    {% if currentCategory is defined %}
-        {% set shopBuilderTemplate = shop_builder_category_template(currentCategory.id, isItemSet ? "itemset" : "singleitem") %}
-    {% endif %}
-
     {% include "ETCeres::Item.SingleItemView" %}
-    {{ shopBuilderTemplate | raw }}
 {% endblock %}
