@@ -78,5 +78,25 @@
 {% block PageBody %}
     {{ set_item_data_base(item.documents[0].data) }}
 
-    {% include "ETCeres::Item.SingleItemView" %}
+    {% set shopBuilderTemplate = "" %}
+    {% set currentCategory = services.category.getCurrentCategory() %}
+
+    {% if currentCategory is defined %}
+        {% set shopBuilderTemplate = shop_builder_category_template(currentCategory.id, isItemSet ? "itemset" : "singleitem") %}
+    {% endif %}
+
+    <single-item
+        v-cloak
+        item-data="{{ item | json_data }}"
+        attributes-data="{{ attributes | json_data }}"
+        variations="{{ variations | json_data }}"
+        :after-key="{{ afterKey | json_encode }}"
+        :please-select-option-variation-id="{{ dynamicVariationId }}"
+        :init-please-select-option="{{ initPleaseSelectOption | json_encode }}"
+        :show-net-prices="{{ services.customer.showNetPrices() | json_encode }}"
+        :is-wish-list-enabled="{{ services.url.isRouteEnabled("wish-list") | json_encode }}"
+        :item-id="{{ item.documents[0].data.item.id }}"
+        v-slot="slotProps">
+        {{ shopBuilderTemplate | raw }}
+    </single-item>
 {% endblock %}
