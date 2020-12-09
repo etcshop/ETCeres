@@ -213,18 +213,11 @@
 
                 </div>
 
-                <category-item
-                    template-override="#vue-category-itemETC"
-                    item-data-ref="{{ item.data | json_data }}"
-                    :decimal-count="{{ ceresConfig.item.storeSpecial }}">
-                    <template #before-prices>{{ LayoutContainer.show("Ceres::CategoryItem.BeforePrices", item.data) }}</template>
-                    <template #after-prices>{{ LayoutContainer.show("Ceres::CategoryItem.AfterPrices", item.data) }}</template>
-
-                    <a href="{{ item.data | itemURL }}" class="small">
-                        <i class="fa fa-image"></i>
-                        <span>{{ item.data | itemName }}</span>
-                    </a>
-                </category-item>
+                <div>
+                  {% set currentCategory = services.category.getCurrentCategory %}
+                  {% set shopBuilderTemplate = shop_builder_category_template(currentCategory.id, "singleitem", "ratingStars") %}
+                  {{ shopBuilderTemplate | raw }}
+                </div>
 
                 <slot name="item-list-container"></slot>
                 <slot name="feedback-container"></slot>
