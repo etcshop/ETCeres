@@ -14,15 +14,18 @@
         </div>
     {% else %}
       <div class="category_template"></div>
-        <div>{{ category.id }}</div>
-        <div>{{ lang }}</div>
-        <div>{{ webstoreConfig.webstoreId }}</div>
-        <div>{{ category | raw }}</div>
-        <div>{{ category | json_encode }}</div>
+        <div style="display: none">{{ category.id }}</div>
+        <div style="display: none">{{ lang }}</div>
+        <div style="display: none">{{ webstoreConfig.webstoreId }}</div>
+        <div style="display: none">{{ category | raw }}</div>
+        <div style="display: none">{{ category | json_encode }}</div>
         {% set catTemplate = category_template( category.id, lang, webstoreConfig.webstoreId ) %}
+        <div style="display: none">{{ catTemplate }}</div>
         {% if catTemplate | trim is not empty %}
+          <div style="display: none">Shopbuilder Template</div>
           {% include category_template( category.id, lang, webstoreConfig.webstoreId ) ignore missing %}
         {% else %}
+          <div style="display: none">Category Description</div>
           {{ category.details[0].description | raw }}
         {% endif %}
     {% endif %}
