@@ -9,7 +9,8 @@
              :show-net-prices="{{ services.customer.showNetPrices() | json_encode }}"
              :is-wish-list-enabled="{{ services.url.isRouteEnabled("wish-list") | json_encode }}"
              :init-please-select-option="{{ initPleaseSelectOption | json_encode }}"
-             :item-id="{{ item.documents[0].data.item.id }}">
+             :item-id="{{ item.documents[0].data.item.id }}"
+             v-slot="slotProps">
     <template #before-price>{{ LayoutContainer.show("Ceres::SingleItem.BeforePrice", item.documents[0].data) }}</template>
     <template #after-price>{{ LayoutContainer.show("Ceres::SingleItem.AfterPrice", item.documents[0].data) }}</template>
     <template #before-add-to-basket>{{ LayoutContainer.show("Ceres::SingleItem.BeforeAddToBasket", item.documents[0].data) }}</template>
