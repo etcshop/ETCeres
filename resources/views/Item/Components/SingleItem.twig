@@ -219,10 +219,10 @@
                 {% set currentCategory = services.category.getCurrentCategory() %}
 
                 {% if currentCategory is defined %}
-                        {% set shopBuilderTemplate = shop_builder_category_template(currentCategory.id, isItemSet ? "itemset" : "singleitem") %}
+                        {% set shopBuilderTemplate = shop_builder_category_template(currentCategory.id, isItemSet ? "itemset" : "singleitem", "zone1") %}
                 {% endif %}
                 {% if currentCategory is defined %}
-                        {% set shopBuilderTemplate2 = shop_builder_category_template(currentCategory.id, isItemSet ? "itemset" : "singleitem") %}
+                        {% set shopBuilderTemplate2 = shop_builder_category_template(currentCategory.id, isItemSet ? "itemset" : "singleitem", "zone2") %}
                 {% endif %}
                 {{ shopBuilderTemplate | raw }}
                 {{ shopBuilderTemplate2 | raw }}
