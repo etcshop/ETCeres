@@ -219,8 +219,8 @@
                 {% set currentCategory = services.category.getCurrentCategory() %}
 
                 {% if currentCategory is defined %}
-                        {% set shopBuilderTemplate = shop_builder_category_template(currentCategory.id, isItemSet ? "itemset" : "singleitem", "zone1") %}
-                        {% set shopBuilderTemplate2 = shop_builder_category_template(currentCategory.id, isItemSet ? "itemset" : "singleitem", "zone2") %}
+                        {% set shopBuilderTemplate = shop_builder_category_template(currentCategory.id, isItemSet ? "itemset" : "singleitem") %}
+                        {% set shopBuilderTemplate2 = shop_builder_category_template(currentCategory.id, isItemSet ? "itemset" : "singleitem") %}
                 {% endif %}
                 <div class="shopBuilder1">{{ shopBuilderTemplate | raw }}</div>
                 <div class="shopBuilder2">{{ shopBuilderTemplate2 | raw }}</div>
