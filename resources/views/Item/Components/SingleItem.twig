@@ -25,6 +25,15 @@
                                     <b>${ $translate("Ceres::Template.singleItemNumber") } </b>
                                     <span>${ currentVariation.variation.number }</span>
                                 </span>
+                                <span class="articlenumber small text-muted">
+                                    {% set shopBuilderTemplateDetails = "" %}
+                                    {% set currentCategory = services.category.getCurrentCategory() %}
+
+                                    {% if currentCategory is defined %}
+                                            {% set shopBuilderTemplateDetails = shop_builder_category_template(currentCategory.id, isItemSet ? "itemset" : "singleitem") %}
+                                    {% endif %}
+                                    <div class="shopBuilder_Details">{{ shopBuilderTemplateDetails | raw }}</div>
+                                </span>
                             </div>
 
                             <!-- Variation -->
