@@ -214,13 +214,18 @@
                 </div>
 
 
-                    {% set shopBuilderTemplate = "" %}
-                    {% set currentCategory = services.category.getCurrentCategory() %}
+                {% set shopBuilderTemplate = "" %}
+                {% set shopBuilderTemplate = "" %}
+                {% set currentCategory = services.category.getCurrentCategory() %}
 
-                    {% if currentCategory is defined %}
+                {% if currentCategory is defined %}
                         {% set shopBuilderTemplate = shop_builder_category_template(currentCategory.id, isItemSet ? "itemset" : "singleitem") %}
-                    {% endif %}
-                    {{ shopBuilderTemplate | raw }}
+                {% endif %}
+                {% if currentCategory is defined %}
+                        {% set shopBuilderTemplate2 = shop_builder_category_template(currentCategory.id, isItemSet ? "itemset" : "singleitem") %}
+                {% endif %}
+                {{ shopBuilderTemplate | raw }}
+                {{ shopBuilderTemplate2 | raw }}
 
                 <slot name="item-list-container"></slot>
                 <slot name="feedback-container"></slot>
