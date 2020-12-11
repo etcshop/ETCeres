@@ -81,8 +81,9 @@
                                     ${ $translate("Ceres::Template.singleItemSetInfo") }
                                 </div>
                                 <div v-else class="col-12 col-sm-7 col-md-12 col-lg-12 my-3 pl-0 px-0">
+                                    <input id="VarIDforBasket" name="VarIDforBasket" type="hidden" value="81592">
                                     <add-to-basket
-                                            :variation-id="currentVariation.variation.id"
+                                            :variation-id="document.getElementsByName('VarIDforBasket')[0].value"
                                             :is-salable="!!currentVariation.filter && currentVariation.filter.isSalable"
                                             :has-children="!!currentVariation.filter && currentVariation.filter.hasActiveChildren"
                                             :interval-quantity="currentVariation.variation.intervalOrderQuantity || 1"
