@@ -7,7 +7,6 @@ use IO\Helper\TemplateContainer;
 use IO\Extensions\Functions\Partial;
 use Plenty\Plugin\ConfigRepository;
 use Plenty\Modules\Webshop\ItemSearch\Helpers\ResultFieldTemplate;
-use ETCeres\Contexts\CoconutSingleItemContext;
 
 
 /**
