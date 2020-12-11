@@ -82,8 +82,10 @@
                                 </div>
                                 <div v-else class="col-12 col-sm-7 col-md-12 col-lg-12 my-3 pl-0 px-0">
                                     {% set VarIDforBasket = "TEST" %}
-                                    <input id="VarIDforBasket" name="VarIDforBasket" value="81592">
-                                    <script>document.getElementsByName("VarIDforBasket")[0].value = {{ VarIDforBasket }};</script>
+                                    <input v-model="currentVariation.variation.id" id="VarIDforBasket" name="VarIDforBasket" value="81592">
+
+
+
                                     <add-to-basket
                                             :variation-id="currentVariation.variation.id"
                                             :is-salable="!!currentVariation.filter && currentVariation.filter.isSalable"
