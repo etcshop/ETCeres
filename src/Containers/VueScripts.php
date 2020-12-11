@@ -1,6 +1,6 @@
 <?php
 
-namespace CeresCoconut\Containers;
+namespace ETCeres\Containers;
 
 use Plenty\Plugin\Templates\Twig;
 
@@ -8,6 +8,6 @@ class VueScripts
 {
     public function call(Twig $twig):string
     {
-        return $twig->render('CeresCoconut::VueScripts');
+        return $twig->render('ETCeres::VueScripts');
     }
 }
