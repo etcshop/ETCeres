@@ -82,8 +82,9 @@
                                 </div>
                                 <div v-else class="col-12 col-sm-7 col-md-12 col-lg-12 my-3 pl-0 px-0">
                                     <input v-model="VarIDforBasket" id="VarIDforBasket" name="VarIDforBasket" type="hidden" value="81592">
+                                    {{ VarIDforBasket }}
                                     <add-to-basket
-                                            :variation-id="VarIDforBasket"
+                                            :variation-id="currentVariation.variation.id"
                                             :is-salable="!!currentVariation.filter && currentVariation.filter.isSalable"
                                             :has-children="!!currentVariation.filter && currentVariation.filter.hasActiveChildren"
                                             :interval-quantity="currentVariation.variation.intervalOrderQuantity || 1"
