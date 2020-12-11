@@ -55,12 +55,6 @@ class CeresCoconutServiceProvider extends ServiceProvider
 
             return false;
         });
-        
-       $dispatcher->listen('IO.ctx.item', function (TemplateContainer $templateContainer, $templateData = [])
-       {
-           $templateContainer->setContext(CoconutSingleItemContext::class);
-           return false;
-       }, 0);
 
         // Override homepage
         if (in_array("homepage", $enabledOverrides) || in_array("all", $enabledOverrides))
