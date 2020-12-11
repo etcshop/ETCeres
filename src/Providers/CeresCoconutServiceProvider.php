@@ -7,6 +7,7 @@ use IO\Helper\TemplateContainer;
 use IO\Extensions\Functions\Partial;
 use Plenty\Plugin\ConfigRepository;
 use Plenty\Modules\Webshop\ItemSearch\Helpers\ResultFieldTemplate;
+use ETCeres\Contexts\CoconutSingleItemContext;
 
 
 /**
@@ -54,6 +55,12 @@ class CeresCoconutServiceProvider extends ServiceProvider
 
             return false;
         });
+        
+       $dispatcher->listen('IO.ctx.item', function (TemplateContainer $templateContainer, $templateData = [])
+       {
+           $templateContainer->setContext(CoconutSingleItemContext::class);
+           return false;
+       }, 0);
 
         // Override homepage
         if (in_array("homepage", $enabledOverrides) || in_array("all", $enabledOverrides))
