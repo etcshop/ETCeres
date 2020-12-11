@@ -107,6 +107,17 @@
 
                             <slot name="additional-content-after-vat"></slot>
 
+                            {% set shopBuilderTemplateTop = "" %}
+                            {% set shopBuilderTemplateTop2 = "" %}
+                            {% set currentCategory = services.category.getCurrentCategory() %}
+
+                            {% if currentCategory is defined %}
+                                    {% set shopBuilderTemplateTop = shop_builder_category_template(currentCategory.id, isItemSet ? "itemset" : "singleitem", "zoneTop1") %}
+                                    {% set shopBuilderTemplateTop2 = shop_builder_category_template(currentCategory.id, isItemSet ? "itemset" : "singleitem", "zoneTop2") %}
+                            {% endif %}
+                            <div class="shopBuilder1">{{ shopBuilderTemplateTop | raw }}</div>
+                            <div class="shopBuilder2">{{ shopBuilderTemplateTop2 | raw }}</div>
+
                             <div class="TrustedShopsBanner">
                               <img class="TrustedShopsImage" src="https://cdn02.plentymarkets.com/9krpwzxa6mmo/frontend/shop_res/base/TrustedShopsLogo.png">
                               <span class="TrustedShopsText">Zertifizierter Shop + Käuferschutz von Trusted Shops</span>
