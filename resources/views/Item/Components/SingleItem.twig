@@ -24,6 +24,14 @@
                                     <b>${ $translate("Ceres::Template.singleItemNumber") } </b>
                                     <span>${ currentVariation.variation.number }</span>
                                 </span>
+                                <span class="articlenumber small text-muted">
+                                   {% set shopBuilderTemplateDetails = "" %}
+                                   {% set currentCategory = services.category.getCurrentCategory() %}
+                                   {% if currentCategory is defined %}
+                                           {% set shopBuilderTemplateDetails = shop_builder_category_template(currentCategory.id, isItemSet ? "itemset" : "singleitem", "zone0") %}
+                                   {% endif %}
+                                   <div class="shopBuilder_Details">{{ shopBuilderTemplateDetails | raw }}</div>
+                               </span>
                             </div>
 
                             <!-- Variation -->
@@ -97,6 +105,16 @@
                             <slot name="additional-content-after-add-to-basket"></slot>
 
                             <slot name="additional-content-after-vat"></slot>
+
+                            {% set shopBuilderTemplateTop = "" %}
+                            {% set shopBuilderTemplateTop2 = "" %}
+                            {% set currentCategory = services.category.getCurrentCategory() %}
+                            {% if currentCategory is defined %}
+                                {% set shopBuilderTemplateTop = shop_builder_category_template(currentCategory.id, isItemSet ? "itemset" : "singleitem", "zoneTop1") %}
+                                {% set shopBuilderTemplateTop2 = shop_builder_category_template(currentCategory.id, isItemSet ? "itemset" : "singleitem", "zoneTop2") %}
+                            {% endif %}
+                            <div class="shopBuilderTop1 ETCWidgetTop">{{ shopBuilderTemplateTop | raw }}</div>
+                            <div class="shopBuilderTop2 ETCWidgetTop">{{ shopBuilderTemplateTop2 | raw }}</div>
 
                             <div class="TrustedShopsBanner">
                               <img class="TrustedShopsImage" src="https://cdn02.plentymarkets.com/9krpwzxa6mmo/frontend/shop_res/base/TrustedShopsLogo.png">
@@ -212,7 +230,15 @@
                         <!-- ./ITEM DESCRIPTION -->
                     </div>
                   </div>
-
+                  {% set shopBuilderTemplate = "" %}
+                  {% set shopBuilderTemplate2 = "" %}
+                  {% set currentCategory = services.category.getCurrentCategory() %}
+                  {% if currentCategory is defined %}
+                          {% set shopBuilderTemplate = shop_builder_category_template(currentCategory.id, isItemSet ? "itemset" : "singleitem", "zone1") %}
+                          {% set shopBuilderTemplate2 = shop_builder_category_template(currentCategory.id, isItemSet ? "itemset" : "singleitem", "zone2") %}
+                  {% endif %}
+                  <div class="shopBuilder1">{{ shopBuilderTemplate | raw }}</div>
+                  <div class="shopBuilder2">{{ shopBuilderTemplate2 | raw }}</div>
                 <slot name="item-list-container"></slot>
                 <slot name="feedback-container"></slot>
             </div>
