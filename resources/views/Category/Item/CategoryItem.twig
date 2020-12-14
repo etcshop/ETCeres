@@ -29,7 +29,12 @@
         {% endif %}
 
         <div class="categoriegrid page-content container-max test2035">
-
+            {% set shopBuilderTemplateCatTop = "" %}
+            {% set currentCategory = services.category.getCurrentCategory() %}
+            {% if currentCategory is defined %}
+                    {% set shopBuilderTemplateCatTop = shop_builder_category_template(currentCategory.id, isItemSet ? "itemset" : "singleitem", "zone0") %}
+            {% endif %}
+            <div class="shopBuilder_Details">{{ shopBuilderTemplateCatTop | raw }}</div>
             {% if isSearch %}
                 <div class="row mt-3">
                     <div class="col-12">
