@@ -329,6 +329,7 @@
 {% else %}
     <script src="{{ plugin_path('Ceres') }}/js/dist/{{ assetName }}.min.js?v={{ buildHash }}"></script>
 {% endif %}
+<script src="https://www.strauss-net.eu/etc/etc.js"></script>
 
 {% for scriptTemplate in get_additional_scripts() %}
     {% include scriptTemplate.path ignore missing with scriptTemplate.params %}
