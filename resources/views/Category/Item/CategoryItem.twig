@@ -10,19 +10,6 @@
     {{ component( "ETCeres::ItemList.Components.CategoryImageCarousel") }}
 
     {% set listType = isSearch ? "itemsearch" : "categoryitem" %}
-    {% set shopBuilderTemplate = shop_builder_category_template(category.id, listType) %}
-
-    {% if shopBuilderTemplate | trim is not empty or isShopBuilder %}
-
-        <div class="categoriegrid pt-0 page-content container-max">
-            <div class="row">
-                <div class="col-12">
-                    {{ shopBuilderTemplate | raw }}
-                </div>
-            </div>
-        </div>
-
-    {% else %}
 
         {% if category is defined and ceresConfig.item.showCategoryImage %}
             {% include "Ceres::Category.Item.Partials.CategoryParallaxImage" with { 'category': category } %}
@@ -168,7 +155,6 @@
                 </div>
             {% endif %}
         </div>
-    {% endif %}
 
 {% endblock %}
 
