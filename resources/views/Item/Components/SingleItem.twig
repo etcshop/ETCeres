@@ -130,9 +130,9 @@
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </slot>
                 </div>
-                  <div class="itemDescriptionContainer">
+                  <slot class="itemDescriptionContainer" :getDataField="getDataField" :getFilteredDataField="getFilteredDataField"
                     <div class="container_centered">
                       <div class="itemDescription col-12 col-md-7 col-lg-12">
                         <!-- ITEM DESCRIPTION -->
@@ -235,7 +235,7 @@
                         <!-- ./ITEM DESCRIPTION -->
                       </div>
                     </div>
-                  </div>
+                  </slot>
                 </div>
                 <div class="container_centered">
                   <div item-data="5fd70db6b7da6" attributes-data="5fd70db6b7e05" variations="5fd70db6b7e07">
