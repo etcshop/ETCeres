@@ -126,10 +126,15 @@
                             <img class="PaymentBanner" src="https://cdn02.plentymarkets.com/9krpwzxa6mmo/frontend/shop_res/base/singleArticlePaymentBanner.png">
 
                             <!-- END SINGLEITEM_DETAILS -->
+                          </div>
                         </div>
+                      </div>
                     </div>
-
-                    <div class="itemDescription col-12 col-md-7 col-lg-12">
+                  </div>
+                </div>
+                  <div class="itemDescriptionContainer">
+                    <div class="container_centered">
+                      <div class="itemDescription col-12 col-md-7 col-lg-12">
                         <!-- ITEM DESCRIPTION -->
                         <div class="my-2">
                             <ul class="nav nav-tabs" role="tablist">
@@ -228,25 +233,32 @@
                             </div>
                         </div>
                         <!-- ./ITEM DESCRIPTION -->
+                      </div>
                     </div>
-
+                  </div>
                 </div>
+                <div class="container_centered">
+                  <div item-data="5fd70db6b7da6" attributes-data="5fd70db6b7e05" variations="5fd70db6b7e07">
+                    <div class="single container-max page-content px-0">
+                        <div class="row position-relative">
+                          {% set shopBuilderTemplate = "" %}
+                          {% set shopBuilderTemplate2 = "" %}
+                          {% set currentCategory = services.category.getCurrentCategory() %}
 
+                          {% if currentCategory is defined %}
+                                  {% set shopBuilderTemplate = shop_builder_category_template(currentCategory.id, isItemSet ? "itemset" : "singleitem", "zone1") %}
+                                  {% set shopBuilderTemplate2 = shop_builder_category_template(currentCategory.id, isItemSet ? "itemset" : "singleitem", "zone2") %}
+                          {% endif %}
+                          <div class="shopBuilder1">{{ shopBuilderTemplate | raw }}</div>
+                          <div class="shopBuilder2">{{ shopBuilderTemplate2 | raw }}</div>
 
-                {% set shopBuilderTemplate = "" %}
-                {% set shopBuilderTemplate2 = "" %}
-                {% set currentCategory = services.category.getCurrentCategory() %}
+                          <slot name="item-list-container"></slot>
+                          <slot name="feedback-container"></slot>
 
-                {% if currentCategory is defined %}
-                        {% set shopBuilderTemplate = shop_builder_category_template(currentCategory.id, isItemSet ? "itemset" : "singleitem", "zone1") %}
-                        {% set shopBuilderTemplate2 = shop_builder_category_template(currentCategory.id, isItemSet ? "itemset" : "singleitem", "zone2") %}
-                {% endif %}
-                <div class="shopBuilder1">{{ shopBuilderTemplate | raw }}</div>
-                <div class="shopBuilder2">{{ shopBuilderTemplate2 | raw }}</div>
-
-                <slot name="item-list-container"></slot>
-                <slot name="feedback-container"></slot>
-            </div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
         </slot>
     </div>
 </script>
