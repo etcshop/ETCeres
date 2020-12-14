@@ -1,6 +1,7 @@
 <script type="x/template"  id="vue-single-item" data-component="single-item">
 <div>
-        <slot :getDataField="getDataField" :getFilteredDataField="getFilteredDataField">
+      <slot :getDataField="getDataField" :getFilteredDataField="getFilteredDataField">
+         <div class="SingleItem_Full">
             <div class="single container-max page-content px-0">
                 <div class="row position-relative">
 
@@ -107,7 +108,9 @@
                             <!-- END SINGLEITEM_DETAILS -->
                         </div>
                     </div>
-
+                  </div>
+                </div>
+                <div>
                     <div class="itemDescription col-12 col-md-7 col-lg-12">
                         <!-- ITEM DESCRIPTION -->
                         <div class="my-2">
@@ -208,12 +211,13 @@
                         </div>
                         <!-- ./ITEM DESCRIPTION -->
                     </div>
-
+                  </div>
                 </div>
 
                 <slot name="item-list-container"></slot>
                 <slot name="feedback-container"></slot>
             </div>
-        </slot>
+         </div>
+      </slot>
     </div>
 </script>
