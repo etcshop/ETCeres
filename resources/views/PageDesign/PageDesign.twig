@@ -153,7 +153,7 @@
                 {% set initialCategory = category %}
             {% endif %}
           </div>
-          <div{% if not services.template.isHome() && not services.template.isCurrentTemplate("tpl.item") %} class="container_centered" {% endif %}>
+        <div{% if not services.template.isHome() and not services.template.isCurrentTemplate("tpl.item") %} class="container_centered" {% endif %}>
 
 
             {% block PageBody %}
