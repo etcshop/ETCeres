@@ -136,7 +136,9 @@
                                 <li class="nav-item" v-if="isDescriptionTabActive">
                                     <a class="nav-link active" data-toggle="tab" :href="'#details-' + currentVariation.variation.id" role="tab">${ $translate("Ceres::Template.singleItemDescription") }</a>
                                 </li>
-
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-toggle="tab" :href="'#details-' + currentVariation.variation.id" role="tab">${ $translate("Ceres::Template.singleItemDescription") }</a>
+                                </li>
                                 <li class="nav-item">
                                     <a :class="{ 'active': !isDescriptionTabActive && !isTechnicalDataTabActive }" class="nav-link" data-toggle="tab" href="#assessments-details" role="tab">${ $translate("Ceres::Template.singleItemMoreDetails") }</a>
                                 </li>
@@ -150,6 +152,14 @@
                                     </div>
                                     <div class="my-4" v-html="currentVariation.texts.technicalData">
                                     </div>
+                                </div>
+                                <div class="tab-pane active overflow-auto">
+                                    {% set shopBuilderTemplateItemContact = "" %}
+                                    {% set currentCategory = services.category.getCurrentCategory() %}
+                                    {% if currentCategory is defined %}
+                                            {% set shopBuilderTemplateItemContact = shop_builder_category_template(currentCategory.id, isItemSet ? "itemset" : "singleitem", "zone0") %}
+                                    {% endif %}
+                                    <div class="shopBuilder_ItemContact">{{ shopBuilderTemplateItemContact | raw }}</div>
                                 </div>
 
                                 <div :class="{ 'active': !isDescriptionTabActive && !isTechnicalDataTabActive }" class="tab-pane overflow-auto" id="assessments-details" role="tabpanel">
