@@ -82,47 +82,48 @@
         </div>
         <div class="footer4 footerBox">
           <h2>Zahlungsarten</h2>
-          <a href="www.etc-shop.de">
+          {% set zahlung = services.category.get(725, lang) %}
+          <a href="{{ services.category.getURL(zahlung, lang) }}">
             <div class="footer4Box1_left footerBox_left"><img src="https://cdn02.plentymarkets.com/9krpwzxa6mmo/frontend/shop_res/base/icon_pay_paypal.png"></div>
             <div class="footer4Box1_right footerBox_right">PayPal</div>
           </a>
 
-          <a href="www.etc-shop.de">
+          <a href="{{ services.category.getURL(zahlung, lang) }}">
             <div class="footer4Box2_left footerBox_left"><img src="https://cdn02.plentymarkets.com/9krpwzxa6mmo/frontend/shop_res/base/icon_pay_lastschrift.png"></div>
             <div class="footer4Box2_right footerBox_right">Lastschrift</div>
           </a>
 
-          <a href="www.etc-shop.de">
+          <a href="{{ services.category.getURL(zahlung, lang) }}">
             <div class="footer4Box3_left footerBox_left"><img src="https://cdn02.plentymarkets.com/9krpwzxa6mmo/frontend/shop_res/base/icon_pay_kreditkarte.png"></div>
             <div class="footer4Box3_right footerBox_right">Kreditkarte</div>
           </a>
 
-          <a href="www.etc-shop.de">
+          <a href="{{ services.category.getURL(zahlung, lang) }}">
             <div class="footer4Box4_left footerBox_left"><img src="https://cdn02.plentymarkets.com/9krpwzxa6mmo/frontend/shop_res/base/icon_pay_rechnung.png"></div>
             <div class="footer4Box4_right footerBox_right">Kauf auf Rechnung</div>
           </a>
 
-          <a href="www.etc-shop.de">
+          <a href="{{ services.category.getURL(zahlung, lang) }}">
             <div class="footer4Box5_left footerBox_left"><img src="https://cdn02.plentymarkets.com/9krpwzxa6mmo/frontend/shop_res/base/icon_pay_amazon-pay.png"></div>
             <div class="footer4Box5_right footerBox_right">Amazon Pay</div>
           </a>
 
-          <a href="www.etc-shop.de">
+          <a href="{{ services.category.getURL(zahlung, lang) }}">
             <div class="footer4Box6_left footerBox_left"><img src="https://cdn02.plentymarkets.com/9krpwzxa6mmo/frontend/shop_res/base/icon_pay_barzahlung.png"></div>
             <div class="footer4Box6_right footerBox_right">Barzahlung</div>
           </a>
 
-          <a href="www.etc-shop.de">
+          <a href="{{ services.category.getURL(zahlung, lang) }}">
             <div class="footer4Box7_left footerBox_left"><img src="https://cdn02.plentymarkets.com/9krpwzxa6mmo/frontend/shop_res/base/icon_pay_sofort.png"></div>
             <div class="footer4Box7_right footerBox_right">Sofort (Überweisung)</div>
           </a>
 
-          <a href="www.etc-shop.de">
+          <a href="{{ services.category.getURL(zahlung, lang) }}">
             <div class="footer4Box8_left footerBox_left"><img src="https://cdn02.plentymarkets.com/9krpwzxa6mmo/frontend/shop_res/base/icon_pay_ueberweisung.png"></div>
             <div class="footer4Box8_right footerBox_right">Überweisung</div>
           </a>
 
-          <a href="www.etc-shop.de">
+          <a href="{{ services.category.getURL(zahlung, lang) }}">
             <div class="footer4Box9_left footerBox_left"><img src="https://cdn02.plentymarkets.com/9krpwzxa6mmo/frontend/shop_res/base/icon_pay_easycredit.png"></div>
             <div class="footer4Box9_right footerBox_right">Ratenkauf by EasyCredit</div>
           </a>
