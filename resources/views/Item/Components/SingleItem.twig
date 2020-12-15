@@ -134,10 +134,10 @@
                         <div class="my-2">
                             <ul class="nav nav-tabs" role="tablist">
                                 <li class="nav-item" v-if="isDescriptionTabActive">
-                                    <a class="nav-link" data-toggle="tab" :href="'#details-' + currentVariation.variation.id" role="tab">${ $translate("Ceres::Template.singleItemDescription") }</a>
+                                    <a class="nav-link active" data-toggle="tab" :href="'#details-' + currentVariation.variation.id" role="tab">${ $translate("Ceres::Template.singleItemDescription") }</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link active" data-toggle="tab" :href="'#details-' + currentVariation.variation.id" role="tab">{{ trans("ETCeres::Template.ETC_singleItemContact") }}</a>
+                                    <a class="nav-link" data-toggle="tab" :href="'#details-' + currentVariation.variation.id" role="tab">{{ trans("ETCeres::Template.ETC_singleItemContact") }}</a>
                                 </li>
                                 <li class="nav-item">
                                     <a :class="{ 'active': !isDescriptionTabActive && !isTechnicalDataTabActive }" class="nav-link" data-toggle="tab" href="#assessments-details" role="tab">${ $translate("Ceres::Template.singleItemMoreDetails") }</a>
@@ -147,7 +147,7 @@
                             </ul>
 
                             <div class="tab-content overflow-hidden">
-                                <div class="tab-pane overflow-auto" :id="'details-' + currentVariation.variation.id" role="tabpanel" v-if="isDescriptionTabActive">
+                                <div class="tab-pane active overflow-auto" :id="'details-' + currentVariation.variation.id" role="tabpanel" v-if="isDescriptionTabActive">
                                     <div class="my-4" v-html="currentVariation.texts.description">
                                     </div>s
                                     <div class="my-4" v-html="currentVariation.texts.technicalData">
