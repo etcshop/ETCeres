@@ -149,7 +149,7 @@
                             <div class="tab-content overflow-hidden">
                                 <div class="tab-pane active overflow-auto" :id="'details-' + currentVariation.variation.id" role="tabpanel" v-if="isDescriptionTabActive">
                                     <div class="my-4" v-html="currentVariation.texts.description">
-                                    </div>
+                                    </div>s
                                     <div class="my-4" v-html="currentVariation.texts.technicalData">
                                     </div>
                                 </div>
@@ -157,7 +157,7 @@
                                     {% set shopBuilderTemplateItemContact = "" %}
                                     {% set currentCategory = services.category.getCurrentCategory() %}
                                     {% if currentCategory is defined %}
-                                            {% set shopBuilderTemplateItemContact = shop_builder_category_template(currentCategory.id, isItemSet ? "itemset" : "singleitem", "zone0") %}
+                                            {% set shopBuilderTemplateItemContact = shop_builder_category_template(currentCategory.id, isItemSet ? "itemset" : "singleitem", "zoneTab1") %}
                                     {% endif %}
                                     <div class="shopBuilder_ItemContact">{{ shopBuilderTemplateItemContact | raw }}</div>
                                 </div>
