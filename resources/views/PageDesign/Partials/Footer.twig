@@ -38,9 +38,10 @@
       {% set team = services.category.get(720, lang) %}
       {% set kontakt = services.category.get(724, lang) %}
       {% set karriere = services.category.get(1058, lang) %}
+      {% set cat1 = services.category.get(718, lang) %}
       <div class="container_centered">
         <div class="footer1 footerBox">
-          <h2>Informationen</h2>
+          <h2>{{ trans("ETCeres::Template.ETC_Informationen") }}</h2>
           {% if webstoreConfig.webstoreId == 4 %}
               {% if lang == "en" %}
                   <a href="http://s141963554.online.de/retoure/MeineLampe/retoure_en.php" target="_blank" title="Retourenportal" rel="noopener">{{ trans("ETCeres::Template.ETC_Retourenportal") }}</a><br>
@@ -58,108 +59,107 @@
                   <a href="http://s141963554.online.de/retoure/voll/retoure.php" target="_blank" title="Retourenportal" rel="noopener">{{ trans("ETCeres::Template.ETC_Retourenportal") }}</a><br>
               {% endif %}
           {% endif %}
-          <a href="{{ services.category.getURL(kontakt, lang) }}">Kontakt</a><br>
-          <a href="{{ services.category.getURL(zahlung, lang) }}">Zahlung</a><br>
-          <a href="{{ services.category.getURL(team, lang) }}">Unternehmen</a><br>
-          <a href="{{ services.category.getURL(karriere, lang) }}">Stellenangebot</a><br>
+          <a href="{{ services.category.getURL(kontakt, lang) }}">{{ trans("ETCeres::Template.ETC_Kontakt") }}</a><br>
+          <a href="{{ services.category.getURL(zahlung, lang) }}">{{ services.category.get(725, lang).details[0].name }}</a><br>
+          <a href="{{ services.category.getURL(team, lang) }}">{{ services.category.get(720, lang).details[0].name }}</a><br>
+          <a href="{{ services.category.getURL(karriere, lang) }}">{{ services.category.get(1058, lang).details[0].name }}</a><br>
           <br>
-          <a href="{{ urls.gtc }}">AGB</a><br>
-          <a href="{{ urls.cancellationRights }}">Widerrufsrecht</a><br>
-          <a href="{{ urls.privacyPolicy }}">Datenschutz</a><br>
-          <a href="{{ urls.legalDisclosure }}">Impressum</a><br>
-          <a href="{{ services.category.getURL(cat1, lang) }}">Entsorgungshinweise</a><br>
+          <a href="{{ urls.gtc }}">{{ trans("ETCeres::Template.footerGtc") }}</a><br>
+          <a href="{{ urls.cancellationRights }}">{{ trans("ETCeres::Template.footerCancellationRight") }}</a><br>
+          <a href="{{ urls.privacyPolicy }}">{{ trans("ETCeres::Template.footerPrivacyPolicy") }}</a><br>
+          <a href="{{ urls.legalDisclosure }}">{{ trans("ETCeres::Template.footerLegalDisclosure") }}</a><br>
+          <a href="{{ services.category.getURL(cat1, lang) }}">{{ services.category.get(718, lang).details[0].name }}</a><br>
         </div>
         <div class="footer2 footerBox">
           <div class="footer21 footerSubBox">
-            <h2>Produkberatung &amp; Support</h2>
-            <b>+49 (0)2692 9338380</b><br>
-            Montag bis Donnerstag 08:00 - 17:00 Uhr<br>
-            Freitag 08:00 - 14:00 Uhr
+            <h2>{{ trans("ETCeres::Template.ETC_Beratung") }}</h2>
+            <b>{{ trans("ETCeres::Template.ETC_Telefonnummer") }}</b><br>
+            {{ trans("ETCeres::Template.ETC_MoBisDo") }} {{ trans("ETCeres::Template.ETC_8Bis17") }}<br>
+            {{ trans("ETCeres::Template.ETC_Freitag") }} {{ trans("ETCeres::Template.ETC_8Bis14") }}
           </div>
           <div class="footer22 footerSubBox">
-            <h2>Partner</h2>
-              <div class="footer22Box_left">Meine Lampe</div>
+            <h2>{{ trans("ETCeres::Template.ETC_PartnerLabel") }}</h2>
+              <div class="footer22Box_left">{{ trans("ETCeres::Template.ML_Footer_MeineLampe") }}</div>
               <div class="footer22Box_right"><img src="https://cdn02.plentymarkets.com/9krpwzxa6mmo/frontend/shop_res/base/meinelampe_logo_hell.png"></div>
           </div>
         </div>
         <div class="footer3 footerBox">
           <div class="footer31 footerSubBox">
-            <h2>Newsletter</h2>
+            <h2>{{ trans("ETCeres::Template.ETC_Newsletter") }}</h2>
             <div class="footerNewsletterBox">
               <div class="footer31Box_left">5&euro;</div>
               <div class="footer31Box_right">
-                5 EUR Gutschein für Ihre<br>
-                Newsletter Anmeldung
+                {{ trans("ETCeres::Template.ETC_Newsletter_Text5") }}
               </div>
             </div>
           </div>
           <div class="footer32 footerSubBox">
-            <h2>Sicherheit</h2>
+            <h2>{{ trans("ETCeres::Template.ETC_Sicherheit") }}</h2>
               <div class="footer32Box_left"><img src="https://cdn02.plentymarkets.com/9krpwzxa6mmo/frontend/shop_res/base/TrustedShopsLogo.png"></div>
               <div class="footer32Box_right">
-                Zertifizierter Shop + Käuferschutz<br>
-                von Trusted Shops
+                {{ trans("ETCeres::Template.ETC_ZertifiiertUndKaeuferschutz") }}<br>
+                {{ trans("ETCeres::Template.ETC_VonTrustedShops") }}
               </div>
           </div>
         </div>
         <div class="footer4 footerBox">
-          <h2>Zahlungsarten</h2>
+          <h2>{{ trans("ETCeres::Template.ETC_Zahlungsarten") }}</h2>
           <a href="{{ services.category.getURL(zahlung, lang) }}">
             <div class="footer4Box1_left footerBox_left"><img src="https://cdn02.plentymarkets.com/9krpwzxa6mmo/frontend/shop_res/base/icon_pay_paypal.png"></div>
-            <div class="footer4Box1_right footerBox_right">PayPal</div>
+            <div class="footer4Box1_right footerBox_right">{{ trans("ETCeres::Template.ETC_Payment_Paypal") }}</div>
           </a>
 
           <a href="{{ services.category.getURL(zahlung, lang) }}">
             <div class="footer4Box2_left footerBox_left"><img src="https://cdn02.plentymarkets.com/9krpwzxa6mmo/frontend/shop_res/base/icon_pay_lastschrift.png"></div>
-            <div class="footer4Box2_right footerBox_right">Lastschrift</div>
+            <div class="footer4Box2_right footerBox_right">{{ trans("ETCeres::Template.ETC_Payment_Lastschrift") }}</div>
           </a>
 
           <a href="{{ services.category.getURL(zahlung, lang) }}">
             <div class="footer4Box3_left footerBox_left"><img src="https://cdn02.plentymarkets.com/9krpwzxa6mmo/frontend/shop_res/base/icon_pay_kreditkarte.png"></div>
-            <div class="footer4Box3_right footerBox_right">Kreditkarte</div>
+            <div class="footer4Box3_right footerBox_right">{{ trans("ETCeres::Template.ETC_Payment_Kreditkarte") }}</div>
           </a>
 
           <a href="{{ services.category.getURL(zahlung, lang) }}">
             <div class="footer4Box4_left footerBox_left"><img src="https://cdn02.plentymarkets.com/9krpwzxa6mmo/frontend/shop_res/base/icon_pay_rechnung.png"></div>
-            <div class="footer4Box4_right footerBox_right">Kauf auf Rechnung</div>
+            <div class="footer4Box4_right footerBox_right">{{ trans("ETCeres::Template.ETC_Payment_Rechnung") }}</div>
           </a>
 
           <a href="{{ services.category.getURL(zahlung, lang) }}">
             <div class="footer4Box5_left footerBox_left"><img src="https://cdn02.plentymarkets.com/9krpwzxa6mmo/frontend/shop_res/base/icon_pay_amazon-pay.png"></div>
-            <div class="footer4Box5_right footerBox_right">Amazon Pay</div>
+            <div class="footer4Box5_right footerBox_right">{{ trans("ETCeres::Template.ETC_Payment_AmazonPay") }}</div>
           </a>
 
           <a href="{{ services.category.getURL(zahlung, lang) }}">
             <div class="footer4Box6_left footerBox_left"><img src="https://cdn02.plentymarkets.com/9krpwzxa6mmo/frontend/shop_res/base/icon_pay_barzahlung.png"></div>
-            <div class="footer4Box6_right footerBox_right">Barzahlung</div>
+            <div class="footer4Box6_right footerBox_right">{{ trans("ETCeres::Template.ETC_Payment_Bar") }}</div>
           </a>
 
           <a href="{{ services.category.getURL(zahlung, lang) }}">
             <div class="footer4Box7_left footerBox_left"><img src="https://cdn02.plentymarkets.com/9krpwzxa6mmo/frontend/shop_res/base/icon_pay_sofort.png"></div>
-            <div class="footer4Box7_right footerBox_right">Sofort (Überweisung)</div>
+            <div class="footer4Box7_right footerBox_right">{{ trans("ETCeres::Template.ETC_Payment_Sofort") }}</div>
           </a>
 
           <a href="{{ services.category.getURL(zahlung, lang) }}">
             <div class="footer4Box8_left footerBox_left"><img src="https://cdn02.plentymarkets.com/9krpwzxa6mmo/frontend/shop_res/base/icon_pay_ueberweisung.png"></div>
-            <div class="footer4Box8_right footerBox_right">Überweisung</div>
+            <div class="footer4Box8_right footerBox_right">{{ trans("ETCeres::Template.ETC_Payment_Ueberweisung") }}</div>
           </a>
 
           <a href="{{ services.category.getURL(zahlung, lang) }}">
             <div class="footer4Box9_left footerBox_left"><img src="https://cdn02.plentymarkets.com/9krpwzxa6mmo/frontend/shop_res/base/icon_pay_easycredit.png"></div>
-            <div class="footer4Box9_right footerBox_right">Ratenkauf by EasyCredit</div>
+            <div class="footer4Box9_right footerBox_right">{{ trans("ETCeres::Template.ETC_Payment_EasyCredit") }}</div>
           </a>
 
         </div>
         <div class="footer5 footerBox">
           <div class="footer51 footerSubBox">
-            <h2>Mein Konto</h2>
-            <a href="{{ urls.myAccount }}">Login</a><br>
-            <a href="{{ urls.myAccount }}">Registrieren</a><br>
-            <a href="{{ urls.basket }}">Warenkorb</a><br>
-            <a href="{{ urls.myAccount }}">Merkliste</a><br>
+            <h2>{{ trans("ETCeres::Template.loginMyAccount") }}</h2>
+            <a href="{{ urls.myAccount }}">{{ trans("ETCeres::Template.ETC_LoginLabel") }}</a><br>
+            <a href="{{ urls.myAccount }}">{{ trans("ETCeres::Template.loginRegister") }}</a><br>
+            <a href="{{ urls.basket }}">{{ trans("ETCeres::Template.singleItemBasket") }}</a><br>
+            <a href="{{ urls.myAccount }}">{{ trans("ETCeres::Template.singleItemWishList") }}</a><br>
           </div>
           <div class="footer52 footerSubBox">
-            <h2>Bewertungen</h2>
+            <h2>{{ trans("ETCeres::Template.ETC_Bewertungen") }}</h2>
             <script2 src="https://apis.google.com/js/platform.js?onload=renderBadge" async defer></script2>
             <script2>
               window.renderBadge = function() {
