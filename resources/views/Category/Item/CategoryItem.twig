@@ -19,7 +19,7 @@
             {% set shopBuilderTemplateCatTop = "" %}
             {% set currentCategory = services.category.getCurrentCategory() %}
             {% if currentCategory is defined %}
-                    {% set shopBuilderTemplateCatTop = shop_builder_category_template(currentCategory.id, isItemSet ? "itemset" : "singleitem", "zone0") %}
+                    {% set shopBuilderTemplateCatTop = shop_builder_category_template(currentCategory.id, isItemSet ? "itemset" : "singleitem", "CatZone0") %}
             {% endif %}
             <div class="shopBuilder_KategorieTop">{{ shopBuilderTemplateCatTop | raw }}</div>
             {% if isSearch %}
