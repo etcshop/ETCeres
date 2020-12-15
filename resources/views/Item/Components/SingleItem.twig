@@ -247,8 +247,10 @@
                           {% set shopBuilderTemplate = shop_builder_category_template(currentCategory.id, isItemSet ? "itemset" : "singleitem", "zone1") %}
                           {% set shopBuilderTemplate2 = shop_builder_category_template(currentCategory.id, isItemSet ? "itemset" : "singleitem", "zone2") %}
                   {% endif %}
-                  <div class="shopBuilder1">{{ shopBuilderTemplate | raw }}</div>
-                  <div class="shopBuilder2">{{ shopBuilderTemplate2 | raw }}</div>
+                  <div class="container_centered">
+                    <div class="shopBuilder1">{{ shopBuilderTemplate | raw }}</div>
+                    <div class="shopBuilder2">{{ shopBuilderTemplate2 | raw }}</div>
+                  </div>
                 <slot name="item-list-container"></slot>
                 <slot name="feedback-container"></slot>
             </div>
