@@ -48,6 +48,12 @@
             "defaultLayoutContainer": "Ceres::Script.AfterScriptsLoaded"
         },
         {
+            "key"           :"ETCeres\\Containers\\CeresCoconutCategoryItemQuickVueTemplateContainer",
+            "name"          :"Container for CategoryItem Component Template",
+            "description"   :"Container for CategoryItem Component Template",
+            "defaultLayoutContainer": "Ceres::Script.AfterScriptsLoaded"
+        },
+        {
             "key"           :"ETCeres\\Containers\\CeresCoconutItemImageCarousel",
             "name"          :"Container for ImageCarousel Component Template",
             "description"   :"Container for ImageCarousel Component Template",
