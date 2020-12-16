@@ -110,7 +110,6 @@
                             {% for item in itemList %}
                                 <li class="col-6 col-sm-6 col-md-4 col-lg-4 col-lgx-4 col-xl-3 pl-0">
                                                   {{ item.texts.name1 }}
-                                    {{ component( "ETCeres::ItemList.Components.CategoryItemQuick") }}
                                     {{ component( "ETCeres::ItemList.Components.CategoryItem") }}
                                     <category-item
                                         template-override="#vue-category-itemETC"
@@ -124,7 +123,9 @@
                                             <span>{{ item.data | itemName }}</span>
                                         </a>
                                     </category-item>
+                                    <!--
                                     <div class="CategoryItemQuickView test1143">
+                                      {{ component( "ETCeres::ItemList.Components.CategoryItemQuick") }}
                                       <category-item
                                           template-override="#vue-category-item-quick"
                                           item-data-ref="{{ item.data | json_data }}"
@@ -138,6 +139,7 @@
                                           </a>
                                       </category-item>
                                     </div>
+                                    -->
                                 </li>
                             {% endfor %}
                         </ul>
