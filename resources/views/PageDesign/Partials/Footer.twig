@@ -30,8 +30,12 @@
         <div class="preFooterLang_Container">
           <div class="preFooter_LangText">DE</div>
           <img class="preFooter_LangDE" src="https://cdn02.plentymarkets.com/9krpwzxa6mmo/frontend/shop_res/base/flagge_DE.png">
-          <img class="preFooter_LangEN" src="https://cdn02.plentymarkets.com/9krpwzxa6mmo/frontend/shop_res/base/flagge_UK_dark.png">
-          <img class="preFooter_LangFR" src="https://cdn02.plentymarkets.com/9krpwzxa6mmo/frontend/shop_res/base/flagge_FR_dark.png">
+          <a href="{% if languageUrls["en"] is defined %}{{ languageUrls["en"] ~ queryString() }}{% elseif "en" != defaultLanguage %}/en{{ urls.trailingSlashSuffix }}{% else %}/{% endif %}" data-update-url title="Englisch">
+              <img class="preFooter_LangEN" src="https://cdn02.plentymarkets.com/9krpwzxa6mmo/frontend/shop_res/base/flagge_UK_dark.png">
+          </a>
+          <a href="{% if languageUrls["fr"] is defined %}{{ languageUrls["fr"] ~ queryString() }}{% elseif "fr" != defaultLanguage %}/fr{{ urls.trailingSlashSuffix }}{% else %}/{% endif %}" data-update-url title="Französisch">
+              <img class="preFooter_LangFR" src="https://cdn02.plentymarkets.com/9krpwzxa6mmo/frontend/shop_res/base/flagge_FR_dark.png">
+          </a>
         </div>
       </div>
     </div>
