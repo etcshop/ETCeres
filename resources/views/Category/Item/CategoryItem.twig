@@ -6,7 +6,6 @@
 
 {% block PageBody %}
 
-    {{ component( "ETCeres::ItemList.Components.CategoryItem") }}
     {{ component( "ETCeres::ItemList.Components.CategoryImageCarousel") }}
 
     {% set listType = isSearch ? "itemsearch" : "categoryitem" %}
@@ -111,6 +110,7 @@
                             {% for item in itemList %}
                                 <li class="col-6 col-sm-6 col-md-4 col-lg-4 col-lgx-4 col-xl-3 pl-0">
                                                   {{ item.texts.name1 }}
+                                    {{ component( "ETCeres::ItemList.Components.CategoryItem") }}
                                     <category-item
                                         template-override="#vue-category-itemETC"
                                         item-data-ref="{{ item.data | json_data }}"
