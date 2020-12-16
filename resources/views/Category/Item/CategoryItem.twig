@@ -6,7 +6,6 @@
 
 {% block PageBody %}
 
-    {{ component( "ETCeres::ItemList.Components.CategoryItemQuick") }}
     {{ component( "ETCeres::ItemList.Components.CategoryItem") }}
     {{ component( "ETCeres::ItemList.Components.CategoryImageCarousel") }}
 
@@ -125,6 +124,7 @@
                                         </a>
                                     </category-item>
                                     <div class="CategoryItemQuickView">
+                                      {{ component( "ETCeres::ItemList.Components.CategoryItemQuick") }}
                                       <category-item
                                           template-override="#vue-category-item-quick"
                                           item-data-ref="{{ item.data | json_data }}"
