@@ -1,5 +1,95 @@
 <script type="x/template" id="vue-category-item-quick">
 
+<div id="login-modal-wrapper">
+   <div id="login" tabindex="-1" role="dialog" class="modal fade login-modal show" aria-modal="true" style="padding-right: 17px; display: block;">
+      <div class="modal-dialog">
+         <header class="login-modal-header border-bottom p-3"><span class="h3 mb-0">Hallo, Anmelden</span><button type="button" aria-label="Close" class="close"><span aria-hidden="true">×</span></button></header>
+         <div class="modal-content">
+            <div class="modal-title h3">
+                <a :href="item | itemURL(urlWithVariationId)" class="thumb-title small" :class="{ 'stretched-link': $ceres.config.global.shippingCostsCategoryId == 0 }">
+                    ${ item | itemName }<!--
+                --><span v-for="attribute in item.groupedAttributes">${ "Ceres::Template.itemGroupedAttribute" | translate(attribute) }</span>
+                </a>
+            </div>
+            <div class="thumb-image">
+                <div class="prop-1-1">
+                    <slot name="item-image">
+                        <category-image-carousel template-override="#vue-category-image-carousel"
+                                                 :image-urls-data="item.images | itemImages(imageUrlAccessor)"
+                                                 :alt-text="item | itemName"
+                                                 :title-text="item | itemName"
+                                                 :item-url="item | itemURL(urlWithVariationId)"
+                                                 :enable-carousel="$ceres.config.item.enableImageCarousel"
+                                                 :disable-carousel-on-mobile="disableCarouselOnMobile"
+                                                 ref="categoryImageCarousel">
+                        </category-image-carousel>
+                    </slot>
+                </div>
+            </div>
+            <slot name="item-details">
+                <div class="thumb-content">
+                  <div class="misc-item-data-right">
+                    <span v-for="(property, index) in item.variationProperties" v-if="item.variationProperties" class="first">
+                      <span v-for="(group, index) in property.property.groups" class="second">
+                        <span v-if="group.names.name == 'Shopicons'" class="third">
+                          <span v-for="(propval, index) in property.values" v-if="property.values" class="fourth">
+                            <div v-if="propval.description.indexOf('http') > -1" v-html="propval.description" class="imageIcon"></div>
+                            <div v-else>
+                              <div v-html="propval.description" class="fontIcon"></div>
+                            </div>
+                          </span>
+                        </span>
+                      </span>
+                    </span>
+                  </div>
+                  <div class="QuickTechnicalData">
+
+                  </div>
+                </div>
+            </slot>
+            <div class="modal-footer">
+               <div class="modal-title h3">Noch kein Kunde?</div>
+               <hr>
+               <div class="modal-footer-text">
+                 <span class="vat small text-muted">
+                   <template v-if="showNetPrices">${ $translate("Ceres::Template.singleItemExclVAT") }</template><template v-else>${ $translate("Ceres::Template.singleItemInclVAT") }</template> ${ $translate("Ceres::Template.singleItemExclusive") }
+                   <a v-if="hasShippingCostsCategoryId" data-toggle="modal" href="#shippingscosts" :title="$translate('Ceres::Template.singleItemShippingCosts')">${ $translate("Ceres::Template.singleItemShippingCosts") }</a>
+                   <a v-else :title="$translate('Ceres::Template.singleItemShippingCosts')">${ $translate("Ceres::Template.singleItemShippingCosts") }</a>
+                 </span>
+
+                 <item-price :show-cross-price="isRecommendedPriceActive"></item-price>
+                 <graduated-prices></graduated-prices>
+                 <div class="TrustedShopsBanner">
+                   <img class="TrustedShopsImage" src="https://cdn02.plentymarkets.com/9krpwzxa6mmo/frontend/shop_res/base/TrustedShopsLogo.png">
+                   <span class="TrustedShopsText">Zertifizierter Shop + Käuferschutz von Trusted Shops</span>
+                 </div>
+
+                 <div class="QuickView_ShippingBanner">
+
+                 </div>
+
+                 <div class="QuickView_Buttons">
+                     <a v-waiting-animation-infinite :href="$ceres.urls.basket" rel="nofollow" class="btn btn-outline-primary btn-block" :title="$translate('Ceres::Template.basket')">
+                         <i class="fa fa-shopping-cart"></i>
+                         {{ $translate("Ceres::Template.basket") }}
+                     </a>
+                     <a v-waiting-animation-infinite :href="$ceres.urls.basket" rel="nofollow" class="btn btn-outline-primary btn-block" :title="$translate('Ceres::Template.basket')">
+                        <i class="fa fa-shopping-cart"></i>
+                        {{ $translate("Ceres::Template.basket") }}
+                    </a>
+                 </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+
+
+
+
+
+
     <article class="cmp cmp-product-quick test1440">
         <div :class="paddingClasses" :style="paddingInlineStyles">
 
