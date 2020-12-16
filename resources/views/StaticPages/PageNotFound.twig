@@ -3,7 +3,7 @@
 {% import "Ceres::PageDesign.Macros.LayoutContainer" as LayoutContainer %}
 
 {% block PartialHead %}
-    <title>404 {{ trans("CeresCoconut::Template.ETC_PageNotFoundPageTitle") }} | {{ config("Ceres.header.company_name") }}</title>
+    <title>404 {{ trans("ETCeres::Template.ETC_PageNotFoundPageTitle") }} | {{ config("Ceres.header.company_name") }}</title>
 {% endblock %}
 
 {% block PageBody %}
@@ -29,7 +29,7 @@
                   <ul class="row isGridView categoryDetails" id="twig-rendered-item-list" style="margin-top: 5px;">
                     {% set itemListX = services.itemList.getItemList("category", 429, "variation.position_desc", 50).documents %}
                   {% for item in itemListX %}
-                    {% include "CeresCoconut::Category.Item.Partials.CategoryListItemETC" with { 'item': item, 'shippingCat': shippingCat } %}
+                    {% include "ETCeres::Category.Item.Partials.CategoryListItemETC" with { 'item': item, 'shippingCat': shippingCat } %}
                   {% endfor %}
                   </ul>
                 </div>
