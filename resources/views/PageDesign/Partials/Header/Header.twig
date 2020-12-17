@@ -61,9 +61,11 @@
       <span id="headerShippingText">Kostenlose Lieferung ab 100 EUR</span>
     </div>
     <div id="headerToolButtons">
+    <!--
       <div id="headerLanguage" class="toolButton">
           <span id="headerLanguageText">{{ lang }}</span> <img src="https://www.etc-shop.de/layout/content/base/flag_small/flag_small_{{ lang }}_active.png" ID="headerLanguageFlag">
       </div>
+    -->
       <div id="headerAccount" class="toolButton">
         <a {% if services.template.isCurrentTemplate("tpl.login") %} href="javascript:void(0)"{% else %} data-toggle="modal" href="#login"{% endif %} @click="unmarkInputFields()">
           <span id="headerAccountText">{{ trans("ETCeres::Template.ETC_Konto") }}</span>
