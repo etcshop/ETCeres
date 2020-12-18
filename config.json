@@ -177,7 +177,7 @@
               "Navigation.SecondItemText": {
                 "type": "inputText",
                 "required": false,
-                "label": "Config.NavigationFirstItemText",
+                "label": "Config.NavigationSecondItemText",
                 "options": {}
               },
               "Navigation.SecondItemLink": {
