@@ -97,14 +97,33 @@
             {% endif %}
           </div>
         </div>
-        <div class="secSubHeader secSubHeader_Special"><a href="#">WANNENLEUCHTEN</a></div>
-        <div class="secSubHeader secSubHeader_Special"><a href="#">VENTILATOREN</a></div>
-        <div class="secSubHeader secSubHeader_Special"><a href="#">LED LEUCHTMITTEL</a></div>
-        <div class="secSubHeader secSubHeader_Special"><a href="#">GARTENBELEUCHTUNG</a></div>
-        <div class="secSubHeader secSubHeader_Special"><a href="#">SMART-LED</a></div>
-        <div class="secSubHeader secSubHeader_Special"><a href="#">KUGELLEUCHTEN</a></div>
-        <div class="secSubHeader secSubHeader_Special"><a href="#">DEKOLEUCHTEN</a></div>
-        <div class="secSubHeader secSubHeader_Special"><a href="#">TOP SELLER</a></div>
+
+        {% set Label1 = config("ETCeres.Navigation.FirstItemText") %}
+        {% set Label2 = config("ETCeres.Navigation.SecondItemText") %}
+        {% set Label3 = config("ETCeres.Navigation.ThirdItemText") %}
+        {% set Label4 = config("ETCeres.Navigation.FourthItemText") %}
+        {% set Label5 = config("ETCeres.Navigation.FifthItemText") %}
+        {% set Label6 = config("ETCeres.Navigation.SixthItemText") %}
+        {% set Label7 = config("ETCeres.Navigation.SeventhItemText") %}
+        {% set Label8 = config("ETCeres.Navigation.EighthItemText") %}
+
+        {% set Link1 = config("ETCeres.Navigation.FirstItemLink") %}
+        {% set Link2 = config("ETCeres.Navigation.SecondItemLink") %}
+        {% set Link3 = config("ETCeres.Navigation.ThirdItemLink") %}
+        {% set Link4 = config("ETCeres.Navigation.FourthItemLink") %}
+        {% set Link5 = config("ETCeres.Navigation.FifthItemLink") %}
+        {% set Link6 = config("ETCeres.Navigation.SixthItemLink") %}
+        {% set Link7 = config("ETCeres.Navigation.SeventhItemLink") %}
+        {% set Link8 = config("ETCeres.Navigation.EighthItemLink") %}
+
+        <div class="secSubHeader secSubHeader_Special"><a href="{{ Link1 | json_encode }}">{{ Label1 | json_encode }}</a></div>
+        <div class="secSubHeader secSubHeader_Special"><a href="{{ Link2 | json_encode }}">{{ Label2 | json_encode }}</a></div>
+        <div class="secSubHeader secSubHeader_Special"><a href="{{ Link3 | json_encode }}">{{ Label3 | json_encode }}</a></div>
+        <div class="secSubHeader secSubHeader_Special"><a href="{{ Link4 | json_encode }}">{{ Label4 | json_encode }}</a></div>
+        <div class="secSubHeader secSubHeader_Special"><a href="{{ Link5 | json_encode }}">{{ Label5 | json_encode }}</a></div>
+        <div class="secSubHeader secSubHeader_Special"><a href="{{ Link6 | json_encode }}">{{ Label6 | json_encode }}</a></div>
+        <div class="secSubHeader secSubHeader_Special"><a href="{{ Link7 | json_encode }}">{{ Label7 | json_encode }}</a></div>
+        <div class="secSubHeader secSubHeader_Special"><a href="{{ Link8 | json_encode }}">{{ Label8 | json_encode }}</a></div>
       </div>
     </div>
   </div>
