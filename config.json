@@ -257,7 +257,7 @@
                 "required": false,
                 "label": "Config.NavigationEighthItemLink",
                 "options": {}
-              },
+              }
             }
         }
     }
