@@ -166,97 +166,129 @@
                 "type": "inputText",
                 "required": false,
                 "label": "Config.NavigationFirstItemText",
-                "options": {}
+                "options": {
+                  "defaultValue": ""
+                }
               },
               "Navigation.FirstItemLink": {
                 "type": "inputText",
                 "required": false,
                 "label": "Config.NavigationFirstItemLink",
-                "options": {}
+                "options": {
+                  "defaultValue": ""
+                }
               },
               "Navigation.SecondItemText": {
                 "type": "inputText",
                 "required": false,
                 "label": "Config.NavigationSecondItemText",
-                "options": {}
+                "options": {
+                  "defaultValue": ""
+                }
               },
               "Navigation.SecondItemLink": {
                 "type": "inputText",
                 "required": false,
                 "label": "Config.NavigationSecondItemLink",
-                "options": {}
+                "options": {
+                  "defaultValue": ""
+                }
               },
               "Navigation.ThirdItemText": {
                 "type": "inputText",
                 "required": false,
                 "label": "Config.NavigationThirdItemText",
-                "options": {}
+                "options": {
+                  "defaultValue": ""
+                }
               },
               "Navigation.ThirdItemLink": {
                 "type": "inputText",
                 "required": false,
                 "label": "Config.NavigationThirdItemLink",
-                "options": {}
+                "options": {
+                  "defaultValue": ""
+                }
               },
               "Navigation.FourthItemText": {
                 "type": "inputText",
                 "required": false,
                 "label": "Config.NavigationFourthItemText",
-                "options": {}
+                "options": {
+                  "defaultValue": ""
+                }
               },
               "Navigation.FourthItemLink": {
                 "type": "inputText",
                 "required": false,
                 "label": "Config.NavigationFourthItemLink",
-                "options": {}
+                "options": {
+                  "defaultValue": ""
+                }
               },
               "Navigation.FifthItemText": {
                 "type": "inputText",
                 "required": false,
                 "label": "Config.NavigationFifthItemText",
-                "options": {}
+                "options": {
+                  "defaultValue": ""
+                }
               },
               "Navigation.FifthItemLink": {
                 "type": "inputText",
                 "required": false,
                 "label": "Config.NavigationFifthItemLink",
-                "options": {}
+                "options": {
+                  "defaultValue": ""
+                }
               },
               "Navigation.SixthItemText": {
                 "type": "inputText",
                 "required": false,
                 "label": "Config.NavigationSixthItemText",
-                "options": {}
+                "options": {
+                  "defaultValue": ""
+                }
               },
               "Navigation.SixthItemLink": {
                 "type": "inputText",
                 "required": false,
                 "label": "Config.NavigationSixthItemLink",
-                "options": {}
+                "options": {
+                  "defaultValue": ""
+                }
               },
               "Navigation.SeventhItemText": {
                 "type": "inputText",
                 "required": false,
                 "label": "Config.NavigationSeventhItemText",
-                "options": {}
+                "options": {
+                  "defaultValue": ""
+                }
               },
               "Navigation.NavigationSeventhItemLink": {
                 "type": "inputText",
                 "required": false,
                 "label": "Config.NavigationSeventhItemLink",
-                "options": {}
+                "options": {
+                  "defaultValue": ""
+                }
               },
               "Navigation.EighthItemText": {
                 "type": "inputText",
                 "required": false,
                 "label": "Config.NavigationEighthItemText",
-                "options": {}
+                "options": {
+                  "defaultValue": ""
+                }
               },
               "Navigation.EighthItemLink": {
                 "type": "inputText",
                 "required": false,
                 "label": "Config.NavigationEighthItemLink",
-                "options": {}
+                "options": {
+                  "defaultValue": ""
+                }
               }
             }
         }
